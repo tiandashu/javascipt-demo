@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>对象循环到数组</title>
+  </head>
+  <body>
+
+  </body>
+  <script type="text/javascript">
+    var arr=[];
+    var obj = {name:'tyy',age:18,life:{xiaoxue:'wanbiba',daxue:{name:'tyy',age:18,life:{xiaoxue:'wanbiba',daxue:'chiniba'}}}};
+    function ota (obj){
+      for (var key in obj) {
+        if(typeof obj[key] === 'object'){
+          ota(obj[key]);
+        }else {
+          arr.push(obj[key]);
+        }
+      }
+      return arr;
+    }
+    ota(obj);
+    console.log(arr);
+  </script>
+</html>
