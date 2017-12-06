@@ -8,19 +8,34 @@
 
   </body>
   <script type="text/javascript">
-    var arr=[];
-    var obj = {name:'tyy',age:18,life:{xiaoxue:'wanbiba',daxue:{name:'tyy',age:18,life:{xiaoxue:'wanbiba',daxue:'chiniba'}}}};
-    function ota (obj){
-      for (var key in obj) {
-        if(typeof obj[key] === 'object'){
-          ota(obj[key]);
-        }else {
-          arr.push(obj[key]);
-        }
+
+  //   var obj = {
+  //     name:'tyy',
+  //     life:{
+  //       shiwu:['aaa','bbb'],
+  //       // daxue:{
+  //       //   name:'tyy2',
+  //       //   age:18,
+  //       //   life:{
+  //       //     xiaoxue:'wanbiba',
+  //       //     daxue:'chiniba'
+  //       //   }
+  //       // }
+  //     }
+  // };
+  //
+  var arr=[];
+  function ota (obj){
+    for (var key in obj) {
+      if(typeof obj[key] === 'object'){
+        ota(obj[key]);
+      }else {
+        arr.push(obj[key]);
       }
-      return arr;
     }
-    ota(obj);
-    console.log(arr);
+    return arr;
+  }
+  ota(obj);
+  console.log(arr);
   </script>
 </html>
