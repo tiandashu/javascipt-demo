@@ -17,52 +17,80 @@
     * 4.鼠标移动的时候
     *    4.1 创建若干个小球
     *
-    *
-    *
     * */
+
     var canvas = document.querySelector('canvas');
     var ctx = canvas.getContext('2d');
     var vw = window.innerWidth;//获取屏幕的宽度
     var vh = window.innerHeight;//获取屏幕的高度
-    //设置canvas的宽高和屏幕的一致
-    canvas.width = vw;
-    canvas.height = vh;
-    var timer = null;
+    var colors = ['red','green','blue','pink','teal','tan'];//预存小球的颜色
+    var allqiu = [];//产生后的小球要保存进来
 
-    function Creat(opt) {//不要在构造函数中写过多的属性,因为每个实例都会复制一份造成内存的浪费
-        this.init(opt)//将参数传递给init()
+    //设置canvas的宽高和屏幕的一致  设置一个初始化的函数
+    function init() {
+        canvas.width = vw;
+        canvas.height = vh;
     }
+    init();//先初始化一下
+
+    //小球的构造函数
+    function Creat(opt) {//不要在构造函数中写过多的属性,因为每个实例都会复制一份造成内存的浪费
+        //TODO this.init() 和直接在构造函数中赋值的区别
+        this.init(opt) //1.将参数传递给原型上的init()  2.通过this.init()赋予实例属性
+    }
+
     Creat.prototype = {
         init:function (opt) {//用对象的形式接受参数
-            this.x = opt.x,
-            this.y = opt.y,
-            this.radius = opt.radius*Math.random(),
-            this.bgColor = ['red','green','blue','pink','teal','tan']
+            this.x = opt.x || 0;//小球的坐标位置
+            this.y = opt.y || 0;
+            this.radius = opt.radius*Math.random();//小球半径
+            this.bgColor = opt.colors || ['red','green'];//颜色
+            this.theta = this.random(0,Math.PI*2);//角度0-360
+            this.force = this.random(2,8); //轨迹半径 2-8px
+            this.vx = Math.sin(this.theta) * this.force;//x轴的轨迹范围
+            this.vy = Math.cos(this.theta) * this.force;//y轴的轨迹范围
         },
-        draw:function () {
+        /* 对小球进行更新*/
+        updata:function () {
+            this.x += this.vx;
+            this.y += this.vy;
+            //设置一个摩擦系数让每一次都慢一点 0.9>0.9*0.9
+            this.moca = 0.9;
+            this.vx *= this.moca;
+            this.vy *= this.moca;
+            this.radius *= this.moca;
+        },
+        draw:function (ctx) {
             ctx.beginPath();
             ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);
             ctx.fillStyle = this.bgColor[ parseInt(Math.random()*this.bgColor.length) ];
+            ctx.globalCompositeOperation = 'lighter';
             ctx.fill();
+        },
+        /*工具方法*/
+        /*产生随机数*/
+        random:function (min,max) {
+            if (this.isArr(min)){
+                return min[Math.floor(Math.random() * min.length)];
+            }else {
+                return min + Math.random() * (max - min);
+            }
+        },
+        isArr:function (obj) {
+            return  obj.constructor.name == 'Array'
         }
     }
     //开始设计鼠标移动的场景 鼠标在canvas上移动 获取鼠标的位置并跟随
     canvas.onmousemove = function (e) {
+        var e = e || window.event;
         //获取鼠标当前的位置page.x pgae.y
         var ex = e.pageX;
         var ey = e.pageY;
-        setTimeout(function () {
-            var qiu = new Creat({
-                x:ex,
-                y:ey,
-                radius:10
-            });
-            qiu.draw(ctx);
-        },1000)
         var qiu = new Creat({
             x:ex,
             y:ey,
-            radius:10
+            radius:10,
+            colors:colors
         });
         qiu.draw(ctx);
     }
