@@ -11,6 +11,7 @@
     function Person() {
         this.a()
     }
+    /*原型方法  动态方法*/
     Person.prototype={
         a:function () {
             this.x = 1;
@@ -20,11 +21,22 @@
             this.b = 3
         }
     }
+    /*
+    * 工具方法  静态方法
+    * 构造函数上添加的静态方法不会被实例继承
+    *
+    * */
+    Person.alert = function (msg) {
+        alert(msg)
+    }
 
+
+    /*创建实例*/
     var p =new Person();
+    /*调用静态方法*/
+    Person.alert(5555);
     console.log(p)
     p.tyy()
     console.log(p)
-    console.log(p.__proto__)
 </script>
 </html>

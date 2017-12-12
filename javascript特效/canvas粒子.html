@@ -2,105 +2,106 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>粒子</title>
+    <title>Title</title>
 </head>
 <body>
     <canvas></canvas>
 </body>
+<script></script>
 <script>
-    /*
-    * 1.canvas 绘制小球
-    * 2.定时器设置
-    * 3.面向对象/基于原型
-    *    3.1 初始化小球
-    *    3.2 实例化小球
-    * 4.鼠标移动的时候
-    *    4.1 创建若干个小球
+    var canvas = document.querySelector('canvas');
+    var ctx = canvas.getContext('2d');
+
+    var vw = window.innerWidth;
+    var vh = window.innerHeight;
+    var allParticle = [];
+    var bgcolor = ['red','green','pink','orange','yellow','teal','tan'];
+    /*初始化canvas*/
+    function Cinit() {
+        canvas.width = vw;
+        canvas.height = vh;
+        render();
+    }
+    Cinit();
+    
+    /* 创建粒子的构造函数
+    *  粒子的基础特性：大小、颜色、位置（鼠标的位置）
+    *  粒子的运动特性：运动轨迹大小（范围）=》位置角度、位置范围
+    *  粒子状态的变更：update
+    *
     *
     * */
 
-    var canvas = document.querySelector('canvas');
-    var ctx = canvas.getContext('2d');
-    var vw = window.innerWidth;//获取屏幕的宽度
-    var vh = window.innerHeight;//获取屏幕的高度
-    var colors = ['red','green','blue','pink','teal','tan'];//预存小球的颜色
-    var allqiu = [];//产生后的小球要保存进来
-
-    //设置canvas的宽高和屏幕的一致  设置一个初始化的函数
-    function init() {
-        canvas.width = vw;
-        canvas.height = vh;
+    function Particle() {
+        //一般不要给构造函数中添加太多的属性，实例会单独复制一份，造成内存的浪费
     }
-    init();//先初始化一下
-
-    //小球的构造函数
-    function Creat(opt) {//不要在构造函数中写过多的属性,因为每个实例都会复制一份造成内存的浪费
-        //TODO this.init() 和直接在构造函数中赋值的区别
-        this.init(opt) //1.将参数传递给原型上的init()  2.通过this.init()赋予实例属性
-    }
-
-    Creat.prototype = {
-        init:function (opt) {//用对象的形式接受参数
-            this.x = opt.x || 0;//小球的坐标位置
-            this.y = opt.y || 0;
-            this.radius = opt.radius*Math.random();//小球半径
-            this.bgColor = opt.colors || ['red','green'];//颜色
-            this.theta = this.random(0,Math.PI*2);//角度0-360
-            this.force = this.random(2,8); //轨迹半径 2-8px
-            this.vx = Math.sin(this.theta) * this.force;//x轴的轨迹范围
-            this.vy = Math.cos(this.theta) * this.force;//y轴的轨迹范围
+    //Particle的原型上创建可继承的属性
+    Particle.prototype = {
+        /*粒子的初始化参数 接受参数opt*/
+        init:function (opt) {
+            this.x = opt.x;
+            this.y = opt.y;
+            this.radius = opt.radius || 10;//粒子的大小
+            this.bgColor = opt.bgColor || ['teal','yellow'];//颜色
+            /* 粒子的运动特性：粒子在一定的轨道半径内出现在随机的位置(粒子的轨迹是一个圆)
+            *  pathwayRadius 轨道半径 需要产生x、y轴上的正负值     也可将轨道半径设成动态的
+            *  使用sin cos 函数
+            * */
+            this.angle = 0 + Math.random()*(Math.PI*2-0);
+            this.pathwayRadius = opt.pathwayRadius || 10;
+            this.pathwayX = this.pathwayRadius*Math.sin(this.angle);
+            this.pathwayY = this.pathwayRadius*Math.cos(this.angle);
         },
-        /* 对小球进行更新*/
-        updata:function () {
-            this.x += this.vx;
-            this.y += this.vy;
-            //设置一个摩擦系数让每一次都慢一点 0.9>0.9*0.9
-            this.moca = 0.9;
-            this.vx *= this.moca;
-            this.vy *= this.moca;
-            this.radius *= this.moca;
+        /*粒子的状态更新*/
+        update:function () {
+            this.x += this.pathwayX;
+            this.y += this.pathwayY;
+            /*让粒子的轨道每次增加一点点*/
+            this.pathwayX += this.pathwayX*0.1;
+            this.pathwayY += this.pathwayY*0.1;
+            /*设置摩擦系数 0.9>0.9*0.9*/
+            this.pathwayX *= 0.9;
+            this.pathwayY *= 0.9;
+            this.radius *= 0.9;
         },
+        /*粒子的绘制*/
         draw:function (ctx) {
             ctx.beginPath();
             ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);
-            ctx.fillStyle = this.bgColor[ parseInt(Math.random()*this.bgColor.length) ];
-            ctx.globalCompositeOperation = 'lighter';
+            ctx.fillStyle = this.bgColor[parseInt(this.bgColor.length*Math.random())];
             ctx.fill();
-        },
-        /*工具方法*/
-        /*产生随机数*/
-        random:function (min,max) {
-            if (this.isArr(min)){
-                return min[Math.floor(Math.random() * min.length)];
-            }else {
-                return min + Math.random() * (max - min);
-            }
-        },
-        isArr:function (obj) {
-            return  obj.constructor.name == 'Array'
         }
     }
-    //开始设计鼠标移动的场景 鼠标在canvas上移动 获取鼠标的位置并跟随
+
+
+    /*粒子的实例*/
     canvas.onmousemove = function (e) {
         var e = e || window.event;
-        //获取鼠标当前的位置page.x pgae.y
-        var ex = e.pageX;
-        var ey = e.pageY;
-        var qiu = new Creat({
-            x:ex,
-            y:ey,
-            radius:10,
-            colors:colors
-        });
-        qiu.draw(ctx);
+        var x = e.pageX;
+        var y = e.pageY;
+        var p = new Particle();
+        p.init({
+            x:x,
+            y:y,
+            bgColor:bgcolor
+        })
+        /*将产生的小球接受起来，为了性能最多产生800个*/
+        allParticle.push(p);
+        /*性能处理最多存在800个*/
+        if (allParticle.length>= 800){
+            allParticle.shift();
+        }
+
     }
 
-    /*实例化一个小球*/
-    var qiu = new Creat({
-        x:100,
-        y:100,
-        radius:100
-    });
-    qiu.draw(ctx);
+    function render() {
+        ctx.clearRect(0,0,vw,vh);/*去掉这个也是个好特效*/
+        /*将生成的小球绘制出来并更新*/
+        for (var i = 0,len = allParticle.length;i<len;i++){
+            allParticle[i].draw(ctx);
+            allParticle[i].update();
+        }
+        requestAnimationFrame(render);
+    }
 </script>
 </html>
