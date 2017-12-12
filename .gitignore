@@ -17,3 +17,6 @@ _book
 *.mobi
 *.pdf
 
+.idea/javascipt.iml
+.idea/modules.xml
+.idea/workspace.xml
