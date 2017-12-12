@@ -27,23 +27,25 @@
     var allqiu = [];//产生后的小球要保存进来
 
     //设置canvas的宽高和屏幕的一致  设置一个初始化的函数
-    function init() {
+    function CCinit() {
         canvas.width = vw;
         canvas.height = vh;
+        requestAnimationFrame(render);//初始化渲染函数
     }
-    init();//先初始化一下
+    CCinit();//先整体初始化一下
 
     //小球的构造函数
     function Creat(opt) {//不要在构造函数中写过多的属性,因为每个实例都会复制一份造成内存的浪费
+        // this.name = opt.name;
         //TODO this.init() 和直接在构造函数中赋值的区别
-        this.init(opt) //1.将参数传递给原型上的init()  2.通过this.init()赋予实例属性
+        //this.init(opt) //1.将参数传递给原型上的init()  2.通过this.init()赋予实例属性
     }
 
     Creat.prototype = {
         init:function (opt) {//用对象的形式接受参数
             this.x = opt.x || 0;//小球的坐标位置
             this.y = opt.y || 0;
-            this.radius = opt.radius*Math.random();//小球半径
+            this.radius = opt.radius || 10;//小球半径
             this.bgColor = opt.colors || ['red','green'];//颜色
             this.theta = this.random(0,Math.PI*2);//角度0-360
             this.force = this.random(2,8); //轨迹半径 2-8px
@@ -51,7 +53,7 @@
             this.vy = Math.cos(this.theta) * this.force;//y轴的轨迹范围
         },
         /* 对小球进行更新*/
-        updata:function () {
+        update:function () {
             this.x += this.vx;
             this.y += this.vy;
             //设置一个摩擦系数让每一次都慢一点 0.9>0.9*0.9
@@ -60,7 +62,7 @@
             this.vy *= this.moca;
             this.radius *= this.moca;
         },
-        draw:function (ctx) {
+        draw:function (ctx) {//粒子绘制
             ctx.beginPath();
             ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);
             ctx.fillStyle = this.bgColor[ parseInt(Math.random()*this.bgColor.length) ];
@@ -86,21 +88,28 @@
         //获取鼠标当前的位置page.x pgae.y
         var ex = e.pageX;
         var ey = e.pageY;
-        var qiu = new Creat({
+        //绘制小球
+        var qiu = new Creat();
+        qiu.init({
             x:ex,
             y:ey,
-            radius:10,
-            colors:colors
+            colors:colors,
+            radius:qiu.random(10,20)
         });
-        qiu.draw(ctx);
+        allqiu.push(qiu);//保存画布上的小球个数
+        if(allqiu.length>=800){
+            allqiu.shift();
+        }
     }
 
-    /*实例化一个小球*/
-    var qiu = new Creat({
-        x:100,
-        y:100,
-        radius:100
-    });
-    qiu.draw(ctx);
+    //渲染函数
+    function render() {
+        ctx.clearRect(0,0,vw,vh);//清空画布
+        for (var i=0,len = allqiu.length;i<len;i++){
+            allqiu[i].draw(ctx);//对象的绘制方法
+            allqiu[i].update();//小球更新
+        }
+        requestAnimationFrame(render);
+    }
 </script>
 </html>

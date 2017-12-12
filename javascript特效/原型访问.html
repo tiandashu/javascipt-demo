@@ -9,7 +9,7 @@
 </body>
 <script>
     function Person() {
-        this.a()
+        this.a();
     }
     Person.prototype={
         a:function () {
@@ -22,9 +22,8 @@
     }
 
     var p =new Person();
-    console.log(p)
+    console.log(p.b)
     p.tyy()
-    console.log(p)
-    console.log(p.__proto__)
+    console.log(p.b)
 </script>
 </html>
