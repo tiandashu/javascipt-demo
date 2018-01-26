@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flex布局一</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background-color: #000;
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            margin: 100px auto;
+            background-color: #ccf;
+            display: -webkit-flex;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: space-between;
+        }
+        .column{
+            display: -webkit-flex;
+            display: flex;
+            flex-basis: 100%;
+            justify-content: space-between;
+        }
+        .column:nth-child(2){
+            justify-content: center;
+        }
+        .item{
+            width: 20px;
+            height: 20px;
+            background-color: #000;
+            border-radius: 50%;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="column">
+        <span class="item"></span>
+        <span class="item"></span>
+        <span class="item"></span>
+    </div>
+    <div class="column">
+        <span class="item"></span>
+    </div>
+    <div class="column">
+        <span class="item"></span>
+        <span class="item"></span>
+    </div>
+</div>
+</body>
+</html>
