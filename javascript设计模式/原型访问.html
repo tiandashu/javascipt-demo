@@ -19,6 +19,7 @@
         },
         tyy:function () {
             this.b = 3
+            Person.al(121151)
         }
     }
     /*
@@ -26,7 +27,7 @@
     * 构造函数上添加的静态方法不会被实例继承
     *
     * */
-    Person.alert = function (msg) {
+    Person.al = function (msg) {
         alert(msg)
     }
 
@@ -34,7 +35,7 @@
     /*创建实例*/
     var p =new Person();
     /*调用静态方法*/
-    Person.alert(5555);
+    Person.al(5555);
     console.log(p)
     p.tyy()
     console.log(p)
