@@ -9,17 +9,18 @@
 </body>
 <script>
     function Person() {
-        this.a()
+        // this.a()
     }
     /*原型方法  动态方法*/
     Person.prototype={
+        b:3333,
         a:function () {
             this.x = 1;
             this.b = 2;
         },
         tyy:function () {
             this.b = 3
-            Person.al(121151)
+            Person.jingtai(222)
         }
     }
     /*
@@ -27,17 +28,17 @@
     * 构造函数上添加的静态方法不会被实例继承
     *
     * */
-    Person.al = function (msg) {
+    Person.jingtai = function (msg) {
         alert(msg)
     }
 
 
     /*创建实例*/
-    var p =new Person();
+    // var p =new Person();
     /*调用静态方法*/
-    Person.al(5555);
-    console.log(p)
-    p.tyy()
-    console.log(p)
+    Person.jingtai(1111);
+    // console.log(p)
+    // p.tyy()
+    // console.log(p)
 </script>
 </html>
