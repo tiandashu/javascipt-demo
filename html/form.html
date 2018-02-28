@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--注意：-->
+<!--1.input都要有name属性，用于向提交到后台的信息进行命名，若无name则后台会自动忽略该条信息。-->
+<!--2.action提交地址，若不填则会直接提交到当前页面-->
+<!--3.type属性类型：text、password、radio、checkbox、submit、reset、button、image、hidden-->
+<form  name="Form" action="#" method="get">
+    姓名：<input name="username" type="text" maxlength="11" placeholder="请输入用户名" autofocus="autofocus" pattern="[0-9]" value="tyy" required>
+    XXX: <input type="text" disabled="disabled" readonly="readonly">
+    XXX: <input type="checkbox" checked="checked">
+    <input type="file">
+    <input type="reset">
+    <input type="submit">
+</form>
+</body>
+<script>
+    var arr = [];
+    alert(arr.length);
+</script>
+</html>
