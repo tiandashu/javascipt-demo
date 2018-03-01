@@ -24,6 +24,9 @@
             width: 100%;
             margin-bottom: 10px;
         }
+        textarea{
+            resize: none;
+        }
     </style>
 </head>
 <body>
@@ -78,7 +81,9 @@
         </datalist>
 
         <label for="textarea">textarea:</label>
-        <textarea name="textarea" id="textarea" cols="30" rows="10"></textarea>
+        <textarea name="textarea" id="textarea" cols="30" rows="10">
+            通过给textarea设置css属性resize: none;可以防止用户缩放
+        </textarea>
 
         <label for="output">output:</label>
         <output id="output" name="output">tianaitian</output>
