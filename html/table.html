@@ -10,13 +10,19 @@
         table tr td{
             height:30px;
             line-height: 30px;
-            /*text-align: center;*/
+            text-align: center;
         }
-        .one{
-            background-color: teal;
-        }
-        .two{
-            background-color: #f00;
+        /*.one{*/
+            /*background-color: teal;*/
+        /*}*/
+        /*.two{*/
+            /*background-color: #f00;*/
+        /*}*/
+
+
+        .tb2  td{
+            float: left;
+            width:19%;
         }
     </style>
 </head>
@@ -30,6 +36,7 @@
 <!--valign属性：规定表格行中内容的垂直对齐方式，值有top、middle、bottom、baseline-->
 <!--rowspan属性:规定单元格横跨的行数-->
 <!--colspan属性:规定单元格横跨的列数-->
+
   <table border="1" cellpadding="0" cellspacing="0" width="300">
       <colgroup class="one">
           <!--col标签:为表格中的一个或多个列定义属性值-->
@@ -66,5 +73,25 @@
           </tr>
       </tbody>
   </table>
+
+
+<hr>
+<table border="1" cellpadding="0" cellspacing="0" width="500" class="tb2">
+    <caption>测试</caption>
+    <tr>
+        <td>111</td>
+        <td>111</td>
+        <td>111</td>
+        <td>111</td>
+        <td>111</td>
+    </tr>
+    <tr>
+        <td>111</td>
+        <td>111</td>
+        <td>111</td>
+        <td>111</td>
+        <td>111</td>
+    </tr>
+</table>
 </body>
 </html>
