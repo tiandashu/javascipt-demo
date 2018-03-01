@@ -27,6 +27,7 @@
         textarea{
             resize: none;
         }
+        .spn {position: absolute;font-size: 14px;left: 10px;top: 9px;display: none;color:#666;}
     </style>
 </head>
 <body>
@@ -38,7 +39,12 @@
     <fieldset>
         <legend>表单</legend>
         <label for="name">text:</label>
-        <input type="text" id="name" name="name">
+        <input type="text" id="name" name="name" placeholder="请输入内容" datavalue="输入文字" class="ipt" maxlength="10" required  autofocus="autofocus" autocomplete="on">
+        <!--placeholder：用于在输入框中显示提示信息。输入文字时消失，不会被提交(不兼容ie9、火狐58以下)-->
+        <!--maxlength：number规定输入字段中的字符的最大长度-->
+        <!--required：必填项-->
+        <!--autofocus：autofocus规定输入字段在页面加载时是否获得焦点。（不适用于 type="hidden"）-->
+        <!--autocomplet:自动记忆（on/off）-->
 
         <label for="pwd">pwd:</label>
         <input type="password" id="pwd" name="pwd">
@@ -118,6 +124,11 @@
         <input type="color">
         <input type="range">
         <meter min="0" max="20" low="20" high="80" value="18"></meter>
+        
+        <!--验证readonly和disabled的区别-->
+
+        <input class="num1" type="text" value="123" readonly="readonly">
+        <input class="num2" type="text" value="456" disabled="disabled">
 
     </fieldset>
 </form>
@@ -126,8 +137,31 @@
     2.hidden隐藏域作用
     3.type为submit和image的时候都可以用来提交表单
     4.readonly和disabled的区别获取value？
-    5.属性
 </mark>
 </body>
+<script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.js"></script>
+<script>
+    console.log($(".num1").val());
+    console.log($(".num2").val())
+    <!--ie兼容处理-->
+    $(function(){
+        function placeholder(target){
+
+            $(target).val($(target).attr("datavalue")).addClass("inp");
+            $(target).focus(function() {
+                if($(this).val() == $(this).attr("datavalue")) {
+                    $(this).val("").removeClass("inp");
+                }
+
+            })
+            $(target).blur(function(){
+                if($(this).val() == "" || $(this).val() == $(this).attr("datavalue")) {
+                    $(this).val($(target).attr("datavalue")).addClass("inp");
+                }
+            })
+        }
+        placeholder(".ipt")
+    })
+</script>
 
 </html>

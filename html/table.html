@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>table</title>
+    <style>
+        table tr{
+            width:100%;
+        }
+        table tr td{
+            height:30px;
+            line-height: 30px;
+            /*text-align: center;*/
+        }
+        .one{
+            background-color: teal;
+        }
+        .two{
+            background-color: #f00;
+        }
+    </style>
+</head>
+<body>
+<!--border属性：规定表格边框的宽度，border属性值改变，只会改变表格外边框，表格内部的边框不会改变，还是1px-->
+<!--cellspacing属性：规定单元格之间的间距-->
+<!--cellpadding属性：规定单元格边界与单元格内容之间的间距,默认为0-->
+<!--特别注意：caption标签:定义表格的标题；-->
+<!--特别注意: colgroup标签:用于对表格中的列进行分组,以便对其进行格式化-->
+<!--align属性，可设置caption和tr:规定表格标题显示位置，值有left、right、center、justify-->
+<!--valign属性：规定表格行中内容的垂直对齐方式，值有top、middle、bottom、baseline-->
+<!--rowspan属性:规定单元格横跨的行数-->
+<!--colspan属性:规定单元格横跨的列数-->
+  <table border="1" cellpadding="0" cellspacing="0" width="300">
+      <colgroup class="one">
+          <!--col标签:为表格中的一个或多个列定义属性值-->
+          <col />
+          <col />
+      </colgroup>
+      <colgroup span="3" class="two"></colgroup>
+      <caption align="top">future</caption>
+      <thead>
+          <tr  valign="top">
+              <th>姓名</th>
+              <th>年龄</th>
+              <th>职业</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr align="right">
+              <td>小七七</td>
+              <td>0</td>
+              <td>学生</td>
+          </tr>
+          <tr>
+              <td>小贝壳</td>
+              <td colspan="2">0</td>
+          </tr>
+          <tr>
+              <td rowspan="2">小七七</td>
+              <td>0</td>
+              <td>学生</td>
+          </tr>
+          <tr>
+              <td>0</td>
+              <td>学生</td>
+          </tr>
+      </tbody>
+  </table>
+</body>
+</html>
