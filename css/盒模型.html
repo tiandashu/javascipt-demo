@@ -9,36 +9,47 @@
             margin: 0;
         }
         #main{
-            width: 100px;
+            width: 200px;
             height: 100px;
-            margin: 100px auto;
             border: 10px solid pink;
             background: teal;
-            position: absolute;
-            left: 100px;
-            margin-left: 102px;
+            margin-top:80px;
         }
-        body{
-            position: absolute;
-            left: 10px;
-            padding: 100px;
-            background: indianred;
+
+        p,input{
+            width:100px;
+            height:40px;
+            background:yellow;
+            margin-top:30px;
         }
+
     </style>
 </head>
 <body>
 <div id="main">
-
+    <p>块级包含块级</p>
 </div>
+<hr>
+<div id="main">
+    <input type="text" placeholder="块级包含行内块">
+</div>
+<hr>
+<p>
+<div id="main">行内块包含块级</div>
+</p>
+
+</textarea>
 </body>
 <script>
-    var main = document.getElementById('main');
-    var offsetheight = main.offsetHeight;
-    var height1 = main.style.height;
-    console.log(height1);
-    console.log(offsetheight);
-    var offsetleft = main.offsetLeft;
-    console.log(offsetleft);
+
+
+    // var main = document.getElementById('main');
+    // var offsetheight = main.offsetHeight;
+    // var height1 = main.style.height;
+    // console.log(height1);
+    // console.log(offsetheight);
+    // var offsetleft = main.offsetLeft;
+    // console.log(offsetleft);
 
 </script>
 </html>
