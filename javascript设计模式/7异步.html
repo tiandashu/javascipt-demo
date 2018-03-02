@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>.</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background: #eeeeee;
+        }
+    </style>
+</head>
+<body>
+<div id="div">click me</div>
+</body>
+</html>
+<script>
+    setTimeout(function () {
+        alert(5555);
+        var div = document.getElementById("div");
+        div.onclick = function () {
+            window.open("http://www.baidu.com")
+        }
+    },2000)
+</script>
