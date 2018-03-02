@@ -11,9 +11,24 @@
         #main{
             width: 200px;
             height: 100px;
-            border: 10px solid pink;
+            /*border: 10px solid pink;*/
             background: teal;
             margin-top:80px;
+        }
+        #main1 {
+            display: inline-block;
+            width:300px;
+            height:200px;
+            background: paleturquoise;
+            margin-bottom: 50px;
+        }
+        #main2 {
+            /*display: inline-block;*/
+            width:150px;
+            height:50px;
+            background: plum;
+            margin-top:30px;
+            margin-bottom:100px;
         }
 
         p,input{
@@ -21,6 +36,7 @@
             height:40px;
             background:yellow;
             margin-top:30px;
+
         }
 
     </style>
@@ -34,12 +50,20 @@
     <input type="text" placeholder="块级包含行内块">
 </div>
 <hr>
-<p>
-<div id="main">行内块包含块级</div>
-</p>
+<!--行内块包含块级,给块级元素设置margin可以-->
+<div id="main1">
+    <div id="main">行内块包含块级</div>
+</div>
 
-</textarea>
-</body>
+<hr>
+<div id="main1">
+    <div id="main2">行内块包含行内块</div>
+</div>
+<hr>
+
+<div id="main1"></div>
+<div id="main2"></div>
+
 <script>
 
 
