@@ -17,7 +17,11 @@
 * 将init的原型和jquery的原型指向同一个原型
 *
 * */
-
+/*
+* 解决了wunew构建还有一个就是链式调用：
+* 为什么采用链式调用的方式？1.节约js代码 2.所返回的都是同一个对象，可以提高代码的效率
+* 缺点：最糟糕的是所有对象的方法返回的都是对象本身，也就是说没有返回值，这不一定在任何环境下都适合。
+* */
 
 var jquery = function (selector,context) {
     console.log(this);//window  jqery的this
@@ -41,4 +45,4 @@ jquery.fn = jquery.prototype = {
 * */
 jquery.fn.init.prototype = jquery.fn;
 
-/*通过以上分析：得出jq的本质其实将jq的构造函数和jq的原型同时放在一起*/
+/*通过以上分析：得出jq的本质其实将jq的构造函数和jq的原型同时放在一起，就实现了wunew构建*/
