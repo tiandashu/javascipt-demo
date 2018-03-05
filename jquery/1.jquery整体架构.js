@@ -20,7 +20,7 @@ var jquery = function (selector,context) {
 
 jquery.prototype = {
     init:function () {
-        this.age = 18;
+        // this.age = 18;
         console.log(this);//return new的时候this指向 init；直接return的时候this指向{init: ƒ}
     },
     age:36
@@ -30,5 +30,5 @@ jquery.prototype = {
 * 思考：把jquery当作一个工厂函数，用来生产实例 this指向window
 *  原型上的init当作构造函数，this指向构造的实例
 *  那么通过jquery().age  返回的是18  显然和 真正的jquery 不一样
-*
+*  问题：怎么访问jquery原型上的属性和方法呢？？？即访问到age=36
 * */
