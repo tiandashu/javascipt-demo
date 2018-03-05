@@ -8,10 +8,15 @@
 
 </body>
 <script src="./1.jquery整体架构.js"></script>
-<script src="./1.jquery整体架构this.js"></script>
+<script src="./1.jquery整体架构接口.js"></script>
 <script>
-    var age = jquery().age;
-    console.log(age);
+   var target = {};
+   var arr = [1,2,3,4];
+   var obj = {
+       a:'a',
+       b:'b'
+   }
 
+   console.log(jquery().extend(true,target, arr));
 </script>
 </html>
