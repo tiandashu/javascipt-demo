@@ -89,9 +89,9 @@ jquery.extend = jquery.fn.extend = function(){
                 if( deep && copy && (jquery.isPlainObject(copy) || (copyIsArray = jquery.isArray(copy)) ) ){
                     if(copyIsArray){
                         copyIsArray = false;
-                        clone = src && jquery.isArray(copy) ? src : [];
+                        clone = src && jquery.isArray(src) ? src : [];
                     }else{
-                        clone = src && jquery.isPlainObject(copy) ? src : {};
+                        clone = src && jquery.isPlainObject(src) ? src : {};
                     }
                     //使用递归循环实现拷贝
                     target[name] = jquery.extend(deep,clone,copy);
