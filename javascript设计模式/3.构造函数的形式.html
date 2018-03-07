@@ -16,11 +16,11 @@
       }
 
       var p1 = new person('tyy',26,'nv');
-      var p2 = new person('tyy',26,'nv');
+      var p2 = new person('tyy2',26,'nv');
       console.log(p1 == p2);//false
       console.log(p1 === p2);//false
       console.log(p1.constructor==person);//true
-      console.log(p1.constructor===person);//true
+      console.log(p2.constructor===person);//true
       console.log(p1 instanceof person);//true
       p1.say()
       //构造函数的形式可以把实例和原型关联起来
