@@ -45,8 +45,10 @@
     //console.log(d); //is not defined
     console.log(e);//undefined  变量提升
     console.log(f);//undefined  变量提升
+    //console.log(g);//g is not defined  没有使用var声明,不存在变量提升
     var e;
     var f = "f";
+    g = "g";//没有使用var声明，直接赋值
     console.log(f);//undefined  变量赋值
 
 
@@ -78,8 +80,20 @@
     fn2();
 
 
+
+
+
+    console.log(x);//undefined 变量提升
+    console.log(y);//y is not defined 没有使用var，不存在提升
+    if(0){
+        var x  = "x";
+        y = "y"
+    }
+    console.log(x);
+    console.log(y);
     /*
     * 声明式函数的提升比变量的提升优先级高
+    * 且if不是块级作用域，只有function是
     * */
 </script>
 </html>
