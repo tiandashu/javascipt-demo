@@ -2,15 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>object</title>
 </head>
 <body>
 
 </body>
 <script>
+/*声明
+* */
 
+//字面量
+var obj1 = {a:"a",b:"b"};
+obj1.c = "c";//动态添加
+console.log(obj1);
 
-
+//new
+var obj2 = new Object();
+obj2.a = "a2";
+obj2.b = "b2";
+obj2.c = "c2";
+console.log(obj2);
+console.log(Object.length);//1
+console.log(obj2.length);//undefined
 
 
 </script>
