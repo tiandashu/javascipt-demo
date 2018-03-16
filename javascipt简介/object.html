@@ -54,6 +54,11 @@ console.log(obj3);
 *   3.1这样的话，delete操作不能删除任何在全局作用域中的函数（无论这个函数是来自于函数声明或函数表达式）
 *   3.2 除了在全局作用域中的函数不能被删除，在对象(object)中的函数是能够用delete操作删除的。
 * */
+//instanceof ：判断是否是某个对象类型。
+var a = [1,2,3];
+console.log(a instanceof Object); //true
+console.log(a instanceof Array); //true
+console.log(a instanceof RegExp); //false
 console.log("*****************");
 function Person(name,age) {
     this.name = name;
@@ -97,7 +102,19 @@ Object.defineProperty(obj5,"age",{
 });
 obj5.age = 60;
 console.log(obj5.age);
-
-
+console.log("*****************************************************************************");
+//方法1：不太好，有兼容性  IE11+
+//console.log(null.__proto__.constructor.name);  //报错   Cannot read property '__proto__' of null
+//console.log(undefined.__proto__.constructor.name);  //报错   Cannot read property '__proto__' of undefined
+//console.log([1,4,5].__proto__.constructor.name);  //Array
+//方法2：推荐
+console.log(Object.prototype.toString.call(2))     //  "[object Number]"
+Object.prototype.toString.call("")    // "[object String]"
+Object.prototype.toString.call(true)  // "[object Boolean]"
+Object.prototype.toString.call(undefined)     //  "[object Undefined]"
+Object.prototype.toString.call(null)    // "[object Null]"
+Object.prototype.toString.call(Math)  // "[object Math]"
+Object.prototype.toString.call({})     //  "[object Object]"
+Object.prototype.toString.call([])    // "[object Array]"
 </script>
 </html>
