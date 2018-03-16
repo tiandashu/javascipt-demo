@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>loading</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        html,body{
+            background: #59488b;
+        }
+        .main{
+            width: 800px;
+            height: 600px;
+            margin: 200px auto;
+            background: teal;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-content: space-between;
+        }
+        .item{
+            width: 100px;
+            height: 100px;
+            background: #3c763d;
+        }
+        /***********************************/
+        .item1{
+            border-radius: 50%;
+            border: 1px solid #fff;
+            position: relative;
+        }
+        .item1 p:last-child{
+            width: 44px;
+            height: 2px;
+            background: #fff;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate3d(0px,-1px,0);
+            animation:time 2s linear infinite;
+            transform-origin: left;
+        }
+        .item1 p:first-child{
+            width: 36px;
+            height: 2px;
+            background: #fff;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate3d(0px,-1px,0);
+            animation:time 8s linear infinite;
+            transform-origin: left;
+        }
+        @keyframes time{
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+
+        /******************************************/
+        .typing_loader{
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            -webkit-animation: typing 1s linear infinite ;
+            -moz-animation: Typing 1s linear infinite ;
+            animation: typing 1s linear infinite ;
+            margin: 46px auto; /* Not necessary- its only for layouting*/
+            position: relative;
+            left: -12px;
+        }
+        @-webkit-keyframes typing{
+            0%{
+                background-color: rgba(255,255,255, 1);
+                box-shadow: 12px 0px 0px 0px rgba(255,255,255,0.2),
+                24px 0px 0px 0px rgba(255,255,255,0.2);
+            }
+            25%{
+                background-color: rgba(255,255,255, 0.4);
+                box-shadow: 12px 0px 0px 0px rgba(255,255,255,2),
+                24px 0px 0px 0px rgba(255,255,255,0.2);
+            }
+            75%{ background-color: rgba(255,255,255, 0.4);
+                box-shadow: 12px 0px 0px 0px rgba(255,255,255,0.2),
+                24px 0px 0px 0px rgba(255,255,255,1);
+            }
+        }
+
+        @-moz-keyframes typing{
+            0%{
+                background-color: rgba(255,255,255, 1);
+                box-shadow: 12px 0px 0px 0px rgba(255,255,255,0.2),
+                24px 0px 0px 0px rgba(255,255,255,0.2);
+            }
+            25%{
+                background-color: rgba(255,255,255, 0.4);
+                box-shadow: 12px 0px 0px 0px rgba(255,255,255,2),
+                24px 0px 0px 0px rgba(255,255,255,0.2);
+            }
+            75%{ background-color: rgba(255,255,255, 0.4);
+                box-shadow: 12px 0px 0px 0px rgba(255,255,255,0.2),
+                24px 0px 0px 0px rgba(255,255,255,1);
+            }
+        }
+
+        @keyframes typing{
+            0%{
+                background-color: rgba(255,255,255, 1);
+                box-shadow: 12px 0px 0px 0px rgba(255,255,255,0.2),
+                24px 0px 0px 0px rgba(255,255,255,0.2);
+            }
+            25%{
+                background-color: rgba(255,255,255, 0.4);
+                box-shadow: 12px 0px 0px 0px rgba(255,255,255,2),
+                24px 0px 0px 0px rgba(255,255,255,0.2);
+            }
+            75%{ background-color: rgba(255,255,255, 0.4);
+                box-shadow: 12px 0px 0px 0px rgba(255,255,255,0.2),
+                24px 0px 0px 0px rgba(255,255,255,1);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="item item1">
+        <p class="second"></p>
+        <p class="miao"></p>
+    </div>
+    <div class="item">
+        <p class="typing_loader"></p>
+    </div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"> </div>
+</div>
+</body>
+</html>
