@@ -19,13 +19,15 @@
     * */
     function Person(name) {
         this.name = name;
-        return 123;
-//        return {a:'a'};
-//        return [1,2,3];
+        // return 123;
+        return null;
+       // return {a:'a'};
+       // return [1,2,3];
     }
     Person.prototype.name = 'tl'
     var p = new Person('tyy');
 
     console.log(p);
+    console.log(p.name);
 </script>
 </html>

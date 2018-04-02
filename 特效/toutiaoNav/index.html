@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>导航</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+
+<link rel="stylesheet" href="css/swiper.min.css">
+<script src="js/jquery-1.10.1.min.js"></script>
+<script src="js/swiper.min.js"></script>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+#topNav {
+	width: 100%;
+	overflow: hidden;
+	font: 16px/32px hiragino sans gb, microsoft yahei, simsun;
+	border-bottom:1px solid #f8f8f8;
+}
+#topNav .swiper-slide {
+	padding: 0 5px;
+	letter-spacing:2px;
+	width:3rem;
+	text-align:center;
+}
+#topNav .swiper-slide a{
+	transition:all .3s ease;
+	display:block;
+  text-decoration: none;
+}
+#topNav .active a{
+	transform:scale(1.1);
+	color:#FF2D2D;
+}
+img{
+	width:100%;
+	line-height:0;
+	}
+</style>
+</head>
+<body>
+<!--<img src="images/img01.png">-->
+<div id="topNav" class="swiper-container">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide" v-for="item in navList">
+      <a :href="item.href">{{item.content}}</a>
+    </div>
+    <!--<div class="swiper-slide"><a href="https://www.baidu.com">汽车</a></div>-->
+    <!--<div class="swiper-slide"><a href="https://www.baidu.com">汽车</a></div>-->
+    <!--<div class="swiper-slide"><a href="https://www.baidu.com">军事</a></div>-->
+    <!--<div class="swiper-slide"><a href="https://www.baidu.com">体育</a></div>-->
+    <!--<div class="swiper-slide"><a href="https://www.baidu.com">段子</a></div>-->
+    <!--<div class="swiper-slide"><a href="https://www.baidu.com">美女</a></div>-->
+    <!--<div class="swiper-slide"><a href="https://www.baidu.com">国际</a></div>-->
+    <!--<div class="swiper-slide"><a href="https://www.baidu.com">趣图</a></div>-->
+    <!--<div class="swiper-slide"><a href="https://www.baidu.com">健康</a></div>-->
+    <!--<div class="swiper-slide"><a href="https://www.baidu.com">特产</a></div>-->
+    <!--<div class="swiper-slide"><a href="https://www.baidu.com">房产</a></div>-->
+  </div>
+</div>
+<!--<img src="images/img02.png">-->
+<script src="js/vue.js"></script>
+<script type="text/javascript">
+
+var navList = [
+    {href:'https://www.baidu.com',content:'汽车'},
+    {href:'https://www.baidu.com',content:'热点'},
+    {href:'https://www.baidu.com',content:'军事'},
+    {href:'https://www.baidu.com',content:'汽车'},
+    {href:'https://www.baidu.com',content:'体育'},
+    {href:'https://www.baidu.com',content:'美女'},
+    {href:'https://www.baidu.com',content:'健康'},
+    {href:'https://www.baidu.com',content:'段子'},
+    {href:'https://www.baidu.com',content:'特产'},
+    {href:'https://www.baidu.com',content:'房产'}
+]
+new Vue({
+    el:'#topNav',
+    mounted:function () {
+        var mySwiper = new Swiper('#topNav', {
+            freeMode: true,
+            freeModeMomentumRatio: 0.5,
+            slidesPerView: 'auto',
+
+        });
+
+    },
+    data:function () {
+        return {
+            navList:navList
+        }
+    },
+})
+
+
+
+
+
+</script>
+</body>
+</html>

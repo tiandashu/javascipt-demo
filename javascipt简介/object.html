@@ -25,6 +25,100 @@ console.log(obj2);
 console.log(Object.length);//1
 console.log(obj2.length);//undefined
 
+//create   通过create创建的对象  是继承自原型的
+var obj3 = Object.create({name:"tyyiswb",age:28});//obj3.__proto__={name:"tyyiswb",age:28};
+console.log(obj3);
 
+/*
+* 属性的访问
+* 使用in运算符
+* 如果对象的自有属性或者继承属性包含该属性就返回true;否则返回false。
+*
+* hasOwnPreperty()
+* 如果是对象的自有属性就返回true;否则false
+*
+* propertyIsEnumerable()
+* obj.propertyIsEnumerable("name" )
+* 只检测这个属性是自有属性并且是可枚举的时候才返回true；否则返回false
+*
+* instanceof
+* instanceof 运算符用来测试一个对象在其原型链中是否存在一个构造函数的 prototype 属性。
+*
+*
+* delete 操作符用于删除对象的某个属性
+* 成功删除的时候回返回 true，否则返回 false。但是，重要的是要考虑以下情况：
+* 1.如果你删除的属性在对象上不存在，那么delete将不会起作用，但仍会返回true
+* 2.如果 delete 操作符删除成功，则被删除的属性将从所属的对象上彻底消失。然后，如果该对象的原型链上有一个同名属性，则该对象会从原型链上继承该同名属性。
+* （也就是说delete操作只会在自身的属性上起作用）
+* 3.任何使用 var 声明的属性不能从全局作用域或函数的作用域中删除。
+*   3.1这样的话，delete操作不能删除任何在全局作用域中的函数（无论这个函数是来自于函数声明或函数表达式）
+*   3.2 除了在全局作用域中的函数不能被删除，在对象(object)中的函数是能够用delete操作删除的。
+* */
+//instanceof ：判断是否是某个对象类型。
+var a = [1,2,3];
+console.log(a instanceof Object); //true
+console.log(a instanceof Array); //true
+console.log(a instanceof RegExp); //false
+console.log("*****************");
+function Person(name,age) {
+    this.name = name;
+    this.age = age;
+}
+
+Person.prototype.sex = "dogistyy";
+var obj4 = new Person('tl',18)
+console.log(obj4);
+
+
+console.log("age" in obj4);//true
+console.log("sex" in obj4);//true
+console.log(obj4.hasOwnProperty("sex"));//false
+console.log(obj4.hasOwnProperty("name"));//true
+console.log(obj4 instanceof Person);//true
+console.log("*****************");
+var flag = delete obj4.name;
+var flag1 = delete obj4.name1;//如果你删除的属性在对象上不存在，那么delete将不会起作用，但仍会返回true
+console.log(flag);
+console.log(flag1);
+console.log(obj4);
+
+console.log("*********************************");
+var Cityname = 'xiaoyi';
+Cityname1 = 'changzhi';
+var flag2 = delete Cityname;
+var flag3 = delete Cityname1;
+console.log(flag2); //false
+console.log(flag3); //true
+ function  fun() {
+     console.log(1);
+ }
+var flag4 = delete fun;
+console.log(flag4);//false
+console.log("*********************************");
+var obj5 = {name:"tl",age:"40"};
+Object.defineProperty(obj5,"age",{
+    value:"50",
+    writable: false
+});
+obj5.age = 60;
+console.log(obj5.age);
+console.log("*****************************************************************************");
+
+
+
+//问题：怎样判断引用类型（复杂）类型的具体类型？？？？？？？？？？？？？？？
+//方法1：不太好，有兼容性  IE11+
+//console.log(null.__proto__.constructor.name);  //报错   Cannot read property '__proto__' of null
+//console.log(undefined.__proto__.constructor.name);  //报错   Cannot read property '__proto__' of undefined
+//console.log([1,4,5].__proto__.constructor.name);  //Array
+//方法2：推荐
+console.log(Object.prototype.toString.call(2))     //  "[object Number]"
+Object.prototype.toString.call("")    // "[object String]"
+Object.prototype.toString.call(true)  // "[object Boolean]"
+Object.prototype.toString.call(undefined)     //  "[object Undefined]"
+Object.prototype.toString.call(null)    // "[object Null]"
+Object.prototype.toString.call(Math)  // "[object Math]"
+Object.prototype.toString.call({})     //  "[object Object]"
+Object.prototype.toString.call([])    // "[object Array]"
 </script>
 </html>
