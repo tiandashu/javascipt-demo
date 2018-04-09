@@ -9,16 +9,26 @@
             margin: 0;
         }
         canvas{
-            width: 920px;
+            width: 100%;
             height: 950px;
-            background-color: teal;
+            border: 4px solid pink;
+            box-sizing: border-box;
         }
     </style>
 </head>
 <body>
-<canvas id="canvas"></canvas>
+<canvas id="canvas">
+    浏览器不支持canvas
+</canvas>
 </body>
 <script>
-    var
-</script>
+    var canvas = document.querySelector('#canvas');//ie9+
+    var ctx = canvas.getContext('2d');//拿到一个CanvasRenderingContext2D对象，所有的绘图操作都需要通过这个对象完成
+    //var gl = canvas.getContext("webgl");//HTML5还有一个WebGL规范，允许在Canvas中绘制3D图形：
+    ctx.beginPath();
+    ctx.moveTo(20,20);
+    ctx.lineTo(200,20);
+    ctx.lineWidth = 1.0;
+    ctx.strokeStyle = '#cc0000'
+    ctx.stroke()
 </html>
