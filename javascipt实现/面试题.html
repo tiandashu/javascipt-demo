@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //1.已知有字符串foo=”get-element-by-id”,写一个function将其转化成驼峰表示法”getElementById”。
+
+
+    // function fn(msg){
+    //     var arr = msg.split("-");
+    //     console.log(arr);   //(4) ["get", "element", "by", "id"]
+    //     for(var i=0;i<arr.length;i++){
+    //         console.log(arr[i].charAt(0).toUpperCase());
+    //        arr[i]=arr[i].charAt(0).toUpperCase()+arr[i].substr(1,arr[i].length-1);
+    //     }
+    //         msg = arr.join("");
+    //             return msg;
+    // }
+    // fn();
+
+
+   function test(){
+        var foo=" get-element-by-id";
+        var arr = foo.replace(/(^\s+)|(\s+$)/g,"").split("-");
+       console.log(arr);
+       var newArr=[];
+        for (var i = 0;i<arr.length;i++){
+            if(i== 0){
+                newArr.push(arr[i])
+            }else{
+                newArr.push(arr[i].charAt(0).toUpperCase()+arr[i].slice(1));
+            }
+
+        }
+        return newArr.join('');
+    }
+
+    console.log(test());
+
+
+   //2.用js实现随机选取10–100之间的10个数字，存入一个数组，并排序。
+    var arr1 = [];
+    function getRandom(start,end){
+        var choice = start-end +1;
+        return Math.floor(Math.random()*choice + start)
+    }
+    for(var i=0;i<10;i++){
+        var result = getRandom(10,100);
+        arr1.push(result);
+    }
+    arr1.sort();
+
+
+    //3.看下面代码，给出输出结果
+    for(var i=1;i<=3;i++){
+        setTimeout(function(){
+            console.log(i);
+        },0)
+    }
+    //结果：4,4,4
+    //原因：Javascript事件处理器在线程空闲之前不会运行。追问，如何让上述代码输出1 2 3？
+    for(var i=1;i<=3;i++){
+        setTimeout((function(a){
+            console.log(a);
+        })(i),0)
+    }
+    //结果：1,2,3
+</script>
+</html>
