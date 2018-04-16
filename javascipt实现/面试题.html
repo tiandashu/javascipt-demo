@@ -70,5 +70,16 @@
         })(i),0)
     }
     //结果：1,2,3
+
+
+    //4.希望获取到页面中所有的checkbox怎么做？(不使用第三方框架)
+    var lis = document.getElementsByTagName("input");
+    var checkBoxList = [];
+    var len = lis.length;   //缓存到局部变量
+    while(len--){           //使用while的效率会比for循环更高
+        if(lis[len].type = 'checkbox'){
+            checkBoxList.push(lis[len]);
+        }
+    }
 </script>
 </html>
