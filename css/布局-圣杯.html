@@ -2,62 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>布局-圣杯</title>
     <style>
         *{
-
+            margin: 0;
+            padding: 0;
         }
-        .hh{
-            width: 400px;
-            float: right;
-        }
-        .hh .left{
-            width: 100px;
+        .head{
+            width: 100%;
             height: 100px;
-            background: bisque;
-            float: left;
+            background-color: pink;
         }
-        .hh .right{
+        
+        .left{
             width: 100px;
-            height: 100px;
-            background: red;
+            height: 70px;
             float: left;
+            background-color: teal;
+            margin-left: -100%; /*通栏宽度 设置到最左边*/
         }
-        main{
-            clear: right;
-            width: 100px;
-            height: 200px;
+        .mid{
+            width: 100%;
+            height: 80px;
             float: left;
-            background: rebeccapurple;
-            clip: rect(0px, 10px, 10px, 5px);
+            background-color: rgba(0,0,0,.5);
+            
         }
-        .hhf{
-            width: 400px;
+        .right{
+            width: 200px;
+            height: 90px;
             float: left;
+            background-color: tan;
+            margin-left: -200px; /*自身宽度 设置到最右边*/
         }
-        .hhf .left{
-            width: 100px;
-            height: 100px;
-            background: bisque;
-            float: left;
-        }
-        .hhf .right{
-            width: 100px;
-            height: 100px;
-            background: red;
-            float: left;
-        }
+        
     </style>
 </head>
 <body>
-<div class="hh">
-    <p class="left"></p>
-    <p class="right"></p>
-</div>
-<main></main>
-<div class="hhf">
-    <p class="left"></p>
-    <p class="right"></p>
+    <!-- 效果：三栏布局，两边顶宽,中间自适应 -->
+    <!-- 1.三栏均先浮动  2.先渲染自适应的mid  3.左右定宽的各设置margin-left:为-100% -100px 4.为了避免中间的内容被左右遮挡需要设置padding-->
+<div class="head">
+    <div class="mid">5555</div>
+    <div class="left"></div>
+    
+    <div class="right"></div>
 </div>
 </body>
 </html>
