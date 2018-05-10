@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -164,4 +165,172 @@
     })
 </script>
 
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        form{
+            width: 400px;
+            background: #eee;
+            margin: 40px auto;
+            padding: 10px;
+        }
+        label{
+            display: block;
+        }
+        fieldset{
+            padding: 10px;
+        }
+        input,select,output,textarea{
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        textarea{
+            resize: none;
+        }
+        .spn {position: absolute;font-size: 14px;left: 10px;top: 9px;display: none;color:#666;}
+    </style>
+</head>
+<body>
+<!--注意：-->
+<!--1.input都要有name属性，用于向提交到后台的信息进行命名，若无name则后台会自动忽略该条信息。-->
+<!--2.action提交地址，若不填则会直接提交到当前页面-->
+<!--3.type属性类型：text、password、radio、checkbox、submit、reset、button、image、hidden-->
+<form action="##" method="get">
+    <fieldset>
+        <legend>表单</legend>
+        <label for="name">text:</label>
+        <input type="text" id="name" name="name" placeholder="请输入内容" datavalue="输入文字" class="ipt" maxlength="10" required  autofocus="autofocus" autocomplete="on">
+        <!--placeholder：用于在输入框中显示提示信息。输入文字时消失，不会被提交(不兼容ie9、火狐58以下)-->
+        <!--maxlength：number规定输入字段中的字符的最大长度-->
+        <!--required：必填项-->
+        <!--autofocus：autofocus规定输入字段在页面加载时是否获得焦点。（不适用于 type="hidden"）-->
+        <!--autocomplet:自动记忆（on/off）-->
+
+        <label for="pwd">pwd:</label>
+        <input type="password" id="pwd" name="pwd">
+
+        <label for="number">number:</label>
+        <input type="password" id="number" name="number">
+
+        <label for="radio">radio:</label>
+        <input type="radio" id="radio" name="radio" value="男" checked>
+        <input type="radio" id="radio" name="radio" value="女">
+
+        <label for="checkbox">checkbox:</label>
+        <input type="checkbox" id="checkbox" name="checkbox" value="aa">
+        <input type="checkbox" id="checkbox" name="checkbox" value="bb" checked>
+        <input type="checkbox" id="checkbox" name="checkbox" value="cc">
+
+        <label for="select">select:</label>
+        <select name="select" id="select" multiple size="3">
+            <optgroup label="北京">
+                <option value="朝阳">朝阳</option>
+                <option value="大兴">大兴</option>
+                <option value="顺义">顺义</option>
+            </optgroup>
+            <optgroup label="山西">
+                <option value="孝义">孝义</option>
+                <option value="长治" selected>长治</option>
+                <option value="太远">太远</option>
+            </optgroup>
+        </select>
+
+        <label for="datalista">datalist:</label>
+        <input type="text" list="datalistb" name="datalist" id="datalista">
+        <datalist id="datalistb">
+            <option value="朝阳">朝阳</option>
+            <option value="大兴">大兴</option>
+            <option value="顺义">顺义</option>
+            <option value="孝义">孝义</option>
+            <option value="长治">长治</option>
+            <option value="太远">太远</option>
+        </datalist>
+
+        <label for="textarea">textarea:</label>
+        <textarea name="textarea" id="textarea" cols="30" rows="10">
+            通过给textarea设置css属性resize: none;可以防止用户缩放
+        </textarea>
+
+        <label for="output">output:</label>
+        <output id="output" name="output">tianaitian</output>
+
+        <label for="hidden">hidden:hidden标签不在页面中显示，但是可以获取它的value</label>
+        <input type="hidden" id="hidden" name="hidden" value="hidden">
+
+        <label for="file">file:</label>
+        <input type="file" value="file" id="file">
+
+        <label for="button">button:</label>
+        <input type="button" value="button" id="button">
+
+        <label for="reset">reset:</label>
+        <input type="reset" value="reset" id="reset">
+
+        <label for="submit">submit:</label>
+        <input type="submit" value="submit" id="submit" >
+
+        <label for="image">image:</label>
+        <input type="image" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1519840242389&di=68c1bd0dfe4f6d6747f61c3a9f230a41&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F9e3df8dcd100baa1706f8e964c10b912c8fc2e58.jpg" value="image" id="image">
+
+        <input type="email">
+        <input type="tel">
+        <input type="url">
+        <input type="search">
+        <input type="time">
+        <input type="date">
+        <input type="datetime-local">
+        <input type="week">
+        <input type="month">
+        <input type="color">
+        <input type="range">
+        <meter min="0" max="20" low="20" high="80" value="18"></meter>
+
+        <!--验证readonly和disabled的区别-->
+
+        <input class="num1" type="text" value="123" readonly="readonly">
+        <input class="num2" type="text" value="456" disabled="disabled">
+
+    </fieldset>
+</form>
+<mark>
+    1.自动填充密码问题
+    2.hidden隐藏域作用
+    3.type为submit和image的时候都可以用来提交表单
+    4.readonly和disabled的区别获取value？
+</mark>
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.js"></script>
+<script>
+    console.log($(".num1").val());
+    console.log($(".num2").val())
+    <!--ie兼容处理-->
+    $(function(){
+        function placeholder(target){
+
+            $(target).val($(target).attr("datavalue")).addClass("inp");
+            $(target).focus(function() {
+                if($(this).val() == $(this).attr("datavalue")) {
+                    $(this).val("").removeClass("inp");
+                }
+
+            })
+            $(target).blur(function(){
+                if($(this).val() == "" || $(this).val() == $(this).attr("datavalue")) {
+                    $(this).val($(target).attr("datavalue")).addClass("inp");
+                }
+            })
+        }
+        placeholder(".ipt")
+    })
+</script>
+
+>>>>>>> d17cc7c2b52a0db37e54b474d7dc04577403c065
 </html>
