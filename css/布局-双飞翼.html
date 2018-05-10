@@ -10,25 +10,40 @@
             margin: 0;
             padding: 0;
         }
-        .head{
-            width: 100%;
-            height: 100px;
-            background-color: pink;
+        #middle{
+            float:left;
+            width:100%;/*左栏上去到第一行*/     
+            height:100px;
+            background:blue;
         }
-        .one,.three{
-            width: 100px;
-            height: 90px;
-            background-color: teal;
-            float: left;
+        #left{
+            float:left;
+            width:180px;
+            height:100px;
+            margin-left:-100%; 
+            background:#0c9;
+        }
+        #right{
+            float:left;
+            width:200px;
+            height:100px;
+            margin-left:-200px;
+            background:#0c9;
+        }
+        /*给内部div添加margin，把内容放到中间栏，其实整个背景还是100%*/ 
+        #inside{
+            margin:0 200px 0 180px;
+            height:100px;
+            background: pink
         }
     </style>
 </head>
 <body>
     <!-- 效果：三栏布局，两边顶宽,中间自适应 -->
-<div class="head">
-    <div class="left"></div>
-    <div class="mid"></div>
-    <div class="right"></div>
-</div>
+    <div id="middle">
+        <div id="inside">middle</div>
+    </div>
+    <div id="left">left</div>
+    <div id="right">right</div>
 </body>
 </html>

@@ -11,9 +11,10 @@
             padding: 0;
         }
         .head{
-            width: 100%;
+            /* width: 100%; */  /*不要设置100%*/
             height: 100px;
             background-color: pink;
+            padding: 0 200px 0 100px;
         }
         
         .left{
@@ -22,6 +23,8 @@
             float: left;
             background-color: teal;
             margin-left: -100%; /*通栏宽度 设置到最左边*/
+            position: relative;
+            left: -100px;
         }
         .mid{
             width: 100%;
@@ -32,10 +35,12 @@
         }
         .right{
             width: 200px;
-            height: 90px;
+            height: 50px;
             float: left;
             background-color: tan;
             margin-left: -200px; /*自身宽度 设置到最右边*/
+            position: relative;
+            right: -200px;
         }
         
     </style>
