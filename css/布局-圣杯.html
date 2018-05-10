@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>布局-圣杯</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .head{
+            width: 100%;
+            height: 100px;
+            background-color: pink;
+        }
+        
+        .left{
+            width: 100px;
+            height: 70px;
+            float: left;
+            background-color: teal;
+            margin-left: -100%; /*通栏宽度 设置到最左边*/
+        }
+        .mid{
+            width: 100%;
+            height: 80px;
+            float: left;
+            background-color: rgba(0,0,0,.5);
+            
+        }
+        .right{
+            width: 200px;
+            height: 90px;
+            float: left;
+            background-color: tan;
+            margin-left: -200px; /*自身宽度 设置到最右边*/
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- 效果：三栏布局，两边顶宽,中间自适应 -->
+    <!-- 1.三栏均先浮动  2.先渲染自适应的mid  3.左右定宽的各设置margin-left:为-100% -100px 4.为了避免中间的内容被左右遮挡需要设置padding-->
+<div class="head">
+    <div class="mid">5555</div>
+    <div class="left"></div>
+    
+    <div class="right"></div>
+</div>
+</body>
+</html>

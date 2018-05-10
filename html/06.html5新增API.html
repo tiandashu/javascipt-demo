@@ -1,0 +1,110 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API test</title>
+</head>
+<body>
+<!--在HTML5的规范中，我们可以通过为元素增加draggable="true"来设置此元素是否可以进行拖拽操作，其中图片、链接默认是开启的-->
+<img src="../css/eg_cute.gif" class="ele" alt="" draggable="true">
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.js"></script>
+<script>
+    // 5.1 拖拽
+    // $(".ele").on("dragstart",function(){
+    //     alert(1)
+    //     console.log("start");
+    // });
+    // document.getElementsByClassName("ele")[0].addEventListener("dragstart",function(){
+    //     console.log("start");
+    // })
+//    小结：
+//    拖拽元素********************************************************
+//     ondrag 应用于拖拽元素，整个拖拽过程都会调用
+//     ondragstart 应用于拖拽元素，当拖拽开始时调用
+//     ondragleave 应用于拖拽元素，当鼠标离开拖拽元素时调用
+//     ondragend 应用于拖拽元素，当拖拽结束时调用
+//     目标元素********************************************************
+//     ondragenter 应用于目标元素，当拖拽元素进入时调用
+//     ondragover 应用于目标元素，当停留在目标元素上时调用
+//     ondragup 应用于目标元素，当在目标元素上松开鼠标时调用
+//     ondragleave 应用于目标元素，当鼠标离开目标元素时调用
+//     数据传递********************************************************
+//     ev.dataTransfer.setData() 设置数据
+//     ev.dataTransfer.getData() 读取数据
+
+//    5.2 历史管理
+//     提供window.history，对象我们可以管理历史记录，可用于单页面应用，Single Page Application，可以无刷新改变网页内容。
+//    旧版本********************************************************
+//     history.back() 回退
+//     history.forward() 前进
+//     history.go(n) 前进/后退n步
+//     history.length历史记录条数
+//     1、pushState(data, title, url) 追加一条历史记录
+//    新增方法********************************************************
+//     data用于存储自定义数据，通常设为null
+//     title网页标题，基本上没有被支持，一般设为空
+//     url 以当前域为基础增加一条历史记录，不可跨域设置
+//     2、replaceState(data, title, url) 与pushState()基本相同，不同之处在于replaceState()，只是替换当前url，不会增加/减少历史记录。
+//     onpopstate事件，当前进或后退时则触发，通过事件对象ev.state可以读取到存储的数据
+//
+    //    5.3 地理定位
+
+</script>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API test</title>
+</head>
+<body>
+<!--在HTML5的规范中，我们可以通过为元素增加draggable="true"来设置此元素是否可以进行拖拽操作，其中图片、链接默认是开启的-->
+<img src="../css/eg_cute.gif" class="ele" alt="" draggable="true">
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.js"></script>
+<script>
+    // 5.1 拖拽
+    // $(".ele").on("dragstart",function(){
+    //     alert(1)
+    //     console.log("start");
+    // });
+    // document.getElementsByClassName("ele")[0].addEventListener("dragstart",function(){
+    //     console.log("start");
+    // })
+//    小结：
+//    拖拽元素********************************************************
+//     ondrag 应用于拖拽元素，整个拖拽过程都会调用
+//     ondragstart 应用于拖拽元素，当拖拽开始时调用
+//     ondragleave 应用于拖拽元素，当鼠标离开拖拽元素时调用
+//     ondragend 应用于拖拽元素，当拖拽结束时调用
+//     目标元素********************************************************
+//     ondragenter 应用于目标元素，当拖拽元素进入时调用
+//     ondragover 应用于目标元素，当停留在目标元素上时调用
+//     ondragup 应用于目标元素，当在目标元素上松开鼠标时调用
+//     ondragleave 应用于目标元素，当鼠标离开目标元素时调用
+//     数据传递********************************************************
+//     ev.dataTransfer.setData() 设置数据
+//     ev.dataTransfer.getData() 读取数据
+
+//    5.2 历史管理
+//     提供window.history，对象我们可以管理历史记录，可用于单页面应用，Single Page Application，可以无刷新改变网页内容。
+//    旧版本********************************************************
+//     history.back() 回退
+//     history.forward() 前进
+//     history.go(n) 前进/后退n步
+//     history.length历史记录条数
+//     1、pushState(data, title, url) 追加一条历史记录
+//    新增方法********************************************************
+//     data用于存储自定义数据，通常设为null
+//     title网页标题，基本上没有被支持，一般设为空
+//     url 以当前域为基础增加一条历史记录，不可跨域设置
+//     2、replaceState(data, title, url) 与pushState()基本相同，不同之处在于replaceState()，只是替换当前url，不会增加/减少历史记录。
+//     onpopstate事件，当前进或后退时则触发，通过事件对象ev.state可以读取到存储的数据
+//
+    //    5.3 地理定位
+
+</script>
+>>>>>>> d17cc7c2b52a0db37e54b474d7dc04577403c065
+</html>

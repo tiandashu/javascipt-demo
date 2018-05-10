@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>布局-双飞翼</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .head{
+            width: 100%;
+            height: 100px;
+            background-color: pink;
+        }
+        .one,.three{
+            width: 100px;
+            height: 90px;
+            background-color: teal;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <!-- 效果：三栏布局，两边顶宽,中间自适应 -->
+<div class="head">
+    <div class="left"></div>
+    <div class="mid"></div>
+    <div class="right"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>变量</title>
+</head>
+<body>
+
+</body>
+<script>
+    /*
+    * 声明： 使用var
+    * 命名： 一个 JavaScript 标识符必须以字母、下划线（_）或者美元符号（$）开头；后续的字符也可以是数字（0-9）。
+    * 因为 JavaScript 语言是区分大小写的，这里所指的字母可以是“A”到“Z”（大写的）和“a”到“z”（小写的）。
+    *
+    * */
+
+    var b;
+    console.log(b); //undefined
+    //console.log(a); //a is not defined
+
+    /*
+    * 变量作用域
+    * 在所有函数之外声明的变量，叫做全局变量，因为它可被当前文档中的任何其他代码所访问。在函数内部声明的变量，叫做局部变量，因为它只能在该函数内部访问
+    *
+    *
+    *
+    * */
+
+    function fn() {
+        c = 44;  //函数内部不加var的也是全局变量，函数执行后可以全局访问到
+        //var c = 44; //函数内部加var的也是局部变量，函数执行后只能在函数内部访问
+    }
+    // console.log(c);
+    fn();
+    console.log(c);
+
+    /*
+    * 变量声明提升
+    * 比如： var tyy = "tyy";
+    * 其实可以分为两步：1.var tyy; JavaScript 变量感觉上是被“提升”或移到了所有函数和语句之前  此时值为undefined
+    * 2.tyy = "tyy"; 给变量赋值
+    * */
+
+    //console.log(d); //is not defined
+    console.log(e);//undefined  变量提升
+    console.log(f);//undefined  变量提升
+    //console.log(g);//g is not defined  没有使用var声明,不存在变量提升
+    var e;
+    var f = "f";
+    g = "g";//没有使用var声明，直接赋值
+    console.log(f);//undefined  变量赋值
+
+
+    /*
+    * 函数提升
+    * 对于函数，只有函数声明会被提升到顶部，而不包括函数表达式。
+    *
+    *
+    * */
+    //声明式函数
+
+    //fn2();//fn2 is not a function
+    console.log("***********");
+    fn1();
+    console.log(fn1);// 先打印fn1函数体
+    var fn1 = 1;
+    console.log(fn1);//1
+
+    function fn1() {
+        console.log("fn1");
+    }
+    console.log(fn1);//1
+    var fn1 = 2;
+    console.log(fn1);//2
+    //函数表达式
+    var fn2 = function () {
+        console.log("fn2");
+    }
+    fn2();
+
+
+
+
+
+    console.log(x);//undefined 变量提升
+    console.log(y);//y is not defined 没有使用var，不存在提升
+    if(0){
+        var x  = "x";
+        y = "y"
+    }
+    console.log(x);
+    console.log(y);
+    /*
+    * 声明式函数的提升比变量的提升优先级高
+    * 且if不是块级作用域，只有function是
+    * */
+</script>
+</html>
