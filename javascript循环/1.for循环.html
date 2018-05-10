@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>for</title>
+  </head>
+  <body>
+
+  </body>
+  <script type="text/javascript">
+    //for 循环的优化方案
+    //最基本的循环数组
+    // console.time('for1');
+    // var array1 = [];
+    // for (var i = 0; i < 10000; i++) {
+    //   array1[i]=i;
+    // }
+    // console.log(array1);
+    // console.timeEnd('for1'); //约8ms
+    //在循环之前定义初始值
+    // console.time('for2');
+    // var array2 = [];
+    // var i = 0;
+    // for (i; i < 10000; i++) {
+    //   array2[i]=i;
+    // }
+    // console.log(array2);
+    // console.timeEnd('for2'); //约5ms 比for1节约近一半的时间
+
+
+    //for3对比for4  在循环条件外定义初始值以及循环次数更加的节约时间
+    // console.time('for3');
+    // var array3 = [1,2,3,4,5,6,7,8,9,10];
+    // var arr1 = [];
+    // var i = 0;
+    // for (i; i < array3.length; i++) {
+    //   arr1[i]=i;
+    // }
+    // console.log(arr1);
+    // console.timeEnd('for3'); //约0.9ms
+
+    // console.time('for4');
+    // var array4 = [1,2,3,4,5,6,7,8,9,10];
+    // var arr2 = [];
+    // var i = 0,length = array4.length;
+    //
+    // for (i; i < length; i++) {
+    //   arr2.push(array4[i]);
+    // }
+    // console.log(arr2);
+    // console.timeEnd('for4'); //约0.5ms
+
+    // console.time('for5');
+    // var array5 = [1,2,3,4,5,6,7,8,9,10];
+    // var arr3 = [];
+    // var item;
+    // var i = 0;
+    // for (i; item =  array5[i++];) {
+    //   // if(i<5){
+    //   //   continue;   //符合条件的for循环跳过 后面的接着执行
+    //   // }
+    //
+    //
+    //   // if(i<5){
+    //   //   break;  /只要符合条件就终止执行
+    //   // }
+    //   arr3.push(item);
+    // }
+    // console.log(arr3);//[1,2,3,4,5,6,7,8,9,10]
+    // console.timeEnd('for5'); //约0.47ms 也会出现比for4时间久的情况 概率比较小
+
+    console.time('for6');
+    var array6 = [1,2,3,4,5,6,7,8,9,10];
+    var arr4 = [];
+    var j = 0;
+    for (j; array6[j++];) {
+      arr4.push(array6[j++]);
+      console.log(arr4);
+    }
+    console.log(arr4);//[2, 4, 6, 8, 10]    [5,10]
+    console.timeEnd('for6'); //存在一定的问题 直接打印的是[2, 4, 6, 8, 10]  调试的是[5,10]
+  </script>
+</html>

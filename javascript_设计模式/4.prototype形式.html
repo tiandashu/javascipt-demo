@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>prototype</title>
+  </head>
+  <body>
+
+  </body>
+  <script type="text/javascript">
+    //js的原型链结构   prototype 所有实例共享原型链上的属性
+    function person(name,age){
+      this.name = name;
+      this.age = age;
+    }
+    person.prototype.say = function(){
+      alert(this.name+this.age)
+    }
+    var p = new person('tyy',18);
+    var p1 = new person('tyy2',18);
+    p.say();
+    p1.say();
+    console.log(p == p1);//false
+    console.log(p === p1);//false
+    console.log(p.name == p1.name);//false
+    console.log(p.say == p1.say);//true   实例共用原型上的属性 节约内存
+  </script>
+</html>

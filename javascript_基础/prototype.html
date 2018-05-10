@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prototype</title>
+</head>
+<body>
+<script>
+    function gc(name,age) {
+        function Person(name,age){
+            this.name = name;
+            this.age = age;
+        }
+
+        return new Person(name,age);
+    }
+
+    console.log(gc("tyy", 18));
+    console.log(gc("tyy2", 18));
+    console.log(gc("tyy3", 18));
+
+</script>
+</body>
+</html>

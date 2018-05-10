@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function Person() {
+        // this.a()
+    }
+    /*原型方法  动态方法*/
+    Person.prototype={
+        a:function () {
+            var a ="tyy";
+            return a;
+        },
+        tyy:function () {
+            var tyy= this.a();
+            Person.jingtai(tyy)
+        }
+    }
+    /*
+    * 工具方法  静态方法
+    * 构造函数上添加的静态方法不会被实例继承
+    *
+    * */
+    Person.jingtai = function (msg) {
+        alert(msg)
+    }
+
+
+    /*创建实例*/
+    var p =new Person();
+    /*调用静态方法*/
+    Person.jingtai(1111);
+    // console.log(p)
+    p.tyy()
+    // console.log(p)
+</script>
+</html>

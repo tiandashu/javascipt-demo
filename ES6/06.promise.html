@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>promise</title>
+</head>
+<body>
+
+</body>
+<script>
+    var aa = new Promise(function (resolve,reject) {
+        console.log(1111);
+        // resolve("success");
+        reject("err");
+    })
+
+    aa.then(function (value) {
+        console.log(value);
+    },function (err) {
+        console.log(err);
+    })
+</script>
+</html>

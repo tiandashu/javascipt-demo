@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width:500px;
+            height: 200px;
+            background: teal url(bgimage.gif) no-repeat fixed top;
+            /*
+            background-color:red |  #000 |  rgb(255,0,0) |  transparent  |  inhrrit;
+            background-position:方向值top left  |  20% 50%  |  30px 30px;
+            background-size:100% 100%  |  200px 300px | 200px auto |  cover  |  contain;
+            background-repeat: repeat  |  repeat-x  |  repeat-y  |  no-repeat  |  inherit;
+            background-origin: padding-box | border-box | content-box;
+            background-clip:border-box|padding-box|content-box;(Internet Explorer 8 以及更早的版本不支持)
+            background-attachment:scroll | fixed | inherit ;(规定背景图像是否固定或者随着页面的其余部分滚动。)
+            background-image: url("URL") | none  |inherit;(IE8 以及更早的浏览器不支持一个元素多个背景图像。)
+            */
+        }
+        p{
+            /*文本*/
+            color:#000;/*red |  #000 |  rgb(255,0,0) |  transparent  |  inhrrit*/
+            direction: rtl;/* ltr:默认。文本方向从左到右。rtl:	文本方向从右到左。inherit:	规定应该从父元素继承 direction 属性的值。*/
+            letter-spacing: 2px;/* 也可以为负值*/
+            line-height: 30px;/* 也可设置百分比*/
+            text-align: center;/*left、right、center、justify（实现两端对齐文本效果。） */
+            text-decoration: underline;/* none：默认。overline：定义文本上的一条线。line-through：定义穿过文本下的一条线。blink：	定义闪烁的文本。*/
+            text-indent: 2em;/*也可设置px */
+            text-shadow: 5px 5px 5px #FF0000;/*IE9以及以下都不支持 */
+            text-transform:uppercase;  /*none:默认；capitalize:文本中的每个单词以大写字母开头;uppercase:定义仅有大写字母;lowercase:定义无大写字母，仅有小写字母;inherit:规定应该从父元素继承 text-transform 属性的值。*/
+          white-space: nowrap;/*normal:空白会被浏览器忽略。pre:空白会被浏览器保留。其行为方式类似 HTML 中的 <pre> 标签。nowrap:文本不会换行，文本会在在同一行上继续，直到遇到 <br> 标签为止。pre-wrap:保留空白符序列，但是正常地进行换行。pre-line:合并空白符序列，但是保留换行符。inherit:	规定应该从父元素继承 white-space 属性的值。*/
+            word-spacing: 10px;/*设置单词间距。*/
+            text-align:justify;text-justify: inter-word;/*齐行改变单词间的间隔：只有 Internet Explorer 支持 text-justify 属性。*/
+            text-outline: 2px 2px #ff0000;/* 属性规定文本轮廓。所有主流浏览器都不支持 text-outline 属性。*/
+           text-overflow: ellipsis; /*clip|ellipsis|string 规定当文本溢出包含元素时发生的事情*/
+            word-break: normal;/*normal:使用浏览器默认的换行规则。|break-all:允许在单词内换行。|keep-all:只能在半角空格或连字符处换行。;*/
+            word-wrap: break-word;/*	在长单词或 URL 地址内部进行换行。 */
+
+
+            /*字体*/
+            font:bold 16px/30px "simSun";/*font连写 */
+            font-family: Andalus;/*规定文本的字体系列。 */
+            font-size: 20px;/*规定文本的字体尺寸。 */
+            font-style: italic;/*规定文本的字体样式。 */
+            font-weight: bold;/*规定字体的粗细。 */
+
+            /*边框*/
+            border-color: teal;
+            border-width: 2px;
+            border-top:1px solid #ccc;/*border-left/border-right/border-top/border-bottom*/
+            border-style:dotted;/*dotted solid double dashed;  */
+
+
+
+
+        }
+        ul li{
+            list-style: none;
+            list-style-image: url("/i/arrow.gif");/*将图象设置为列表项标记。 */
+            list-style-type: square; /* circle、upper-roman、lower-alpha 设置列表项标记的放置位置。*/
+            list-style-position:inside;/*outside inside 设置列表项标记的类型。*/
+
+        }
+    </style>
+</head>
+<body>
+<div>
+   <p>景图像是否固定或者随着页面的其余部分滚scroll</p>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</div>
+</body>
+</html>
