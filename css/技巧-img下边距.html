@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>技巧-img图片下面出现莫名的下边距</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .main{
+            /* font-size: 0; */
+            height: 50px;
+        }
+        .bottom{
+            width: 100%;
+            height: 30px;
+            background: teal;
+            clear: both
+        }
+        img{
+            /* float: left; */
+            /* display: block; */
+            /* margin-bottom: -3px; */
+            /* vertical-align:top|bottom|text-top|text-bottom; */
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <img src="../static/img/cat.gif" alt="" >
+        <img src="../static/img/cat.gif" alt="" >
+    </div>
+    <div class="bottom"></div>  
+</body>
+<script>
+    //img图片下面出现莫名的下边距解决办法 
+    //原理：图片底部的空隙实际上涉及行内元素的布局模型，图片默认的垂直对齐方式是基线，而基线的位置是与字体相关的。所以在某些时候，图片底部的空隙可能是 2px，而有时可能是 4px 或更多。不同的 font-size 应该也会影响到这个空隙的大小。
+    //解决方法：
+    //1.img设置float: left; 左右间隙也会消失，但要注意清除浮动
+    //2.img设置display: block; 换行
+    //3.img设置margin-bottom: -3px;  不是很准确大多数浏览器是3px间隙，左右间隙仍在
+    //4.img设置vertical-align:top|bottom|text-top|text-bottom;  左右间隙仍在
+    //5.为img的父级加高度.main{height:50px;} 左右间隙仍在
+    //6.为img的父级加样式.main{font-size: 0;} 左右间隙也会消失
+</script>
+</html>
