@@ -10,6 +10,7 @@
             margin: 0;
             padding: 0;
         }
+<<<<<<< HEAD
         #middle{
             float:left;
             width:100%;/*左栏上去到第一行*/     
@@ -35,15 +36,53 @@
             margin:0 200px 0 180px;
             height:100px;
             background: pink
+=======
+        .main{
+            width: 100%;
+            height: 100px;
+            background-color: pink;
+            float: left;
         }
+        .main-content{
+            /* width: 100%; */  /*不能设置100%，否则内容超出*/  
+            margin: 0 100px;
+            background-color: yellow;
+        }
+        .left,.right{
+            width: 100px;
+            height: 90px;
+            background-color: teal;
+            float: left;
+>>>>>>> faaa345f3233fbadbc1898e29a48fdfbda7dc832
+        }
+        .left{
+            margin-left: -100%;
+        }
+        .right{
+            margin-left: -100px;
+        }
+        
     </style>
 </head>
 <body>
     <!-- 效果：三栏布局，两边顶宽,中间自适应 -->
+<<<<<<< HEAD
     <div id="middle">
         <div id="inside">middle</div>
     </div>
     <div id="left">left</div>
     <div id="right">right</div>
+=======
+    <div class="main">
+        <div class="main-content">main</div>
+    </div>
+    <div class="left">
+        left
+    </div>
+    <div class="right">
+        right
+    </div>
+    <div class="footer">555</div>
+>>>>>>> faaa345f3233fbadbc1898e29a48fdfbda7dc832
 </body>
 </html>

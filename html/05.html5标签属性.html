@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,79 +71,4 @@
     //play()  向音频/视频添加新的文本轨道
     //pause()  	暂停当前播放的音频/视频
 </script>
-=======
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>html5</title>
-</head>
-<body>
-    <ul>
-        <li class="first">新闻1</li>
-        <li class="second">新闻2</li>
-        <li>新闻3</li>
-        <li>新闻4</li>
-        <li>新闻5</li>
-    </ul>
-    //*******************************Audio****************************************
-    <audio src="" autoplay="autoplay" controls="controls" loop="loop" preload="preload"></audio>
-    <!--src:要播放的音频的 URL。-->
-    <!--autoplay:如果出现该属性，则音频在就绪后马上播放。-->
-    <!--controls:如果出现该属性，则向用户显示控件，比如播放按钮。-->
-    <!--loop:如果出现该属性，则每当音频结束时重新开始播放。-->
-    <!--preload:如果出现该属性，则音频在页面加载时进行加载，并预备播放。如果使用 "autoplay"，则忽略该属性。-->
-
-
-    //*******************************Vedio****************************************
-    <video src="movie.ogg" controls="controls" autoplay="autoplay" controls="controls" height="300" loop="loop" preload="preload" width="300">您的浏览器不支持 video 标签。 </video>
-    <!--src:要播放的视频的 URL。。-->
-    <!--autoplay:如果出现该属性，则音频在就绪后马上播放。-->
-    <!--controls:如果出现该属性，则向用户显示控件，比如播放按钮。-->
-    <!--loop:如果出现该属性，则每当视频结束时重新开始播放。-->
-    <!--preload:如果出现该属性，则视频在页面加载时进行加载，并预备播放。如果使用 "autoplay"，则忽略该属性。-->
-    <!--width:	设置视频播放器的宽度。-->
-    <!--height:	设置视频播放器的高度。-->
-
-</body>
-<script>
-    //*******************************querySelector****************************************
-    //通过标签选择器来获取元素，并且是第一个
-    var li = document.querySelector("li");
-    console.log(li);
-    //通过标签选择器来获取元素，并且是第一个
-    var li1 = document.querySelector(".first");
-    console.log(li1);
-    var li2 = document.querySelector(".second");
-    li2.style.background = "pink";
-
-    //*******************************querySelectorAll****************************************
-    var lis = document.querySelectorAll("li");
-    for(var i=0;i<lis.length;i++){
-        lis[i].style.background = 'teal';
-    }
-
-    //*******************************ClassList****************************************
-    // classList 属性返回元素的类名，作为 DOMTokenList 对象。
-    //该属性用于在元素中添加，移除及切换 CSS 类。
-    // classList 属性是只读的，但你可以使用 add() 和 remove() 方法修改它。
-    //兼容性：谷歌8.0+、IE10+、火狐3.6+
-    //语法：element.classList
-    // 方法：length   add() contains()  item(index)  remove()   toggle()
-
-    //为元素添加多个类:
-    document.getElementsByClassName(".second")[0].classList.add("second2","second3");
-    //为元素移除多个类:
-    document.getElementsByClassName(".second")[0].classList.remove("second2");
-    //为元素切换类:
-    document.getElementsByClassName(".second")[0].classList.toggle("newClassName");
-
-    //*******************************Audio/Vedio  方法****************************************
-    //addTextTrack()  向音频/视频添加新的文本轨道
-    //canPlayType()  检测浏览器是否能播放指定的音频/视频类型
-    //load()  重新加载音频/视频元素
-    //play()  向音频/视频添加新的文本轨道
-    //pause()  	暂停当前播放的音频/视频
-</script>
->>>>>>> d17cc7c2b52a0db37e54b474d7dc04577403c065
 </html>

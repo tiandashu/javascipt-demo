@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01.简介</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        html,body{
+            height: 100%;
+        }
+        .main{
+            height: 100%;
+            background: #eee
+        }
+        .note{
+            float: left;
+            width: 400px;
+            height: 100%;
+            overflow-y: auto;
+            list-style: none;
+            background-color: teal;
+            padding: 20px 0
+        }
+        li{
+            font-size: 14px;
+            padding: 10px 10px;
+            color:#fff
+        }
+        .demo{
+            background-color: pink
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <ul class="note">
+            <li>ECMAScript 和 JavaScript 的关系是，前者是后者的规格，后者是前者的一种实现。</li>
+            <li>标准委员会最终决定，标准在每年的 6 月份正式发布一次，作为当年的正式版本。接下来的时间，就在这个版本的基础上做改动，直到下一年的 6 月份，草案就自然变成了新一年的版本。这样一来，就不需要以前的版本号了，只要用年份标记就可以了。比如 ES2015、ES2016、ES2017...</li>
+            <li>ES6 既是一个历史名词，也是一个泛指，含义是 5.1 版以后的 JavaScript 的下一代标准，涵盖了 ES2015、ES2016、ES2017 等等，而 ES2015 则是正式名称，特指该年发布的正式版本的语言标准。</li>
+            <li>
+                一种新的语法从提案到变成正式标准，需要经历五个阶段。每个阶段的变动都需要由 TC39 委员会批准。
+                <ul>
+                    <li>Stage 0 - Strawman（展示阶段）</li>
+                    <li>Stage 1 - Proposal（征求意见阶段）</li>
+                    <li>Stage 2 - Draft（草案阶段）</li>
+                    <li>Stage 3 - Candidate（候选人阶段）</li>
+                    <li>Stage 4 - Finished（定案阶段）</li>
+                </ul>
+                一个提案只要能进入 Stage 2，就差不多肯定会包括在以后的正式标准里面。ECMAScript 当前的所有提案，可以在 TC39 的官方网站Github.com/tc39/ecma262查看。
+            </li>
+            <li>Babel 是一个广泛使用的 ES6 转码器，可以将 ES6 代码转为 ES5 代码，从而在现有环境执行。这意味着，你可以用 ES6 的方式编写程序，又不用担心现有环境是否支持。Babel 的配置文件是.babelrc，存放在项目的根目录下。使用 Babel 的第一步，就是配置这个文件。</li>
+            <li>Babel 提供babel-cli工具，用于命令行转码。</li>
+            <li>babel-cli工具自带一个babel-node命令，提供一个支持 ES6 的 REPL 环境。它支持 Node 的 REPL 环境的所有功能，而且可以直接运行 ES6 代码。它不用单独安装，而是随babel-cli一起安装。然后，执行babel-node就进入 REPL 环境。</li>
+            <li>babel-register模块改写require命令，为它加上一个钩子。此后，每当使用require加载.js、.jsx、.es和.es6后缀名的文件，就会先用 Babel 进行转码。使用时，必须首先加载babel-register。require("babel-register");require("./index.js");然后，就不需要手动对index.js转码了。需要注意的是，babel-register只会对require命令加载的文件转码，而不会对当前文件转码。另外，由于它是实时转码，所以只适合在开发环境使用。</li>
+            <li>babel-core:如果某些代码需要调用 Babel 的 API 进行转码，就要使用babel-core模块。</li>
+            <li>babel-polyfill:Babel 默认只转换新的 JavaScript 句法（syntax），而不转换新的 API，比如Iterator、Generator、Set、Maps、Proxy、Reflect、Symbol、Promise等全局对象，以及一些定义在全局对象上的方法（比如Object.assign）都不会转码。</li>
+        </ul>
+        <div class="demo">
+
+        </div>
+    </div>
+</body>
+<script>
+
+</script>
+</html>
