@@ -42,6 +42,10 @@
             <li>1. 函数参数的默认值。</li>
             <li>2. 参数变量是默认声明的，所以不能用let或const再次声明</li>
             <li>3. 使用参数默认值时，函数不能有同名参数。</li>
+            <li>4. 与解构赋值默认值结合使用 </li>
+            <li>5. 参数默认值的位:通常情况下，定义了默认值的参数，应该是函数的尾参数。因为这样比较容易看出来，到底省略了哪些参数。如果非尾部的参数设置默认值，实际上这个参数是没法省略的。</li>
+            <li>6. 函数的 length 属性:指定了默认值以后，函数的length属性，将返回没有指定默认值的参数个数。也就是说，指定了默认值后，length属性将失真。这是因为length属性的含义是，该函数预期传入的参数个数。某个参数指定默认值以后，预期传入的参数个数就不包括这个参数了。同理，后文的 rest 参数也不会计入length属性。</li>
+            <li>7. 作用域:一旦设置了参数的默认值，函数进行声明初始化时，参数会形成一个单独的作用域（context）。等到初始化结束，这个作用域就会消失。这种语法行为，在不设置参数默认值时，是不会出现的。</li>
         </ul>
         <div class="demo">
 
@@ -73,5 +77,40 @@ function foo(x, x, y) {
 //    // ...
 // }
 foo();
+
+
+// 4.与解构赋值默认值结合使用 
+function fn({x, y = 5}) {
+  console.log(x, y);
+}
+
+fn({}) // undefined 5
+fn({x: 1}) // 1 5
+fn({x: 1, y: 2}) // 1 2
+//fn() // TypeError: Cannot read property 'x' of undefined       如果函数foo调用时没提供参数，变量x和y就不会生成，从而报错。通过提供函数参数的默认值，就可以避免这种情况。
+
+function fn1({x, y = 5} = {}) {
+  console.log(x, y);
+}
+
+fn1()  //通过默认传参可以改进这个错误
+
+
+// 5.参数默认值的位置
+function f(x, y = 5, z) {
+  console.log([x, y, z]);
+}
+
+f() // [undefined, 5, undefined]
+f(1) // [1, 5, undefined]
+//f(1, ,2) // 报错 Unexpected token ,
+f(1,null ,2) // [1, null, 2],
+f(1, undefined, 2) // [1, 5, 2]   除非显示的设定undefined
+
+
+// 6.制定默认值后length会失效
+(function (a) {}).length // 1
+(function (a = 5) {}).length // 0
+(function (a, b, c = 5) {}).length // 2
 </script>
 </html>
