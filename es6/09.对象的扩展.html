@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>09.对象的扩展</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        html,body{
+            height: 100%;
+        }
+        .main{
+            height: 100%;
+            background: #eee
+        }
+        .note{
+            float: left;
+            width: 400px;
+            height: 100%;
+            overflow-y: auto;
+            list-style: none;
+            background-color: teal;
+            padding: 20px 0
+        }
+        li{
+            font-size: 14px;
+            padding: 10px 10px;
+            color:#fff
+        }
+        .demo{
+            background-color: pink
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <ul class="note">
+            <li>1.属性的简洁表示法：ES6 允许直接写入变量和函数，作为对象的属性和方法。这样的书写更加简洁。</li>
+        </ul>
+        <div class="demo">
+
+        </div>
+    </div>
+</body>
+<script>
+//1.ES6 允许直接写入变量和函数，作为对象的属性和方法。这样的书写更加简洁。
+var a = 'a';
+var obj1 = {
+    a,
+    f1(){
+       console.log('f1'); 
+    }
+}
+
+console.log(obj1.a);
+obj1.f1();
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

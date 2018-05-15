@@ -46,6 +46,7 @@
             <li>5. 参数默认值的位:通常情况下，定义了默认值的参数，应该是函数的尾参数。因为这样比较容易看出来，到底省略了哪些参数。如果非尾部的参数设置默认值，实际上这个参数是没法省略的。</li>
             <li>6. 函数的 length 属性:指定了默认值以后，函数的length属性，将返回没有指定默认值的参数个数。也就是说，指定了默认值后，length属性将失真。这是因为length属性的含义是，该函数预期传入的参数个数。某个参数指定默认值以后，预期传入的参数个数就不包括这个参数了。同理，后文的 rest 参数也不会计入length属性。</li>
             <li>7. 作用域:一旦设置了参数的默认值，函数进行声明初始化时，参数会形成一个单独的作用域（context）。等到初始化结束，这个作用域就会消失。这种语法行为，在不设置参数默认值时，是不会出现的。</li>
+            <li></li>
         </ul>
         <div class="demo">
 
@@ -109,8 +110,26 @@ f(1, undefined, 2) // [1, 5, 2]   除非显示的设定undefined
 
 
 // 6.制定默认值后length会失效
-(function (a) {}).length // 1
-(function (a = 5) {}).length // 0
-(function (a, b, c = 5) {}).length // 2
+// (function (a) {}).length // 1
+// (function (a = 5) {}).length // 0
+// (function (a, b, c = 5) {}).length // 2
+
+// 7.作用域
+// var x = 1;
+// function f(x, y = x) {
+//   console.log(y);
+// }
+// f(2) 
+
+var x11 = 1;
+function f1(x11, y = function() { x11 = 2; }) {
+  var x11 = 3;
+  y();
+  console.log(x11);
+}
+
+f1() // 3
+console.log(x11) // 1
+
 </script>
 </html>
