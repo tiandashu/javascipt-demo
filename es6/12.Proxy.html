@@ -43,6 +43,7 @@
                 Proxy 可以理解成，在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。Proxy 这个词的原意是代理，用在这里表示由它来“代理”某些操作，可以译为“代理器”。</li>
             <li>ES6 原生提供 Proxy 构造函数，用来生成 Proxy 实例。var proxy = new Proxy(target, handler);new Proxy()表示生成一个Proxy实例，target参数表示所要拦截的目标对象，handler参数也是一个对象，用来定制拦截行为。</li>
             <li>注意，要使得Proxy起作用，必须针对Proxy实例（上例是proxy对象）进行操作，而不是针对目标对象（上例是空对象）进行操作。</li>
+            <li>Proxy 支持的拦截操作一览，一共 13 种。http://es6.ruanyifeng.com/#docs/proxy</li>
         </ul>
         <div class="demo">
 
