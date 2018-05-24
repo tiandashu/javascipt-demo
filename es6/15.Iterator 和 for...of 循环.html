@@ -138,22 +138,22 @@ function readLinesSync(file) {
 }
 //上面代码中，函数readLinesSync接受一个文件对象作为参数，返回一个遍历器对象，其中除了next方法，还部署了return方法。下面的三种情况，都会触发执行return方法。
 // 情况一
-for (let line of readLinesSync(fileName)) {
-  console.log(line);
-  break;
-}
+// for (let line of readLinesSync(fileName)) {
+//   console.log(line);
+//   break;
+// }
 
 // 情况二
-for (let line of readLinesSync(fileName)) {
-  console.log(line);
-  continue;
-}
+// for (let line of readLinesSync(fileName)) {
+//   console.log(line);
+//   continue;
+// }
 
 // 情况三
-for (let line of readLinesSync(fileName)) {
-  console.log(line);
-  throw new Error();
-}
+// for (let line of readLinesSync(fileName)) {
+//   console.log(line);
+//   throw new Error();
+// }
 
 
 //JavaScript 原有的for...in循环，只能获得对象的键名，不能直接获取键值。ES6 提供for...of循环，允许遍历获得键值。
@@ -168,14 +168,14 @@ for (let a of arr) {
 }
 //上面代码表明，for...in循环读取键名，for...of循环读取键值。如果要通过for...of循环，获取数组的索引，可以借助数组实例的entries方法和keys方法（参见《数组的扩展》一章）。
 //for...of循环调用遍历器接口，数组的遍历器接口只返回具有数字索引的属性。这一点跟for...in循环也不一样。
-let arr = [3, 5, 7];
-arr.foo = 'hello';
+let arr11 = [3, 5, 7];
+arr11.foo = 'hello';
 
-for (let i in arr) {
+for (let i in arr11) {
   console.log(i); // "0", "1", "2", "foo"
 }
 
-for (let i of arr) {
+for (let i of arr11) {
   console.log(i); //  "3", "5", "7" for...of循环不会返回数组arr的foo属性。
 }
 </script>
