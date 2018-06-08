@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .float-warp{background:#000080;border:1px solid red;/*解决代码*/} 
+        .main{background:#800080;border:1px solid red;height:250px;margin-top:10px;} 
+        .left{float:left;width:20%;height:200px;background:#DDD} 
+        .right{float:left;width:30%;height:80px;background:#DDD} 
+
+        /*方法三:清除浮动代码*/ 
+        .clearfloat:after{
+            display:block;
+            clear:both;
+            content:"";
+            visibility:hidden;
+            height:0;
+            line-height: 0;
+        } 
+        .clearfloat{zoom:1} 
+    </style>
+</head>
+<body>
+    <div class="float-warp"> 
+        <div class="left">Left</div> 
+        <div class="right">Right</div> 
+    </div> 
+    <div class="main"> 
+        main 
+    </div> 
+</body>
+<script>
+    // 影响： 设置浮动以后脱离文档流不会撑开父盒子（没有高度），导致下面的内容紧贴父盒子，与浮动的元素重叠
+    // 方法一：给float-warp设置一个固定的高度
+    // 方法二：给紧挨浮动的元素设置main设置clear:both
+    // 方法三：父级div定义 伪类:after 和 zoom 
+    //      原理：IE8以上和非IE浏览器才支持:after，原理和方法2有点类似，zoom(IE转有属性)可解决ie6,ie7浮动问题 
+    //      优点：浏览器支持好、不容易出现怪问题（目前：大型网站都有使用，如：腾迅，网易，新浪等等） 
+</script>
+</html>

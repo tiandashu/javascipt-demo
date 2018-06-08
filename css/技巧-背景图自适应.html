@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>技巧-背景图自适应</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .bg{
+            width: 100%;
+            /* padding-top: 46%; */
+            padding-top: calc(885/1920*100%);
+            background: url('../static/img/banner.jpg') 0 0 no-repeat;
+            background-size: 100% 100%;
+        }
+    </style>
+</head>
+<body>
+<img src="../static/img/banner.jpg" alt="" width="100%">
+<div class="bg">
+
+</div>
+</body>
+<script>
+    console.log("实现背景图类似img宽高自适应效果");
+    
+</script>
+</html>

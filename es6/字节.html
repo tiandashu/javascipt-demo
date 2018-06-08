@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>字节</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        html,body{
+            height: 100%;
+        }
+        .main{
+            height: 100%;
+            background: #eee
+        }
+        .note{
+            float: left;
+            width: 400px;
+            height: 100%;
+            overflow-y: auto;
+            list-style: none;
+            background-color: teal;
+            padding: 20px 0
+        }
+        li{
+            font-size: 14px;
+            padding: 10px 10px;
+            color:#fff
+        }
+        .demo{
+            background-color: pink
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <ul class="note">
+            <li>1. bit：位  一个二进制数据0或1，是1bit；</li>
+            <li>2. byte：字节  存储空间的基本计量单位,1 byte = 8 bit</li>
+            <li>3. 一个英文字符占一个字节, 1 字母 = 1 byte = 8 bit</li>
+            <li>4. 一个汉字占2个字节,1 汉字 = 2 byte = 16 bit</li>
+            <li>5. 标点符号
+                    A>.  汉字输入状态下，默认为全角输入方式；
+                    B>.  英文输入状态下，默认为半角输入方式；
+                
+                    C>.  全角输入方式下，标点符号占2字节；
+                    D>.  半角输入方式下，标点符号占1字节；
+            </li>
+            <li>1kb=1024字节</li>
+            <li>不同编码字节大小也不同</li>
+        </ul>
+        <div class="demo">
+
+        </div>
+    </div>
+</body>
+<script>
+
+</script>
+</html>

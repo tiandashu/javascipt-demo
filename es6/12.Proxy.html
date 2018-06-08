@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>12.Proxy</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        html,body{
+            height: 100%;
+        }
+        .main{
+            height: 100%;
+            background: #eee
+        }
+        .note{
+            float: left;
+            width: 400px;
+            height: 100%;
+            overflow-y: auto;
+            list-style: none;
+            background-color: teal;
+            padding: 20px 0
+        }
+        li{
+            font-size: 14px;
+            padding: 10px 10px;
+            color:#fff
+        }
+        .demo{
+            background-color: pink
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <ul class="note">
+            <li>Proxy 用于修改某些操作的默认行为，等同于在语言层面做出修改，所以属于一种“元编程”（meta programming），即对编程语言进行编程。
+                Proxy 可以理解成，在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。Proxy 这个词的原意是代理，用在这里表示由它来“代理”某些操作，可以译为“代理器”。</li>
+            <li>ES6 原生提供 Proxy 构造函数，用来生成 Proxy 实例。var proxy = new Proxy(target, handler);new Proxy()表示生成一个Proxy实例，target参数表示所要拦截的目标对象，handler参数也是一个对象，用来定制拦截行为。</li>
+            <li>注意，要使得Proxy起作用，必须针对Proxy实例（上例是proxy对象）进行操作，而不是针对目标对象（上例是空对象）进行操作。</li>
+            <li>Proxy 支持的拦截操作一览，一共 13 种。http://es6.ruanyifeng.com/#docs/proxy</li>
+        </ul>
+        <div class="demo">
+
+        </div>
+    </div>
+</body>
+<script>
+var obj = {
+    a:'a1',
+    b:'b2'
+}
+//如果handler没有设置任何拦截，那就等同于直接通向原对象。
+var pro = new Proxy(obj,{});
+console.log(pro.b);
+console.log(obj.b);
+
+//注意，要使得Proxy起作用，必须针对Proxy实例（上例是proxy对象）进行操作，而不是针对目标对象（上例是空对象）进行操作。
+var pro1 = new Proxy(obj,{
+    get:function(target,key,receiver){
+        console.log(target);
+        console.log(key);
+        return 33;
+    },
+    set:function(){
+
+    }
+})
+console.log(pro1.b);
+console.log(obj.b);
+
+//如果想对目标对象进行操作可以把Proxy 实例也可以作为其他对象的原型对象。
+var proxy = new Proxy({}, {
+  get: function(target, property) {
+    return 35;
+  }
+});
+
+var obj1 = Object.create(proxy);
+console.log(obj1) //{}
+console.log(obj1.time) //35
+
+</script>
+</html>

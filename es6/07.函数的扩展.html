@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>07.函数的扩展</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        html,body{
+            height: 100%;
+        }
+        .main{
+            height: 100%;
+            background: #eee
+        }
+        .note{
+            float: left;
+            width: 400px;
+            height: 100%;
+            overflow-y: auto;
+            list-style: none;
+            background-color: teal;
+            padding: 20px 0
+        }
+        li{
+            font-size: 14px;
+            padding: 10px 10px;
+            color:#fff
+        }
+        .demo{
+            background-color: pink
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <ul class="note">
+            <li>1. 函数参数的默认值。</li>
+            <li>2. 参数变量是默认声明的，所以不能用let或const再次声明</li>
+            <li>3. 使用参数默认值时，函数不能有同名参数。</li>
+            <li>4. 与解构赋值默认值结合使用 </li>
+            <li>5. 参数默认值的位:通常情况下，定义了默认值的参数，应该是函数的尾参数。因为这样比较容易看出来，到底省略了哪些参数。如果非尾部的参数设置默认值，实际上这个参数是没法省略的。</li>
+            <li>6. 函数的 length 属性:指定了默认值以后，函数的length属性，将返回没有指定默认值的参数个数。也就是说，指定了默认值后，length属性将失真。这是因为length属性的含义是，该函数预期传入的参数个数。某个参数指定默认值以后，预期传入的参数个数就不包括这个参数了。同理，后文的 rest 参数也不会计入length属性。</li>
+            <li>7. 作用域:一旦设置了参数的默认值，函数进行声明初始化时，参数会形成一个单独的作用域（context）。等到初始化结束，这个作用域就会消失。这种语法行为，在不设置参数默认值时，是不会出现的。</li>
+            <li></li>
+        </ul>
+        <div class="demo">
+
+        </div>
+    </div>
+</body>
+<script>
+// 1.函数参数的默认值
+function a(x1=11,y1=22){
+    return x1+y1
+}
+console.log(a());
+
+// 2.参数变量是默认声明的，所以不能用let或const再次声明。
+function b(x2=11,y2=22){
+    //let x2 = 33;    //Identifier 'x2' has already been declared
+    return x2+y2
+}
+console.log(b());
+
+// 3.使用参数默认值时，函数不能有同名参数。
+// 不报错
+function foo(x, x, y) {
+  // ...
+}
+
+// 报错 Duplicate parameter name not allowed in this context
+// function foo(x, x, y = 1) {
+//    // ...
+// }
+foo();
+
+
+// 4.与解构赋值默认值结合使用 
+function fn({x, y = 5}) {
+  console.log(x, y);
+}
+
+fn({}) // undefined 5
+fn({x: 1}) // 1 5
+fn({x: 1, y: 2}) // 1 2
+//fn() // TypeError: Cannot read property 'x' of undefined       如果函数foo调用时没提供参数，变量x和y就不会生成，从而报错。通过提供函数参数的默认值，就可以避免这种情况。
+
+function fn1({x, y = 5} = {}) {
+  console.log(x, y);
+}
+
+fn1()  //通过默认传参可以改进这个错误
+
+
+// 5.参数默认值的位置
+function f(x, y = 5, z) {
+  console.log([x, y, z]);
+}
+
+f() // [undefined, 5, undefined]
+f(1) // [1, 5, undefined]
+//f(1, ,2) // 报错 Unexpected token ,
+f(1,null ,2) // [1, null, 2],
+f(1, undefined, 2) // [1, 5, 2]   除非显示的设定undefined
+
+
+// 6.制定默认值后length会失效
+// (function (a) {}).length // 1
+// (function (a = 5) {}).length // 0
+// (function (a, b, c = 5) {}).length // 2
+
+// 7.作用域
+// var x = 1;
+// function f(x, y = x) {
+//   console.log(y);
+// }
+// f(2) 
+
+var x11 = 1;
+function f1(x11, y = function() { x11 = 2; }) {
+  var x11 = 3;
+  y();
+  console.log(x11);
+}
+
+f1() // 3
+console.log(x11) // 1
+
+</script>
+</html>

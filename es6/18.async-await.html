@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>async-await</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // async 函数是什么？一句话，它就是 Generator 函数的语法糖。 
+    // async表示函数里有异步操作，await表示紧跟在后面的表达式需要等待结果。
+    // await命令后面，可以是promise对象和原始类型的值（数值、字符串和布尔值，但这时等同于同步操作）
+    // async函数的返回值是 Promise 对象，这比 Generator 函数的返回值是 Iterator 对象方便多了。你可以用then方法指定下一步的操作。
+    //https://segmentfault.com/a/1190000007535316
+    //http://es6.ruanyifeng.com/#docs/async
+    function takeLongTime() {
+        // setTimeout(function(){
+        //     console.log(444);
+        // },3000)
+        
+        return new Promise(resolve => {
+            setTimeout(() => {
+                console.log(3333);
+                resolve("long_time_value")
+            }, 2000);
+        });
+    }
+
+    async function test() {
+        console.log(1);
+        await takeLongTime();
+        console.log(2);
+    }
+
+    test();
+</script>
+</html>
