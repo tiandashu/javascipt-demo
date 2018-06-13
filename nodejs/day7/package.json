@@ -1,0 +1,11 @@
+{
+  "name": "day7",
+  "version": "1.0.0",
+  "description": "node 的版本管理工具： nvm(独立于node环境的工具) 和 n(是npm的一个模块)\r npm包管理器 ：nrm(是npm的一个模块)管理npm的镜像源工具",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
