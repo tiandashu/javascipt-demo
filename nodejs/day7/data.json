@@ -1,0 +1,14 @@
+{
+    "persons":[
+        {
+            "name":"tyy",
+            "age":16,
+            "type":"wangba"
+        }, 
+        {
+            "name":"qq",
+            "age":-6,
+            "type":"keai"
+        }  
+    ]
+}
