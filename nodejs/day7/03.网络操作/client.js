@@ -1,15 +1,16 @@
 
 var http = require('http');
 const querystring = require('querystring');
+
 const postData = querystring.stringify({
-    'key' : '18734233259'
+    'year' : '2018'
 });
   
 const options = {
-    hostname: 'www.apengdai.com',
+    hostname: 'api.apengdai.com',
     port: 80,
-    path: '/encrypt/getAccessKey',
-    method: 'POST',
+    path: '/api/v2/data/newData',
+    method: 'GET',
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Content-Length': Buffer.byteLength(postData)
@@ -19,12 +20,15 @@ const options = {
 const req = http.request(options, (res) => {
     console.log(`状态码: ${res.statusCode}`);
     console.log(`响应头: ${JSON.stringify(res.headers)}`);
+    var data = [];
     res.setEncoding('utf8');
     res.on('data', (chunk) => {
+        data.push(chunk);
         console.log(`响应主体: ${chunk}`);
     });
     res.on('end', () => {
-        console.log('响应中已无数据。');
+        console.log(data);
+        console.log('响应全部数据完成......');
     });
 });
   
@@ -33,6 +37,5 @@ req.on('error', (e) => {
 });
   
 // 写入数据到请求主体
-console.log(postData);
 req.write(postData);
 req.end();
