@@ -21,6 +21,15 @@ const req = http.request(options, (res) => {
     console.log(`状态码: ${res.statusCode}`);
     console.log(`响应头: ${JSON.stringify(res.headers)}`);
     var data = [];
+<<<<<<< HEAD
+    res.on('data', (chunk) => {
+        data.push(chunk);
+        // console.log(`响应主体: ${chunk}`);
+    });
+    res.on('end', () => {
+        console.log('响应中已无数据。');
+        console.log(data.toString());
+=======
     res.setEncoding('utf8');
     res.on('data', (chunk) => {
         data.push(chunk);
@@ -29,9 +38,12 @@ const req = http.request(options, (res) => {
     res.on('end', () => {
         console.log(data);
         console.log('响应全部数据完成......');
+>>>>>>> 182b34030cae9bb3c1570fea63ffa39281939332
     });
+    
 });
-  
+
+
 req.on('error', (e) => {
     console.error(`请求遇到问题: ${e.message}`);
 });
