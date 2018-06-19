@@ -59,6 +59,7 @@ function main(argv){
     var port = config.port || 80;
     http.createServer(function(req,res){
         var urlInfo = parseURL(root,req.url);
+        console.log(urlInfo);
         combinFiles(urlInfo.pathnames,function(err,data){
             if(err){
                 res.writeHead(404);
