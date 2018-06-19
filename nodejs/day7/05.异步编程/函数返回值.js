@@ -23,6 +23,7 @@ function test(name,callback){
             callback(null,name+"是个好人"); 
         }
     }catch(e){
+        console.log(`捕获错误:${e}`);
         callback(e);
     }
     

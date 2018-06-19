@@ -266,7 +266,6 @@ url.format({
 初学node对于http、net有点傻傻分不清楚
 >net模块可用于创建Socket服务器或Socket客户端。网络上的两个程序通过一个双向的通信连接实现数据的交换，这个连接的一端称为一个socket。形象的说socket就像是平时的打电话，拨通电话后（建立连接之后）可以你一言我一语，服务器和客户端进行双向通信。之前的http更像是发短信沟通，而且只能是客户端向服务端发送，服务端收到信息后再回复，服务端不能主动给客户端发送信息。
 
-<<<<<<< HEAD
 网络总结：为什么使用http模块发起HTTP客户端请求时，有时候会发生socket hang up错误？
 发起客户端HTTP请求前需要先创建一个客户端。http模块提供了一个全局客户端http.globalAgent，可以让我们使用.request或.get方法时不用手动创建客户端。但是全局客户端默认只允许5个并发Socket连接，当某一个时刻HTTP客户端请求创建过多，超过这个数字时，就会发生socket hang up错误。解决方法也很简单，通过http.globalAgent.maxSockets属性把这个数字改大些即可。另外，https模块遇到这个问题时也一样通过https.globalAgent.maxSockets属性来处理。
 
@@ -275,7 +274,5 @@ url.format({
 
 1.process
 >process 对象是一个全局变量，它提供当前 Node.js 进程的有关信息，以及控制当前 Node.js 进程。 因为是全局变量，所以无需使用 require()。
-=======
 ### 异步编程
 
->>>>>>> 2113e41c7b5b4d90543ae9edd0bb92a4eda10b66
