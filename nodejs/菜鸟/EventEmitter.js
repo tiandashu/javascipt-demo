@@ -2,13 +2,42 @@
 //所有这些产生事件的对象都是 events.EventEmitter 的实例。
 
 var events = require('events');
+var emitter = new events.EventEmitter();
+emitter.setMaxListeners(20);
 
-var EventEmitter = new events.EventEmitter();
+emitter.addListener('hand',function(){
+    console.log('addListener事件触发');
+})
+emitter.removeListener('hand',function(data){
+    console.log('移除hand事件'); 
+});
 
-EventEmitter.on('hand',function(err,data){
-    console.log('some_event 事件触发'); 
+emitter.on('hand',function(data){
+    console.log('one事件触发'); 
+    data();
+});
+emitter.on('hand',function(data){
+    console.log('two事件触发'); 
+});
+emitter.on('hand',function(data){
+    console.log('three事件触发'); 
+});
+
+
+// emitter.once('hand',function(){
+//     console.log('once事件触发'); //使用once绑定的事件触发一次后就移除了
+// });
+
+console.log(emitter.listeners('hand').length);
+emitter.emit('hand',function(){
+    console.log('传入的回调执行了一次');
 });
 
 setTimeout(function(){
-    EventEmitter.emit('hand');
-},1000)
+    console.log('....................');
+    emitter.emit('hand',function(){
+        console.log('传入的回调执行了二次');
+    });
+},3000)
+
+//事件触发的时候可以传入任意类型的参数
