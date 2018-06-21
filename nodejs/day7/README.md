@@ -88,6 +88,21 @@ NodeJS定义了一个特殊的node_modules目录用于存放模块。例如某�
 windows环境下主要依靠.cmd文件来执行，将自己编写的cmd文件添加到node的path路径下，即可在任意位置执行。
 后期深入研究...
 
+### REPL 命令
+>下划线(_)变量,你可以使用下划线 (_)获取上一个表达式的运算结果
+```
+ctrl + c - 退出当前终端。
+ctrl + c 按下两次 - 退出 Node REPL。
+ctrl + d - 退出 Node REPL.
+向上/向下 键 - 查看输入的历史命令
+tab 键 - 列出当前命令
+.help - 列出使用命令
+.break - 退出多行表达式
+.clear - 退出多行表达式
+.save filename - 保存当前的 Node REPL 会话到指定文件
+.load filename - 载入当前 Node REPL 会话的文件内容。
+```
+
 ### NPM
 NPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题，常见的使用场景有以下几种：
 1.允许用户从NPM服务器下载别人编写的三方包到本地使用。
