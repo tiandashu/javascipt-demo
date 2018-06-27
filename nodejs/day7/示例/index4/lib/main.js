@@ -14,6 +14,7 @@ function spawn(server, config){
 
 function main(argv){
     spawn('index.js', argv[0]);
+    console.log(process.pid, worker.pid);
     process.on('SIGTERM',function(){
         worker.kill();
         process.exit(0);
@@ -21,4 +22,3 @@ function main(argv){
 }
 
 main(process.argv.slice(2));
-console.log('main.js');
