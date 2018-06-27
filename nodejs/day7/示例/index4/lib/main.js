@@ -13,7 +13,7 @@ function spawn(server, config){
 }
 
 function main(argv){
-    spawn('index.js', argv[0]);
+    spawn('../lib/index.js', argv[0]);
     console.log(process.pid, worker.pid);
     process.on('SIGTERM',function(){
         worker.kill();
