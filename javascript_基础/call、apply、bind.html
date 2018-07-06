@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        
+    </body>
+    <script>
+        var obj = {
+            name:'tyy',
+            age:18,
+            say:function(){
+                alert(this.name)
+            }
+        }
+        var name = 'wangba'
+        obj.say.call(this);
+        
+        function fn(){
+            alert(this.name)
+        }
+
+        fn.bind(obj)()
+    </script>
+</html>
