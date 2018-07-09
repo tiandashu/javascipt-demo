@@ -24,7 +24,7 @@
 * */
 
 var jquery = function (selector,context) {
-    console.log(this);//window  jqery的this
+    console.log(this);//window  
     return new jquery.prototype.init();
     //return  jquery.prototype.init();
 }
