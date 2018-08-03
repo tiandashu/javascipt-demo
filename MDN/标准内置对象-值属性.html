@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>标准内置对象分类-值属性</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+
+// 值属性
+// 这些全局属性返回一个简单值，这些值没有自己的属性和方法。
+
+// 全局属性 Infinity 是一个数值，表示无穷大
+// 不可写、不可枚举、不可配置  
+// 不存在兼容问题
+console.log(Infinity          ); /* Infinity */  
+console.log(Infinity + 1      ); /* Infinity */  
+console.log(Math.pow(10, 1000)); /* Infinity */  
+console.log(Math.log(0)       ); /* -Infinity */  
+console.log(1 / Infinity      ); /* 0 */
+
+// 全局属性 NaN 的值表示不是一个数字（Not-A-Number）
+// 不可写、不可枚举、不可配置  
+// NaN 属性的初始值就是 NaN，和 Number.NaN 的值一样。在现代浏览器中（ES5中）， NaN 属性是一个不可配置（non-configurable），不可写（non-writable）的属性。但在ES3中，这个属性的值是可以被更改的，但是也应该避免覆盖。
+// 判断一个值是否是NaN
+// 等号运算符（== 和 ===） 不能被用来判断一个值是否是 NaN。必须使用 Number.isNaN() 或 isNaN() 函数。在执行自比较之中：NaN，也只有NaN，比较之中不等于它自己。
+// 不存在兼容问题
+NaN === NaN;        // false
+Number.NaN === NaN; // false
+console.log( isNaN(NaN) ); // true
+isNaN(Number.NaN);  // true
+function valueIsNaN(v) { return v !== v; }
+valueIsNaN(1);          // false
+valueIsNaN(NaN);        // true
+valueIsNaN(Number.NaN); // true
+
+// 全局属性undefined表示原始值undefined。它是一个JavaScript的 原始数据类型 
+// 不可写、不可枚举、不可配置
+// 不存在兼容问题
+// undefined是全局对象的一个属性。也就是说，它是全局作用域的一个变量。undefined的最初值就是原始数据类型undefined。
+console.log( (function(){})() ) //undefined 一个函数如果没有使用return语句指定返回值，就会返回一个undefined值。
+// 1.严格相等和undefined
+// 注意：这里是必须使用严格相等操作符（===）而不是标准相等操作符（==），因为 x == undefined 会检查x是不是null，但是严格相等不会检查。null不等同于undefined。
+var x = null;
+if (x === undefined) {
+    alert(11);
+} else {
+    //不是严格相等的时候回执行这里
+    alert(22);
+}
+// Typeof 操作符和undefined
+// 2.使用 typeof的原因是它不会在一个变量没有被声明的时候抛出一个错误。
+var x;
+if(typeof x === 'undefined') {
+    // 执行这些语句
+}
+// .void 操作符是第三种可以替代的方法
+var x1;
+if(x1 === void 0) {
+    // 执行这些语句
+    console.log('void 0')
+}
+
+// 没有声明y
+if(y === void 0) {
+    // 抛出一个RenferenceError错误(与`typeof`相比) 
+    // y is not defined
+}
+
+// 值 null 特指对象的值未设置。它是 JavaScript 基本类型 之一。
+// 值 null 是一个字面量，它不像undefined 是全局对象的一个属性。null 是表示缺少的标识，指示变量未指向任何对象。把 null 作为尚未创建的对象，也许更好理解。在 APIs 中，null 常在返回类型是对象，但没关联值的地方使用
+// 不存在兼容问题
+typeof null        // "object" (因为一些以前的原因而不是'null')
+typeof undefined   // "undefined"
+null === undefined // false
+null  == undefined // true
+null === null      // true
+null == null       // true
+!null              //true
+isNaN(1 + null)    // false
+isNaN(1 + undefined) // true
+
+
+</script>

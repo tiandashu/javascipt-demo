@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    var obj = {
+        a:1,
+        b:2
+    }
+    console.log(obj.length); //undefined
+    console.log(Object.length); //1
+
+    //Object.assign() 方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。
+    var assignObj = Object.assign({target:"target"},obj);
+    console.log(assignObj);
+
+    // Object.create()方法创建一个新对象，使用现有的对象来提供新创建的对象的__proto__。 
+    var creObj = Object.create(obj);
+    console.log(creObj);
+
+    // Object.defineProperty(obj, prop, descriptor)
+    // 考虑特性被赋予的默认特性值非常重要，通常，使用点运算符和Object.defineProperty()为对象的属性赋值时，数据描述符中的属性默认值是不同的，如下例所示。
+    var o = {};
+    o.a = 1;
+    // 等同于 :
+    Object.defineProperty(o, "a", {
+        value : 1,
+        writable : true,
+        configurable : true,
+        enumerable : true
+    });
+    console.log(o);
+    // 另一方面，
+    Object.defineProperty(o, "a", { value : 1 });
+    // 等同于 :
+    Object.defineProperty(o, "a", {
+        value : 1,
+        writable : false,
+        configurable : false,
+        enumerable : false
+    });
+    console.log(o);
+
+    // Object.entries()方法返回一个给定对象自身可枚举属性的键值对数组，其排列与使用 for...in 循环遍历该对象时返回的顺序一致（区别在于 for-in 循环也枚举原型链中的属性）
+    const object1 = { foo: 'bar', baz: 42 };
+    console.log(Object.entries(object1));
+</script>
