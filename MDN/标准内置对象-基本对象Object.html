@@ -52,4 +52,73 @@
     // Object.entries()方法返回一个给定对象自身可枚举属性的键值对数组，其排列与使用 for...in 循环遍历该对象时返回的顺序一致（区别在于 for-in 循环也枚举原型链中的属性）
     const object1 = { foo: 'bar', baz: 42 };
     console.log(Object.entries(object1));
+    // polyfill
+    if(!Object.entries){
+        Object.entries = function( obj ) {
+            var ownProps = Object.keys( obj ),
+                i = ownProps.length,
+                resArray = new Array(i);
+            while(i--){
+                resArray[i] = [ ownProps[i],obj[ownProps[i]] ];
+            }
+            return resArray;
+        };
+    }
+
+    // Object.freeze() 冻结一个对象，冻结指的是不能向这个对象添加新的属性不能够改已有的属性值，不能删除已有属性，以及不能修改对象已有属性的可枚举性、可配置性、可写性，返回被冻结的对象
+    // 如果冻结的对象内部包含对象或者数组，内部的对象或者数组仍然未被冻结，只能是浅冻结
+    var freObj = {
+        test: "test"
+    }
+    var fre = Object.freeze(freObj);
+    fre.test = "fre";
+    freObj.test = "testone";
+    console.log(freObj);
+    console.log(fre);
+
+    // Object.getOwnPropertyDescriptor() 返回指定对象上一个自有属性对应的属性描述符
+    //（自有属性指的是直接赋予该对象的属性，不需要从原型链上进行查找的属性）
+    // 在 ES5 中，如果该方法的第一个参数不是对象（而是原始类型），那么就会产生出现 TypeError。而在 ES2015，第一个的参数不是对象的话就会被强制转换为对象。
+    var desObj = {
+        des: "des",
+        num: 23
+    }
+
+    var resDes = Object.getOwnPropertyDescriptor(desObj,desObj.des);
+    console.log(resDes); //{value: "des", writable: true, enumerable: true, configurable: true}
+    console.log( Object.getOwnPropertyDescriptors(desObj) ); //获取所有属性的描述
+
+    // Object.getOwnPropertyNames()方法返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性但不包括Symbol值作为名称的属性）组成的数组
+    var arr = ["a", "b", "c"];
+    console.log( Object.getOwnPropertyNames(arr) ); //["0", "1", "2", "length"]
+    console.log( Object.keys(arr) ); //["0", "1", "2"]
+
+    // Object.getPrototypeOf(object) 法返回指定对象的原型（内部[[Prototype]]属性的值）
+    function per() {
+        this.name = "tll"
+    }
+    per.prototype.age = 18;
+    var p = new per();
+    console.log(Object.getPrototypeOf(p))
+
+    // Object.is()方法判断两个值是否是相同的值。 与==和===都不一样
+    // polyfill
+    if( !Object.is ){
+        Object.is = function(){
+            if( x===y ) {
+                // 处理正负0
+                return x!==0 || 1/x === 1/y;
+            } else {
+                // 处理NaN
+                return x!==x && y!==y;
+            }
+        }
+    }
+
+
+    //valueOf() 返回该对象的原始值
+    console.log( desObj.valueOf() );
+
+
+
 </script>
