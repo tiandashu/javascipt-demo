@@ -119,6 +119,14 @@
     //valueOf() 返回该对象的原始值
     console.log( desObj.valueOf() );
 
+    var x = new Boolean(false);
+    if(x){
+        alert(typeof x);//object
+    }
 
-
+    try {
+        throw new Error("Whoops!");
+    } catch (e) {
+        alert(e.name + ": " + e.message);
+    }
 </script>

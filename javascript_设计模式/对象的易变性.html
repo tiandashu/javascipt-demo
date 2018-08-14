@@ -31,5 +31,16 @@
     // 继承
     // 继承在javascript中不像别的面向对象语言那样简单。javascript是基于对象的（原型式）的继承
 
- 
+    Function.prototype.methods = function(name,fn){
+        this.prototype[name] = fn;
+    }
+
+    var anim = function(){
+        console.log('anim');
+    }
+    anim.methods('start',function(){
+        console.log('start');
+    })
+    var a = new anim();
+    a.start()
 </script>
