@@ -25,6 +25,52 @@
     
     // JavaScript中模仿接口的三种方法：1.注释描述法  2.属性检查法  3.鸭式辩型法
     // 1.注释描述法  用注释模仿接口是最简单的方式，但是效果最差。这种方式模仿了其它面向对象语言中的做法
+    /*
+        interface Composite {
+            function add(child);
+            function remove(child);
+            function getChild(index);
+        }
 
-    /**/
+        interface FormItem {
+            function save();
+        }
+    */
+
+    var CompositeForm = function(id, methods, action){
+        
+    }
+    // implement the Composite interface
+    CompositeForm.prototype.add = function(){
+
+    };
+    CompositeForm.prototype.remove = function(){
+
+    };
+    CompositeForm.prototype.getChild = function(){
+
+    };
+    // implement the FormItem interface
+    CompositeForm.prototype.save = function(){
+
+    };
+    // 总结：优点是容易实现，不需要额外的类和函数，提高代码的重用性。缺点是：不会对真正实现了的正确的方法进行检查，没有报错不利于测试和调试
+
+    // 2. 属性检查模仿接口
+    // 所有类都明确声明自己实现了哪些接口，那些想与这些类打交道的对象可以针对这么声明进行检查。那些接口自身仍然只是注释，但现在可以通过检查一个属性得知某个类自称实现了什么接口
+    /*
+        interface Composite {
+            function add(child);
+            function remove(child);
+            function getChild(index);
+        }
+
+        interface FormItem {
+            function save();
+        }
+    */ 
+        
+    var CompositeForm = function(id, method, action){
+        this.implementsInterfaces = ['Composite','FormItem'];
+    }   
 </script>
