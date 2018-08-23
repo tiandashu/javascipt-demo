@@ -30,11 +30,11 @@
     // 在函数执行过程，根据当前执行环境的作用域链来逐层向外查找变量，并且进行标识符解析
 
 
-    var a = 'a';
+    var a = 'outer';
     function outer() {
         var a = 0;
         return function inner() {
-            console.log(a++)
+            console.log(a++);
         }
     }
 
