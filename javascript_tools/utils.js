@@ -24,16 +24,22 @@ var utils = (function(window){
                 return false;
             }
         },
-        getClient : function () {
-            return {
-                width: window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
-                height: window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
-            }
+        // 操作cookie
+        docCookies : {
+            getItem: function(sKey) {
+                
+            },
+            setItem: function(sKey, sValue, vEnd, sPath, sDomain, bSecure) {
+                
+            },
+            removeItem: function(sKey) {
+                
+            },
+            hasItem: function(sKey) {
+                
+            },
         },
-        scrollTop : function() {
-            return document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
-        }
-
+        
 
 
     }
@@ -42,16 +48,3 @@ var utils = (function(window){
     return new utils();
 
 })(window)
-
-
-var cookie = (function(){
-    
-})()
-
-var localStorage = (function(){
-    
-})()
-
-var sessionStorage = (function(){
-    
-})()
