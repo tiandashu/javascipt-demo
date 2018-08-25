@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dxeepClone</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script src="./样式.js"></script>
+<script>
+    var obj = {
+        person:{
+            tianlu:{
+                age:18,
+                sex:"nan"
+            },
+            tianyaying:{
+                age:20,
+                sex:"nv"
+            }
+        },
+        animals:{
+            dog:{
+                age:2,
+                color:"white"
+            }
+        },
+        c:["Bob", "Tom", "Jenny"]
+    }
+
+    var clone = {};
+
+
+    function deepClone(source, target) {
+        
+       for(var i in source){
+           if( typeof source[i] == "object" ){
+                target[i] = ( source[i].constructor === Array )?[]:{};
+                deepClone(source[i],target[i]);
+           }else{
+                target[i] = source[i];
+           }
+       }
+       return target;
+    }
+    deepClone(obj, clone);
+    console.log(clone);
+    console.log({...obj});
+    
+</script>

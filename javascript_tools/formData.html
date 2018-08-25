@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>formdata</title>
+</head>
+<body>
+    <form id="myForm" name="myForm">
+        <div>
+          <label for="username">Enter name:</label>
+          <input type="text" id="username" name="username" value="kdkdk">
+        </div>
+        <div>
+          <label for="useracc">Enter account number:</label>
+          <input type="text" id="useracc" name="useracc">
+        </div>
+        <div>
+          <label for="userfile">Upload file:</label>
+          <input type="file" id="userfile" name="userfile">
+        </div>
+      <input type="submit" value="Submit!">
+      </form>
+</body>
+</html>
+<script>
+    // formdata 用一些键值对来模拟一系列表单控件，比起普通的ajax,使用FormData的最大优点就是我们可以异步上传一个二进制文件.
+    // 可以利用formdata直接转化一个表单
+    var myForm = document.getElementById('myForm');
+    formData = new FormData(myForm);
+
+    formData.forEach((element,key) => {
+        console.log(key,element);
+        
+    });
+
+    // formdata 的一些api
+    // append  delete entries get getAll has keys set values
+    // 这个方法有两个版本：一个有两个参数的版本和一个有三个参数的版本。
+    // formData.append(name, value);
+    // formData.append(name, value, filename); 可以提交二进制文件
+    // formData.append('userpic', myFileInput.files[0], 'chris.jpg');
+</script>
