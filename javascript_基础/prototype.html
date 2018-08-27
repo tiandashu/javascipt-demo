@@ -6,19 +6,40 @@
 </head>
 <body>
 <script>
-    function gc(name,age) {
-        function Person(name,age){
-            this.name = name;
-            this.age = age;
-        }
+    // function gc(name,age) {
+    //     function Person(name,age){
+    //         this.name = name;
+    //         this.age = age;
+    //     }
 
-        return new Person(name,age);
+    //     return new Person(name,age);
+    // }
+
+    // console.log(gc("tyy", 18));
+    // console.log(gc("tyy2", 18));
+    // console.log(gc("tyy3", 18));
+    
+    function f1(self){
+        console.log(1);
+        self.next();
+    }
+    function f2(self){
+        console.log(2);
+        self.next();
+    }
+    function f3(self){
+        console.log(3);
+        self.next();
+    }
+    function f4(self){
+        console.log(4);
+        self.next();
     }
 
-    console.log(gc("tyy", 18));
-    console.log(gc("tyy2", 18));
-    console.log(gc("tyy3", 18));
+    
 
+
+    
 </script>
 </body>
 </html>
