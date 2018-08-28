@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*<!--background写法-->*/
+        /*.img {*/
+            /*width: 100%;*/
+            /*height:0;*/
+            /*padding-bottom: 100%;*/
+            /*overflow: hidden;*/
+            /*background: url("https://p3.ssl.qhimg.com/t014248b99f9877cc73.jpg") center/100% 100% no-repeat;*/
+        /*}*/
+        .img {
+            width: 100%;height: 100%;top:0;z-index: -1; position: absolute;
+        }
+        .img img{
+            display: block;outline: none;border:0;height: 100%;width: 100%;
+        }
+        /*<!--img写法-->*/
+        /*.img{*/
+            /*position: relative;*/
+            /*width: 1005px;*/
+            /*height: 0;*/
+            /*padding-bottom: 100%;*/
+            /*overflow: hidden;*/
+        /*}*/
+        /*.img img{*/
+            /*position: absolute;*/
+            /*top:0;*/
+            /*right:0;*/
+            /*bottom:0;*/
+            /*left:0;*/
+        /*}*/
+
+        /*#box {*/
+            /*!* 父容器设置宽度, 并超出部分不显示 *!*/
+            /*width: 300px;*/
+            /*height: 80px;*/
+            /*line-height: 80px;*/
+            /*overflow-x: auto;*/
+        /*}*/
+        /*#box > ul {*/
+            /*!* 子容器比父容器的宽度多 17 px, 经测正好是滚动条的默认宽度 *!*/
+            /*!*width: 200px;*!*/
+            /*height:80px;*/
+            /*line-height: 30px;*/
+            /*text-align: center;*/
+            /*!*overflow-x: auto;*!*/
+        /*}*/
+        ul li{
+            float:left;
+            width:50px;
+            text-align: center;
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+<div class="img">
+    <!--<img src="https://p3.ssl.qhimg.com/t014248b99f9877cc73.jpg" alt="">-->
+    <img src="11.jpg" alt="">
+</div>
+
+<!-- 兼容所有浏览器的超出部分滚动不显示滚动条 -->
+<!--<div id="box" style="height:80px; width:480px;overflow-x:auto;">-->
+    <!--<ul style="width:1200px;background:#f00;">-->
+        <!--<li>你好</li>-->
+        <!--<li>你好</li>-->
+        <!--<li>你好</li>-->
+        <!--<li>你好</li>-->
+        <!--<li>你好</li>-->
+        <!--<li>你好</li>-->
+        <!--<li>你好</li>-->
+        <!--<li>你好</li>-->
+        <!--<li>你好</li>-->
+        <!--<li>你好</li>-->
+        <!--<li>你好</li>-->
+
+    <!--</ul>-->
+<!--</div>-->
+
+</body>
+</html>
