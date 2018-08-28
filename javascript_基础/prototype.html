@@ -18,7 +18,7 @@
     // console.log(gc("tyy", 18));
     // console.log(gc("tyy2", 18));
     // console.log(gc("tyy3", 18));
-    
+
     function f1(self){
         console.log(1);
         self.next();
@@ -37,9 +37,30 @@
     }
 
     
+    function chain(fn){
+        this.fn = fn;
+        this.success = null;
+    }
 
+    chain.prototype = {
+        setsuccess:function(obj){
+            return this.success = obj;
+        },
+        start:function(){
+            this.fn.apply(this,[this]);
+        },
+        next:function(){
+            this.success && this.success.start.apply(this.success,arguments)
+        }
+    }
 
-    
+    var obj1 = new chain(f1);
+    var obj2 = new chain(f2);
+    var obj3 = new chain(f3);
+    var obj4 = new chain(f4);
+    obj1.setsuccess(obj2).setsuccess(obj3).setsuccess(obj4);
+    obj1.start();
+
 </script>
 </body>
 </html>
