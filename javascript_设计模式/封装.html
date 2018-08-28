@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // 封装  可以被定义为对对象的内部数据表现形式和实现细节进行隐藏。
+    // 在JavaScript中没有这样的关键字，我们可以通过闭包达到同样的目的
+    function per(){
+        var name = 'tian';
+        this.age = name;
+    }
+
+    var p = new per();
+    console.log(p)
+</script>

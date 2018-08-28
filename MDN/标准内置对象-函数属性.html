@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    全局函数可以直接调用，不需要在调用时指定所属对象，执行结束后会将结果直接返回给调用者。  
+</body>
+</html>
+<script>
+// eval(string)
+// eval() 函数会将传入的字符串当做 JavaScript 代码进行执行。
+// 参数：表示JavaScript表达式，语句或一系列语句的字符串。表达式可以包含变量以及已存在对象的属性。
+// 返回值：执行指定代码之后的返回值。如果返回值为空，返回undefined
+console.log( eval("2+3") );
+console.log( eval(2+3) );
+console.log( "new Date().getTime()" ); //new Date().getTime()
+console.log( eval("new Date().getTime()") ); //1533262911774
+eval( "alert('sss')" )
+var json = {
+    "name":"dog",
+    "arr": [1,2,3]
+}
+console.log( eval(json) )
+</script>
+
+<script>
+// isFinite
+// 该全局函数isFinite()函数用来判断被传入的参数值是否为一个有限数值。在必要情况下，参数会首先转为一个数值
+// 你可以用这个方法来判定一个数字是否是有限数字。isFinite 方法检测它参数的数值。如果参数是 NaN，正无穷大或者负无穷大，会返回false，其他返回 true。
+isFinite(Infinity);  // false
+isFinite(NaN);       // false
+isFinite(-Infinity); // false
+isFinite(0);         // true
+isFinite(2e64);      // true, 在更强壮的Number.isFinite(null)中将会得到false
+isFinite("0");       // true, 在更强壮的Number.isFinite('0')中将会得到false
+</script>
+
+<script>
+    console.log('isNaN');
+// isNaN() 函数用来确定一个值是否为NaN 。注：isNaN函数内包含一些非常有趣的规则；你也可以通过ECMAScript 2015/ES6 中定义的Number.isNaN()或者 可以使用typeof 来判断该值是否为一个非数字。
+// 与 JavaScript 中其他的值不同，NaN不能通过相等操作符（== 和 ===）来判断 ，因为 NaN == NaN 和 NaN === NaN 都会返回 false。 因此，isNaN 就很有必要了。
+
+
+
+
+</script>

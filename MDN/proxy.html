@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>proxy</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+  // Proxy 对象用于定义基本操作的自定义行为（如属性查找，赋值，枚举，函数调用等）
+
+  let handler = {
+    get: function(target, name){
+      return name in target?target[name]:'该属性不存在';
+    },
+    set: function(obj,prop,value){
+      if(prop=='age'){
+        if(!Number.isInteger(value)){
+          throw new Error("the age is not an integer");
+        }
+        if(value>20){
+          throw new Error("old")
+        }
+        obj[prop] = value;
+      }
+    }
+    
+  }
+  let o = {age:19,name:'tl'};
+  let p = new Proxy(o,handler);
+  p.lll = 'lll';  //代理会将所有应用到它的操作转发到target对象上
+  p.age = 20;
+  console.log(p.name);
+  console.log(p.jj);
+  console.log(p.age);
+  console.log(o.name);
+  console.log(o.lll); //代理会将所有应用到它的操作转发到target对象上
+  console.log(o.age)
+
+
+</script>
