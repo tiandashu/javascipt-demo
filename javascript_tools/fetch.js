@@ -60,6 +60,9 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch')=>{
             let senddata = '';
             if (type == 'POST') {
                 sendData = JSON.stringify(data);
+            } else {
+                senddata = null;
+                url = url + datastr;
             }
             /*第三个参数设置true异步 默认true*/
             ajax.open(type,url,true);

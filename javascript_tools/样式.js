@@ -1,6 +1,6 @@
 
 
-// clientWidth 处理兼容性  获取可视区域宽高
+// clientWidth 处理兼容性  获取可视区域宽高,不包含浏览器的工具栏，也不包含f12调试窗口的高度（浏览器可用窗口的高度）
 function getClient() {
     return {
         width: window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
@@ -19,4 +19,24 @@ function scrollTop() {
     //注意为什么将window.pageYOffset放在中间的位置
     //因为在ie中当scrollTop为0时，window.pageYOffset会返回undefined； undefined || 0 》》0;0 ||undefined》》undefined
     //为了避免在ie中计算出错 所以将window.pageYOffset放在中间的位置
+}
+
+// 只读
+function offset() {
+    return {
+        height: window.document.body.offsetHeight, // 页面的高度包含卷去的部分
+        width: window.document.body.offsetWidth, // 页面的宽度包含卷去的部分
+        left: window.document.body.offsetLeft,
+        top: window.document.body.offsetTop
+    }
+}
+
+// 屏幕的宽高
+function screen() {
+    return {
+        availHeight : window.screen.availHeight, //  浏览器的整体高度，不包含系统任务栏的高度
+        availWidth : window.screen.availWidth,  //  浏览器的整体高度，不包含系统任务栏的高度
+        width: window.screen.width,  //  屏幕的宽度
+        height: window.screen.height  //  屏幕的高度
+    }
 }
