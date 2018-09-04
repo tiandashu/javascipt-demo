@@ -2,38 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
     <title>flex</title>
     <style>
         *{
             margin: 0;
             padding: 0;
         }
-        .main{
-            width: 600px;
-            height: 600px;
-            background-color: teal;
-            margin: 0 auto;
-            display: -webkit-flex;
+        html,body{
+            font-size: 50px;
+            height: 100%;
+        }
+        
+        
+
+        .demo2{
             display: flex;
-            flex-flow: row wrap;
-            justify-content: space-around;  /*设置在主轴方向的排列方式*/
-            align-items: stretch;  /*设置在交叉轴方向的排列方式*/
-            align-content: stretch; /*存在多个轴线的时候设置生效*/
+            flex-direction: column;
+            font-size: 0.2rem;
+            height: 100%;
         }
-        p{
-            width: 100px;
-            height: 100px;
-            border: 1px solid #ccc;
-            color: #fff;
+        .body{
+            flex: 1;
         }
-        .p1{
-            /*flex-grow: 1;*/
-            flex-basis: 300px;
-        }
-        .head{
-            width: 200px;
-            height: 100px;
-            border: 1px solid #ccc;
+        .footer{
+            width: 100%;
+            height: 20px;
         }
     </style>
 </head>
@@ -44,30 +38,45 @@
     注意：1.设置为flex的布局后，子元素的float、clear、vertical-align都将失效
           2.space-around 每个项目两侧的距离相等，所以项目之间的间隔比项目与边框的间隔大一倍。
           3.order 设置item的排列顺序默认为0 值越小越靠前
+    flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的flex-grow属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。
 -->
-<div class="main">
-    <p class="p1">这是代码中的第一个p元素</p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p>这是代码中的最后一个p元素</p>
-    不是p的内容多么疯狂吗
-    <div class="head">
-        我是div中的代码div
-        我是div中的代码div
-        我是div中的代码div
-        我是div中的代码div
-        我是div中的代码div
-        我是div中的代码div
-        我是div中的代码div
-        我是div中的代码div
-        我是div中的代码div
-        我是div中的代码div
+<!-- <ul class="main">
+
+    <li>
+        <p>p1 我能肯定你那个那得看你哭你工科男看电脑给你看了囊括囊抗啊尼康可能浪</p>
+        <p>p2 我能肯定你那个那得看你哭你工科男看电脑给你看了囊括囊抗啊尼康可能浪</p>
+        <p>p3 我能肯定你那个那得看你哭你工科男看电脑给你看了囊括囊抗啊尼康可能浪</p>
+    </li>
+    <li>
+        <p>ppp1 我能肯定你那个那得看你哭你工科男看电脑给你看了囊括囊抗啊尼康可能浪</p>
+        <p>ppp2 我能肯定你那个那得看你哭你工科男看电脑给你看了囊括囊抗啊尼康可能浪</p>
+        <p>ppp3 我能肯定你那个那得看你哭你工科男看电脑给你看了囊括囊抗啊尼康可能浪</p>
+    </li>
+</ul>
+
+
+<ul class="head"> 
+    <li>tab1</li>
+    <li>tab2</li>
+    <li>tab2</li>
+    <li>tab2</li>
+</ul>
+
+
+<div class="demo">
+        <span class="tip"></span>
+        <input type="text" name="" />
+        <button>search</button>
+     </div> -->
+
+
+     <div class="demo2">
+        <div class="body">内容过少时底部沉底实现</div>
+        <div class="footer">这是底部</div>
     </div>
-    <div class="menu"></div>
-    <div class="content"></div>
-    <div class="foot"></div>
-</div>
+
+
+
+
 </body>
 </html>
