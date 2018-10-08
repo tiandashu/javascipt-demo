@@ -24,10 +24,10 @@ function scrollTop() {
 // 只读
 function offset() {
     return {
-        height: window.document.body.offsetHeight, // 页面的高度包含卷去的部分
-        width: window.document.body.offsetWidth, // 页面的宽度包含卷去的部分
-        left: window.document.body.offsetLeft,
-        top: window.document.body.offsetTop
+        height: document.body.offsetHeight, // 页面的高度包含卷去的部分
+        width: document.body.offsetWidth, // 页面的宽度包含卷去的部分
+        left: document.body.offsetLeft,
+        top: document.body.offsetTop
     }
 }
 
