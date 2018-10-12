@@ -69,9 +69,18 @@
    * */
 
 
+    // 检测数组
+    var arrItem = [];
+    if(arrItem instanceof Array){
+        // 这种方法的问题在于 instanceof假定单一的执行环境，如果包含多个框架iframe就不能确定了
+    }
+    // 方法二：ie9+
+    Array.isArray()
 
-
-
-
-
+    // 函数的缩小方法reduce()和reduceRight()
+    var reduceArr = [2,44,33,4,66];
+    var newReduceArr = reduceArr.reduce(function(pre,cur,index,arr){
+        return pre + cur;
+    })
+    console.log(newReduceArr)
 </script>

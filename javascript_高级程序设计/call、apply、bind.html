@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>理解JS中的call、apply、bind方法</title>
 </head>
+
 <body>
     <a href="https://www.cnblogs.com/libin-1/p/6069031.html">https://www.cnblogs.com/libin-1/p/6069031.html</a>
 </body>
+
 </html>
 <script>
     //bind 是返回对应函数，便于稍后调用；apply 、call 则是立即调用 。
@@ -24,9 +27,11 @@
         age: 18,
         name: "inner"
     };
+
     function f1() {
 
     };
+
     function cl(name) {
         console.log('..............');
         console.log(this);
@@ -42,45 +47,47 @@
     cl.call("test"); //String {"test"}
     cl.call(true); //Boolean {true}
 
-    cl.call(f1,name); //ƒ f1() {}
-    cl.call(f1,name); //ƒ f1() {}
-    cl.call(obj,name); //{age: 18, name: "inner"}
+    cl.call(f1, name); //ƒ f1() {}
+    cl.call(f1, name); //ƒ f1() {}
+    cl.call(obj, name); //{age: 18, name: "inner"}
 
     // demo1
-    function eat(x,y){
-        console.log(x+y);
-    };
-    function drink(x,y){
-        console.log(x-y);
+    function eat(x, y) {
+        console.log(x + y);
     };
 
-    eat.call(drink,2,5);// 7
+    function drink(x, y) {
+        console.log(x - y);
+    };
+
+    eat.call(drink, 2, 5); // 7
 
     // demo2
-    function per(){
+    function per() {
         this.name = "per"
     }
-    function dog(){
+
+    function dog() {
         this.name = "dog",
-        this.say = function() {
-            alert(this.name);
-        }
+            this.say = function () {
+                alert(this.name);
+            }
     }
     var p = new per();
     var dog = new dog();
-    dog.say();//dog
-    dog.say.call(p);//per
+    dog.say(); //dog
+    dog.say.call(p); //per
 
     // demo3 继承
-    function animal(name){
+    function animal(name) {
         this.name = name;
-        this.showName = function(){
+        this.showName = function () {
             console.log(this.name)
         }
     }
 
-    function pig(name){
-        animal.call(this,name);
+    function pig(name) {
+        animal.call(this, name);
     }
     var pig = new pig("tyy is pig");
     pig.showName();
@@ -90,20 +97,21 @@
     // 定义：应用某一对象的一个方法，用另一个对象替换当前对象。
     // 对于 apply、call 二者而言，作用完全一样，只是接受参数的方式不太一样。
 
-    function class1(args1,args2){       
-        this.name=function(){      
-            console.log(args1,args2);      
-        }     
-    }     
-    function class2(){    
-        var args1="1";
-        var args2="2";
-        class1.call(this,args1,args2);  
+    function class1(args1, args2) {
+        this.name = function () {
+            console.log(args1, args2);
+        }
+    }
+
+    function class2() {
+        var args1 = "1";
+        var args2 = "2";
+        class1.call(this, args1, args2);
         /*或*/
         // class1.apply(this,[args1,args2]);
     }
 
-    var c = new class2();   
+    var c = new class2();
     c.name();
     // 既然两者功能一样，那该用哪个呢？
     // 在JavaScript 中，某个函数的参数数量是不固定的，因此要说适用条件的话，当你的参数是明确知道数量时用 call ；而不确定的时候用 apply，然后把参数 push 进数组传递进去。当参数数量不确定时，函数内部也可以通过 arguments 这个数组来遍历所有的参数。
@@ -113,11 +121,11 @@
     // bind是在EcmaScript5中扩展的方法（IE6,7,8不支持）
     // 在Javascript中，多次 bind() 是无效的
     // MDN的解释是：bind()方法会创建一个新函数，称为绑定函数，当调用这个绑定函数时，绑定函数会以创建它时传入 bind()方法的第一个参数作为 this，传入 bind() 方法的第二个以及以后的参数加上绑定函数运行时本身的参数按照顺序作为原函数的参数来调用原函数。
-    var bar = function() {
+    var bar = function () {
         console.log(this.x);
     }
     var barobj = {
-        x:"xxxx"
+        x: "xxxx"
     }
     bar.bind(barobj)();
     bar.call(barobj)

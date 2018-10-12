@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>正则test</title>
+</head>
+<body>
+    
+</body>
+</html>
+<!-- <script>
+    //正则的实例属性
+    var str = "woshiyigehaorenwoshiyigehaoren";
+    var reg1 = /wo/igm;
+    console.log(reg1.ignoreCase); //只读
+    console.log(reg1.global); //只读
+    console.log(reg1.multiline); //只读
+    console.log(reg1.lastIndex); //返回一个数值，表示下一次开始搜索的位置。该属性可读写，但是只在进行连续搜索时有意义，详细介绍请看后文。 0
+    console.log(reg1.test(str)); //
+    console.log(reg1.lastIndex); // 2
+    console.log(reg1.source); //返回正则表达式的字符串形式（不包括反斜杠），该属性只读。
+</script> -->
+<!-- <script>
+    var str2 = "woainizhongguo我爱你中国";
+    // 正则的实例方法包括 test()、exec()
+    // test()返回一个布尔值，标识当前模式能否匹配参数字符串
+    console.log(/我爱你/.test(str2));
+    //如果正则表达式带有g修饰符，则每一次test方法都从上一次结束的位置开始向后匹配。
+    var r = /x/g;
+    var s = '_x_x';
+    r.lastIndex // 0
+    r.test(s) // true
+    r.lastIndex // 2
+    r.test(s) // true
+    r.lastIndex // 4
+    r.test(s) // false
+    //exec() 返回匹配的结果，匹配成功就返回一个数组否则就返回null
+    var s = '_x_x';
+    var r1 = /x/;
+    var r2 = /y/;
+    console.log(r1.exec(s)); // ["x", index: 1, input: "_x_x", groups: undefined]
+    console.log(r2.exec(s)); // null
+    //如果正则表示式包含圆括号（即含有“组匹配”），则返回的数组会包括多个成员。第一个成员是整个匹配成功的结果，后面的成员就是圆括号对应的匹配成功的组。也就是说，第二个成员对应第一个括号，第三个成员对应第二个括号，以此类推。整个数组的length属性等于组匹配的数量再加1。
+    var z = '_z_z+z';
+    var rz = /\+(z)/;
+    var rz1 = /(z)/;
+    console.log(rz.exec(z)); //["+z", "z", index: 4, input: "_z_z+z", groups: undefined]
+    console.log(rz1.exec(z)); // ["z", "z", index: 1, input: "_z_z", groups: undefined]
+    //上面代码的exec方法，返回一个数组。第一个成员是整个匹配的结果，第二个成员是圆括号匹配的结果。
+    // 字符串的正则方法包括 match()、replace()、search()、split()
+</script> -->
+<script>
+    //字符串的实例方法
+    //match()
+    var s = "_s_s=s";
+    var rs = /s/;
+    var rs1 = /z/;
+    console.log(s.match(rs));//["s", index: 1, input: "_s_s=s", groups: undefined]
+    console.log(rs.exec(s));//["s", index: 1, input: "_s_s=s", groups: undefined]
+    console.log(s.match(rs1));//null
+    //如果正则表达式带有g修饰符，则该方法与正则对象的exec方法行为不同，会一次性返回所有匹配成功的结果。设置正则表达式的lastIndex属性，对match方法无效，匹配总是从字符串的第一个字符开始。
+    var rsg = /s/g;
+    console.log(s.match(rsg));//["s", "s", "s"] 一次性返回所有匹配成功的结果
+    console.log(rsg.exec(s));//["s", index: 1, input: "_s_s=s", groups: undefined]
+    //search()返回第一个满足条件的匹配结果在整个字符串中的位置。如果没有任何匹配，则返回-1。
+    console.log('_x_x'.search(/x/));//1
+    console.log('_x_x'.search(/z/));//-1
+    console.log('_x_x'.indexOf("x"));//1
+    //replace方法可以替换匹配的值。它接受两个参数，第一个是正则表达式，表示搜索模式，第二个是替换的内容。
+    //正则表达式如果不加g修饰符，就替换第一个匹配成功的值，否则替换所有匹配成功的值。
+    console.log('aaa'.replace('a', 'b'));//baa
+    console.log('aaa'.replace(/a/,"b"));//baa
+    console.log('aaa'.replace(/a/g, 'b'));//bbb
+    //replace方法的第二个参数可以使用美元符号$，用来指代所替换的内容。
+    console.log('hello world'.replace(/(\w+)\s(\w+)/, '$&'));
+    console.log('abc'.replace(/b/, '[$`-$&-$\']'));// "a[a-b-c]c"
+    // $&：匹配的子字符串。
+    // $`：匹配结果前面的文本。
+    // $’：匹配结果后面的文本。
+    // $n：匹配成功的第n组内容，n是从1开始的自然数。
+    // $$：指代美元符号$。
+    //replace方法的第二个参数还可以是一个函数，将每一个匹配内容替换为函数返回值。
+    '3 and 5'.replace(/[0-9]+/g, function (match) {
+        return 2 * match;
+    })
+    // "6 and 10"
+    var a = 'The quick brown fox jumped over the lazy dog.';
+    var pattern = /quick|brown|lazy/ig;
+    a.replace(pattern, function replacer(match) {
+        return match.toUpperCase();
+    });
+    // The QUICK BROWN fox jumped over the LAZY dog.
+    //作为replace方法第二个参数的替换函数，可以接受多个参数。其中，第一个参数是捕捉到的内容，第二个参数是捕捉到的组匹配（有多少个组匹配，就有多少个对应的参数）。此外，最后还可以添加两个参数，倒数第二个参数是捕捉到的内容在整个字符串中的位置（比如从第五个位置开始），最后一个参数是原字符串。
+    var prices = {
+        'p1': '$1.99',
+        'p2': '$9.99',
+        'p3': '$5.00'
+    };
+    var template = '<span id="p1"></span>'
+        + '<span id="p2"></span>'
+        + '<span id="p3"></span>';
+    var html = template.replace(
+        /(<span id=")(.*?)(">)(<\/span>)/g,
+        function(match, $1, $2, $3, $4, index,input){
+            console.log(index+":"+input)
+            return $1 + $2 + $3 + prices[$2] + $4;
+        }
+    );
+    console.log(html);// "<span id="p1">$1.99</span><span id="p2">$9.99</span><span id="p3">$5.00</span>"
+    // exec和match的异同
+    // 1、当正则表达式无子表达式，并且定义为非全局匹配时，exec和match执行的结果是一样，均返回第一个匹配的字符串内容；
+    // 2、当正则表达式无子表达式，并且定义为全局匹配时，exec和match执行，做存在多处匹配内容，则match返回的是多个元素数组；
+    // 3、当正则表达式有子表示时，并且定义为非全局匹配，exec和match执行的结果是一样如上边的第5种情况；
+    // 4、当正则表达式有子表示时，并且定义为全局匹配，exec和match执行的结果不一样，此时match将忽略子表达式，只查找全匹配正则表达式并返回所有内容，如上第6种情况；
+    // 也就说，exec与全局是否定义无关系，而match则于全局相关联，当定义为非全局，两者执行结果相同
+    //split()该方法接受两个参数，第一个参数是正则表达式，表示分隔规则，第二个参数是返回数组的最大成员数。
+</script>
+
