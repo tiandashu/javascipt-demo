@@ -120,5 +120,10 @@ Object.prototype.toString.call(null)    // "[object Null]"
 Object.prototype.toString.call(Math)  // "[object Math]"
 Object.prototype.toString.call({})     //  "[object Object]"
 Object.prototype.toString.call([])    // "[object Array]"
+
+// 判断是否为一个对象的原型
+Person.prototype.isPrototypeOf(person1);//true
+// ECMAscript5 增加了一个新方法 Object.getPrototypeOf()
+Object.getPrototypeOf(Person) == Person.prototype; //true ie9+
 </script>
 </html>

@@ -11,10 +11,16 @@
             this.name = name;
             this.age = age;
         }
-
+        Person.prototype = {
+            say: function(){
+                alert(this.name)
+            }
+        }
         return new Person(name,age);
     }
-
+    for(var item in gc("tyy3", 18)){
+        console.log(item)
+    }
     console.log(gc("tyy", 18));
     console.log(gc("tyy2", 18));
     console.log(gc("tyy3", 18));
