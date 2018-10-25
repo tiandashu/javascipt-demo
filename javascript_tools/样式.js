@@ -21,13 +21,28 @@ function scrollTop() {
     //为了避免在ie中计算出错 所以将window.pageYOffset放在中间的位置
 }
 
+//获得文档的大小（区别与视口）,与上面获取视口大小的方法如出一辙
+function getDocumentPort () {
+    if(document.compatMode == "BackCompat") {//混杂模式
+        return {
+            width: document.body.scrollWidth,
+            height: document.body.scrollHeight
+        };
+    } else {
+        return {
+            width: Math.max(document.documentElement.scrollWidth,document.documentElement.clientWidth),
+            height: Math.max(document.documentElement.scrollHeight,document.documentElement.clientHeight)
+        }
+    }
+}
+
 // 只读
 function offset() {
     return {
-        height: window.document.body.offsetHeight, // 页面的高度包含卷去的部分
-        width: window.document.body.offsetWidth, // 页面的宽度包含卷去的部分
-        left: window.document.body.offsetLeft,
-        top: window.document.body.offsetTop
+        height: document.documentElement.offsetHeight || document.body.offsetHeight, // 页面的高度包含卷去的部分
+        width: document.documentElement.offsetWidth || document.body.offsetWidth, // 页面的宽度包含卷去的部分
+        left: document.body.offsetLeft,
+        top: document.body.offsetTop
     }
 }
 

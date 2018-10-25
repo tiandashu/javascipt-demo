@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>变量的访问分为按值和按引用两种方式</li>
+        <li>ECMAScript中所有函数的参数都是按值传递的</li>
+        <li>执行环境：执行环境定义了函数和变量有权访问的其它数据，决定了他们各自的行为。每个执行环境都有一个与之关联的变量对象，环境中定义的变量和函数都保存在这个变量对象中。但是我们编写的代码是无法直接访问这个变量对象的，但解析器在处理数据的时候会在后台使用到它</li>
+        <li>JavaScript的垃圾回收机制：执行环境会负责管理代码执行过程中使用的内存。垃圾回收的原理其实就是：找出那些不再继续使用的变量，然后释放其占用的内存。为此，垃圾收集器会按照固定的时间间隔（或者代码中预定的收集时间）周期性的执行这一操作。对于不再有用的变量打上标记，以备将来回收其占用的内存。用于标识无用变量的策略一般分为两种方式：1标记清除、2引用计数</li>
+        <li>标记清除：垃圾收集器在运行的时候会给存储在内存中的所有变量添加一个标记，然后它会去掉环境中的变量和被环境中的变量引用的变量标记。在这之后再被加上标记的变量视为准备删除的变量，因为环境中的变量已经无法访问到这些变量了。最后，垃圾收集器完成清除工作，销毁那些带标记的值并回收它们所占用的内存空间。</li>
+        <li>引用计数：就是跟踪记录每个值被引用的次数。当这个值得引用次数变为0的时候，说明没办法再次访问这个值了，垃圾收集器就能在下次运行的时候把其占用的内存空间回收回来。但是引用计算存在循环引用的bug导致内存不能被回收。
+        </li>
+        <li>使用Object.defineProperty()一旦把属性定义为不可配置的，就不能再把它变回可配置的了。再次使用Object.defineProperty()方法修改除writable之外的属性，都会导致错误。</li>
+        <li>Object是一个基础类型，其它所有的类型都从Object继承了基本的行为</li>
+
+    </ul>
+
+    <script>
+        function Person() {
+            this.name = 'name';
+            this.age = 19;
+        }
+        Person.prototype = {
+            type: 'aaa',
+            say: function () {
+                console.log(2);
+            }
+
+        }
+
+        var p = new Person();
+        for (var item in p) {
+            console.log(item)
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>typeof</title>
+</head>
+<body>
+    判断简单类型的数据使用typeof操作符。判断引用类型的数据使用instanceof操作符
+</body>
+</html>
+<script>
+    console.log(typeof null);  //object
+    console.log(typeof undefined);
+    console.log(typeof true);
+    console.log(typeof "abc");
+    console.log(typeof 666);
+    console.log(typeof {}); //object
+    console.log(typeof []); //object
+    console.log([] instanceof Array); //true
+    console.log([] instanceof Object); //true  因为Array是Object的实例
+    console.log(function () {
+        
+    } instanceof Function); //true
+    console.log(typeof function () {
+        
+    });//function
+
+    /*
+    * 以上所有类型的typeof本身都是string类型
+    * */
+</script>
