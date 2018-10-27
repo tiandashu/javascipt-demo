@@ -122,8 +122,21 @@ Object.prototype.toString.call({})     //  "[object Object]"
 Object.prototype.toString.call([])    // "[object Array]"
 
 // 判断是否为一个对象的原型
+var person1 = new Person('tyy',12);
 Person.prototype.isPrototypeOf(person1);//true
-// ECMAscript5 增加了一个新方法 Object.getPrototypeOf()
+// ECMAscript5 增加了一个新方法 Object.getPrototypeOf() 返回对象的原型
 Object.getPrototypeOf(Person) == Person.prototype; //true ie9+
+
+// 判断是否是实例属性而不是原型属性 hasOwnProperty();
+
+// 单独使用in操作符，in操作符会在通过对象能够访问给定属性是返回true，无论该属性是在实例中还是在原型中
+// 实现判断属性只在原型上
+function hasPrototypePreperty(object,property){
+    return !object.hasOwnProperty(property) && (property in object)
+}
+
+// 使用for-in循环时，返回得是能够通过对象访问的、可枚举的属性，其中既包括存在于实例中的属性，也包括在原型中的属性
+
+
 </script>
 </html>

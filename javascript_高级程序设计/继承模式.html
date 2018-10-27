@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    许多的oo语言支持两种继承方式：接口继承和实现继承。因为js中函数没有签名，所以无法实现接口继承，只能实现继承。
+</body>
+</html>
+<script>
+    // 寄生模式 除了使用new操作符并把使用的包装函数叫做构造函数之外，这个模式跟工厂模式其实是一模一样的。
+function SpecialArray(){
+    var newarr = new Array();
+    newarr.push.apply(newarr,arguments);
+    // newarr.push(arguments);
+    newarr.toPipeString = function(){
+        return this.join('|')
+    }
+    return newarr;
+}
+var arr1 = new SpecialArray('red','blue','tea');
+console.log(arr1);
+console.log(arr1.toPipeString())
+
+
+// ***原型链继承
+// 缺点一：超类实例的私有属性会被子类单做共有属性，因为都写到了prototype上
+// 缺点二：创建子类的实例时，不能向超类的构造函数传参
+function Super(){
+    this.property = true;
+}
+Super.prototype.getSuperValue = function(){
+    return this.property
+}
+
+function Sub(){
+    this.Subproperty = false;
+}
+Sub.prototype = new Super();
+Sub.prototype.getSubValue = function(){
+    return this.Subproperty
+}
+
+// ***借用构造函数call apply
+// 缺点：只能借用超类的构造函数，那么超类一些可复用的方法必须定义在构造函数上而不是原型上
+function Super1(age){
+    this.colors = ['red','tea'];
+    this.age = age
+}
+Super1.prototype.say = function(){
+    alert(this.age);
+}
+function Sub1(age){
+    this.name = 'sub'
+    // 可以继承并且传参
+    Super1.call(this,age);
+}
+console.log(new Super1(18));
+console.log(new Sub1(16));
+
+// ***组合式继承
+// 缺点：无论什么情况下，都会调用两次超类的构造函数：一次是在创建子类原型的时候；另外一次是在子类构造系统内部
+function Super2(age){
+    this.colors = ['red','tea'];
+    this.age = age
+}
+Super2.prototype.say = function(){
+    alert(this.age);
+}
+function Sub2(age){
+    this.name = 'sub'
+    // 可以继承并且传参
+    Super2.call(this,age);  //第二次调用超类的构造函数
+}
+//子类的原型继承超类的实例，因为子类的构造函数已经借用了超类，所以只有在子类的构造函数上没有的属性或者方法才会在子类的原型上查找
+Sub2.prototype = new Super2();  //第一次调用超类的构造函数
+// Sub2.prototype = Super2.prototype;  //寄生组合式继承
+console.log(new Super2(18));
+console.log((new Sub2(16)).say());
+
+
+// 使用Object.creat()
+var objTian = {
+    name:"tian"
+}
+var ObjClone = Object.create(objTian);
+console.log(ObjClone)
+</script>

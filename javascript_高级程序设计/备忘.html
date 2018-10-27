@@ -19,26 +19,50 @@
         </li>
         <li>使用Object.defineProperty()一旦把属性定义为不可配置的，就不能再把它变回可配置的了。再次使用Object.defineProperty()方法修改除writable之外的属性，都会导致错误。</li>
         <li>Object是一个基础类型，其它所有的类型都从Object继承了基本的行为</li>
+        <li>调用构造函数时会为实例添加一个指向最初原型的[[prototype]]指针，而重写原型对象切断了构造函数和最初原型之间的联系。请记住：实例中的指针仅指向原型，而不指向构造函数</li>
 
     </ul>
 
     <script>
-        function Person() {
-            this.name = 'name';
-            this.age = 19;
+        function Person(name,age,job) {
+            this.name = name;
+            this.age = age;
+            this.job = job;
+            // 动态添加方法
+            // if(typeof this.sayName != "function"){
+            //     Person.prototype.sayName = function(){
+            //         alert(this.name)
+            //     }
+            // }
+
+            // 以下写法报错 重写原型会切断最初原型和实例之间的联系
+            // if(typeof this.sayName != "function"){
+            //     Person.prototype = {
+            //          sayName:function(){
+            //              alert(this.name)
+            //          }
+            //      }
+            // }
+            // Person.prototype = {
+            //     sayName:function(){
+            //         alert(this.name)
+            //     }
+            // }
+            
         }
         Person.prototype = {
-            type: 'aaa',
-            say: function () {
-                console.log(2);
+            sayName:function(){
+                alert(this.name)
             }
-
         }
 
-        var p = new Person();
+        var p = new Person('tyy',18,'it');
+        p.sayName();
+        console.log(p)
         for (var item in p) {
             console.log(item)
         }
+        alert("sayName" in p)
     </script>
 </body>
 
