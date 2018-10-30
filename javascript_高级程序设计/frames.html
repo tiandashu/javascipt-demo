@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>frames</title>
+</head>
+    <frameset rows="160,100%">
+        <frame src="frame.htm" name="topFrame" id="topFrame">
+        <frameset cols="50%,50%">
+            <frame src="frame.htm" name="leftFrame" id="leftFrame">
+            <frame src="frame.htm" name="rightFrame">
+        </frameset>
+    </frameset>
+</html>
+<script>
+    // 有问题哇不能获取到指定的frames
+    var topf = window.frames[0];
+    console.log(topf);
+    
+</script>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="openNew()">button</button>
+    <button onclick="Print()">print</button>
+    <button onclick="Find()">Find</button>
+</body>
+</html>
+<script>
+function openNew(){
+    var newOpen = window.open("http://www.baidu.com","baidu","height=400,width=400,top=10,left=10,resizable=yes,toolbar=true");
+    newOpen.resizeTo(500,400);
+    newOpen.moveTo(500,400);
+    setTimeout(function(){
+        newOpen.close();
+        alert(newOpen.closed); //获取新开窗口的关闭状态
+    },3000);
+    alert(newOpen.closed); //获取新开窗口的关闭状态
+}
+
+function Print(){
+    window.print();
+}
+
+function Find(){
+    window.find();
+}
+
+function getQueryStringArgs(){
+    var qs = location.search.length>0?location.search.substring(1):"",
+    args = {},
+    items = qs.length ? qs.split("&"):[],
+    item = null,
+    name = null,
+    value = null,
+    i = 0,
+    len = items.length;
+    for(i;i<len;i++){
+        item = items[i].split("=");
+        name = decodeURIComponent(item[0]);
+        value = decodeURIComponent(item[1]);
+        if(name.length){
+            args[name] = value;
+        }
+    }
+    return args;
+}
+</script>
