@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    var client = function(){
+        var engine = {
+            ie: 0,
+            gecko: 0,
+            webkit: 0,
+            khtml: 0,
+            opera: 0,
+            ver: null //完整的版本号
+        };
+        var browser = {
+            ie: 0,
+            firefox: 0,
+            safari: 0,
+            konq: 0,
+            opera: 0,
+            chrome: 0,
+            ver: null, //具体的版本号
+        };
+        var system = {
+            win: false,
+            mac: false,
+            xll: false,
+            // 移动设备
+            iphone: false,
+            ipod: false,
+            ipad: false,
+            ios: false,
+            android: false,
+            nokiaN: false,
+            winMobile: false,
+            // 游戏系统
+            wii: false,
+            ps: false,
+        }
+        // 检测呈现引擎和浏览器
+        var ua = navigator.userAgent;
+        if(window.opera){
+            engine.ver = browser.ver = window.opera.version();
+            engine.opera = browser.opera = parseFloat(engine.ver);
+        }else if(/AppleWebKit\/(\S+)/.test(ua)){
+            
+        }
+    }
+</script>
