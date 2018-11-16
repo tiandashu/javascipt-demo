@@ -8,15 +8,41 @@
     <style>
         *{
             margin: 0px;
+            padding: 0px;
+        }
+        #parent{
+            width: 300px;
+            height: 300px;
+            border: 10px solid pink;
+            margin-left: 100px;
+            position: fixed;
+            right: 10px;
+            bottom: 10%;
+            padding-left: 80px;
+            /* transform: translateX(-800px);*/
+            /*设置fix定位也可以使用translate位移 */
+        }
+        #child{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 50px;
+            margin-left: 10px;
+            background: teal;
         }
     </style>
 </head>
 <body>
-    <div style="height: 1000px;"></div>
+    <div id="parent">
+        <div id="child">
+
+        </div>
+    </div>
 </body>
 </html>
-<script src="./utils.js"></script>
+<!-- <script src="./utils.js"></script> -->
 <script>
-    console.log(utils.scrollTop());
-    
+    // console.log(utils.scrollTop());
+    var child = document.getElementById("child");
+    console.log(child.offsetLeft) //获取相对定位的父元素的距离 包含padding margin
 </script>

@@ -7,7 +7,7 @@
     <title>dom扩展</title>
 </head>
 <body>
-    <button class="cla clb clc cld" id="mydiv" tian="lu" data-myname="tyy"></button>
+    <button class="cla clb clc cld" id="mydiv" tian="lu" data-myname="tyy">scroll</button>
     <div id="content">
         <p>this is a p</p>
         <ul>
@@ -66,4 +66,12 @@ var content = document.getElementById("content");
 var newp = document.createElement('p');
 newp.appendChild(document.createTextNode("this is a new p2"));
 content.parentNode.replaceChild(newp,content);
+
+// scrollIntoView()方法：参数一般为true（默认顶对齐）或者false（底对齐）
+
+
+
+// 事件绑定addEventListener(事件名，执行函数，布尔值)  true在捕获阶段调用 false在冒泡阶段
+// 移除事件使用removeEventListener(事件名，执行函数，布尔值) 必须和事件绑定的时候是同一个函数，否则移除不成功，所以不能是匿名函数
+// ie中的使用attachEvent、detachEvent  接受相同的2个参数：事件名需要加on，执行函数   添加到冒泡阶段，执行函数必须相同不能匿名
 </script>

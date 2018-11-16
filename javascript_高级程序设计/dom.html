@@ -45,7 +45,7 @@
     div.innerText = '创建的div';
     div.setAttribute('onclick','fn()'); // 可以
     document.body.appendChild(div);
-
+    
 
     // childNodes 兼容性测试
     var ulc = document.getElementsByTagName('ul')[0].childNodes;
@@ -69,7 +69,7 @@
     }
     console.timeEnd('fragment'); 
     fragmentUL.appendChild(fragment);
-
+    fragmentUL.scrollIntoView(false)
     // console.time('li');
     // var li = null;
     // for(var i=0;i<100;i++){
