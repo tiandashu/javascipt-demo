@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dom扩展</title>
+</head>
+<body>
+    <button class="cla clb clc cld" id="mydiv" tian="lu" data-myname="tyy"></button>
+    <div id="content">
+        <p>this is a p</p>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+    </div>
+</body>
+</html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+// 选择符 querySelector() 返回与该模式匹配的第一个元素
+// 选择符 querySelectorAll() 返回与该模式匹配的NodeList实例-伪数组
+
+// 对于元素间的空格，ie9以及以前的浏览器不会返回文本节点，而其它浏览器都会返回文本节点。这会导致firstChild和childNodes的属性的行为不一致。为了和ie保持一致，w3c新增了以下五个属性：
+// childElementCount:返回子元素的个数，不包含文本节点和注释
+// firstElementChild:指向第一个子元素，firstChild的元素版
+// lastElementChild:指向最后一个子元素，lastChild的元素版
+// previousElementSibling:指向前一个同辈元素，previousSibling的元素版
+// nextElementSibling:指向后一个同辈元素，nextSibling的元素版
+
+// childNodes 和 children的区别
+// childNodes会返回所有的节点包括文本节点等，children只返回元素节点，可以认为是childNodes的元素版
+
+
+// h5新增的属性classList可以方便的操作class的添加删除等，包含了如下的方法：
+// add(value) 将给定的字符添加到列表中，如果已经存在就不添加了
+// contains(value) 是否存在给定的值，返回true和false
+// remove(value)
+// toggle(value) 存在指定的值就删除，不存在就删除
+
+// 焦点管理 activeElement获得焦点的元素 和 hasFocus()是否有焦点
+var mydiv = document.querySelector('#mydiv');
+// mydiv.focus();
+console.log(document.hasFocus())
+console.log(document.activeElement)
+
+// 浏览器的兼容模式：标准模式和混杂模式
+// 标准模式:document.compatMode=="CSS1Compact"     <!DOCTYPE html>
+// 混杂模式:document.compatMode=="BackCompact"     不写DOCTYPE
+
+
+// 自定义属性 dataset是自定义属性的集合
+console.log(mydiv.dataset)  //DOMStringMap {myname: "tyy"}  ie8不支持
+console.log(mydiv.attributes) //NamedNodeMap {0: class, 1: id, 2: tian, 3: data-myname, class: class, id: id, tian: tian, data-myname: data-myname, length: 4}
+
+console.log($("#mydiv").attr('data-myname')) //jq获取自定义属性的时候还是需要data-前缀
+console.log(mydiv.dataset.myname)
+console.log(mydiv.attributes['data-myname'].nodeValue)
+
+
+var content = document.getElementById("content");
+// content.outerHTML = "<p>this is a new p</p>"    
+// 等同于下面的逻辑
+var newp = document.createElement('p');
+newp.appendChild(document.createTextNode("this is a new p2"));
+content.parentNode.replaceChild(newp,content);
+</script>
