@@ -74,4 +74,11 @@ content.parentNode.replaceChild(newp,content);
 // 事件绑定addEventListener(事件名，执行函数，布尔值)  true在捕获阶段调用 false在冒泡阶段
 // 移除事件使用removeEventListener(事件名，执行函数，布尔值) 必须和事件绑定的时候是同一个函数，否则移除不成功，所以不能是匿名函数
 // ie中的使用attachEvent、detachEvent  接受相同的2个参数：事件名需要加on，执行函数   添加到冒泡阶段，执行函数必须相同不能匿名
+
+
+// contextmenu事件
+document.oncontextmenu=function(ev){
+    console.log('阻止默认的菜单了');
+    return false;    //屏蔽右键菜单
+}
 </script>
