@@ -12,39 +12,79 @@
         }
         html,body{
             height: 100%;
-            background: teal;
+            background: #ddd;
         }
         #canvas{
             background: pink;
             margin: 0 auto;
             display: block;
+            /* width: 90%; */
         }
     </style>
 </head>
 <body>
-   <canvas id="canvas" width="400" height="600">
-       你的浏览器不支持canvas
+   <canvas id="canvas" width="800" height="600">
+       你的浏览器不支持canvas，ie9+
     </canvas>
+    <p>通过css设置的样式会把canvas拉伸，设置canvas的大小只能在属性上设置</p>
 </body>
 </html>
 <script>
-    var drawing = document.getElementById("canvas");
-    if(drawing.getContext){
-        var context = drawing.getContext('2d');
+    var cvs = document.getElementById("canvas");
+    if(cvs.getContext){
+        // 获取绘制的上下文 绘制2d  绘制3d传入WebGL,3d绘制的兼容性不好
+        var context = cvs.getContext('2d');
+
+        // 绘制矩形
+        context.fillStyle = "red";
+        context.fillRect(10,10,100,100);
+        context.fillStyle = "rgba(10,10,255,0.4)";
+        context.fillRect(50,50,100,100);
+        context.strokeStyle = "green";
+        context.strokeRect(600,400,100,100);
+        context.strokeStyle = "rgba(255,10,10,0.4)";
+        context.lineWidth = 10;
+        context.strokeRect(550,450,100,100);
+
+        // 清楚画布，把某个区域的矩形变成透明
+        context.clearRect(70,70,20,20);
+        // 绘制线条必须先调用beginPath()
         context.beginPath();
-        context.fillStyle = 'rgba(0,0,255,0.5)';
-        context.strokeStyle = 'red';
-        context.lineWidth = 4;
-        context.rect(10,10,100,100);
-        
+        context.arc(100,500,30,0,1.3*Math.PI,false);//只是绘制了并不展示
+        // context.closePath();
+        // context.beginPath();
+        context.lineTo(200,200);
+        context.moveTo(400,200);
+        context.arcTo(100,200,300,300,50);
+        context.rect(300,300,100,200);
+        // context.fill();
         context.stroke();
-        context.fill();
+        
         context.beginPath();
-        context.arc(40,40,20,0,2*Math.PI,false);
+        context.strokeStyle = "yellow";
+        context.clearRect(0,0,800,600);
+        context.moveTo(200,200);
+        context.lineTo(300,300);
+        context.lineTo(700,20);
+        context.moveTo(150,250);
+        // context.lineTo(250,250);
+        // context.closePath();
+        if(context.isPointInPath(250,250)){
+            // alert('触碰了')
+        }
         context.stroke();
 
-        
-        var imgUrl = drawing.toDataURL("image/png");
+
+        // 绘制文本
+        // fillText()和strokeText() 均接受四个参数：文本，x，y，最大像素宽度   第四个参数兼容性不好，不要使用
+        // 3个属性：font、textAlign、textBaseline
+        context.font = "bold 20px Arial";  
+        context.fillText('canvas',100,300);
+
+
+
+        // 绘制的canvas生成图片
+        var imgUrl = cvs.toDataURL("image/png");
         var image = document.createElement("img");
         image.src = imgUrl;
         document.body.appendChild(image);
