@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas-image</title>
+</head>
+<body>
+    <canvas width="800" height="600"></canvas>
+    <img src="./cat.gif" alt="">
+</body>
+</html>
+<script>
+
+var cvs = document.querySelector("canvas");
+var imgH = document.querySelector("img");
+cvs.style.backgroundColor = "#ddd";
+var context = cvs.getContext("2d");
+
+// 设置线性渐变-四个参数：起点坐标和终点坐标
+var gradient = context.createLinearGradient(30,30,70,70); //起点坐标和终点坐标
+gradient.addColorStop(0,"white");
+gradient.addColorStop(1,"black");
+
+context.fillStyle = "#ff0000";
+context.fillRect(10,10,50,50);
+
+context.fillStyle = gradient;
+// context.fillRect(30,30,50,50); //左上角坐标和宽高
+context.fillRect(50,50,50,50);
+// 为了渐变整个矩形，矩形和渐变的坐标必须匹配才行
+
+// 设置径向渐变-六个参数：起点圆的原心坐标和半径，终点圆的原心和半径
+var gradientR = context.createRadialGradient(55,55,10,55,55,30);
+gradientR.addColorStop(0,"white");
+gradientR.addColorStop(1,"black");
+context.fillStyle = gradientR;
+context.fillRect(30,30,50,50);
+
+// 模式 其实就是重复的图像，可以用来填充或者描边
+var pattern;
+var img = new Image();
+img.src = "../../static/img/cat.gif";
+img.onload = function(){
+    pattern = context.createPattern(img,"repeat");
+    context.fillStyle = pattern;
+    context.fillRect(200,200,200,200);
+    context.drawImage(img,250,80);
+    
+}
+
+
+// 使用图像数据 获取原始图像数据 四个参数：图像区域的x,y,w,h
+// 只有画布实在干净的情况下（图片并非来自其他域），才可以取得图像数据，否则js报错
+var imageData = context.getImageData(300,100,30,30);
+console.log(imageData);
+
+// 合成 globalAlpha 设置透明度    globalComposition-Opertation 后绘制的图形怎么和先绘制的图形结合
+context.fillStyle = "#ff0000";
+context.globalAlpha = 0.5;
+context.fillRect(200,10,100,100);
+// context.globalAlpha = 0; //重置全局的透明度为0
+</script>

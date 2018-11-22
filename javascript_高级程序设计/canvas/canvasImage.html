@@ -28,5 +28,17 @@ img.onload = function(){
     context.drawImage(img,10,10,100,100,130,30,50,50);
 }
 
+// 设置阴影
+context.shadowColor = "rgba(0,0,0,0.5)";
+context.shadowBlur = 4;
+context.shadowOffsetX = 10;
+context.shadowOffsetY = 5;
 
+// 设置渐变
+var gradient = context.createLinearGradient(130,130,170,170); //起点坐标和终点坐标
+gradient.addColorStop(0,"white");
+gradient.addColorStop(1,"black");
+
+context.fillStyle = "#ff0000";
+context.fillRect(130,130,40,40);
 </script>
