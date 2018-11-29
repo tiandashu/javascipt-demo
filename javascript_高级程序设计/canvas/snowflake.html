@@ -5,11 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>雪花</title>
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        html,body{
+            background: #000000;
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
-    
+    <canvas></canvas>
 </body>
 <script>
+    var cvs = document.querySelector("canvas");
+    cvs.width = window.innerWidth;
+    cvs.height = window.innerHeight;
+    var ctx = cvs.getContext("2d");
+
+    var particles = [];
+    var maxParticles = 500;
+
+    function random(min,max){
+        return Math.random()*(max-min)+min;
+    }
+
+    window.requestAnimationFrame = (function(){
+        var fps = 60;
+        return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame ||
+        function(callback){
+            window.setTimeout(callback,1000/fps)
+        } 
+    })()
+
+
+    // 构造雪花
+    function Snow(){
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
