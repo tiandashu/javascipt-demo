@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p onclick="fn()" id="node">文档节点类型nodeType：1元素 2属性 3文本 9document文档类型 8Comment注释</p>
+    <p>属性（特性）的名称不区分大小写,元素的属性使用getAttribute和使用对象属性的形式访问（.）不总是相同，有特殊的两类是：style和onclick这种的;开发中一般不使用getAttribute</p>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <ul id="fragment"></ul>
+</body>
+</html>
+<script>
+    var p = document.getElementById("node");
+    console.log(p.id);
+    p.id="nodeNew"
+    console.log(p.getAttribute('id'));
+    p.setAttribute('class','a');
+    // p.removeAttribute('id');
+    if(p.nodeType==1){
+        console.log(p.nodeValue+'---'+p.nodeName)
+    }
+
+    function fn(){
+        console.log(22)
+    }
+    console.log(p.onclick); //ƒ onclick(event) {fn()}
+    console.log(p.getAttribute('onclick')); //fn()
+    console.log(p.attributes); //获取元素的属性集合
+    console.log(p.attributes.getNamedItem('id'))
+    console.log(p.attributes['id'])
+    console.log(p.attributes.getNamedItem('id').nodeValue)
+
+    // 创建元素
+    var div = document.createElement('div');
+    div.onclick = 'fn()'; //无效
+    div.id = 'iddiv';
+    div.innerText = '创建的div';
+    div.setAttribute('onclick','fn()'); // 可以
+    document.body.appendChild(div);
+    
+
+    // childNodes 兼容性测试
+    var ulc = document.getElementsByTagName('ul')[0].childNodes;
+    for(var i=0;i<ulc.length;i++){
+        console.log(ulc[i]);
+    }
+    console.log(ulc.length); //ie中为3：childNodes只包含三个li   chrome中为7 还包括了li之间的4个文本节点
+
+
+
+    // 文档片段 fragment 作为一个轻量级的文档具有和node一样的特性，只是永远不含在文档树种。可以把fragment作为一个仓库使用。用来保存即将可能会添加到文档中的节点。
+    var fragmentUL = document.getElementById('fragment');
+    // 可以避免浏览器重复渲染，但是测试中对性能的影响不是很大
+    console.time('fragment');
+    var fragment = document.createDocumentFragment();
+    var li = null;
+    for(var i=0;i<100;i++){
+        li = document.createElement("li");
+        li.appendChild(document.createTextNode("Item"+(i+1)));
+        fragment.appendChild(li)
+    }
+    console.timeEnd('fragment'); 
+    fragmentUL.appendChild(fragment);
+    fragmentUL.scrollIntoView(false)
+    // console.time('li');
+    // var li = null;
+    // for(var i=0;i<100;i++){
+    //     li = document.createElement("li");
+    //     li.appendChild(document.createTextNode("Item"+(i+1)));
+    //     fragmentUL.appendChild(li)
+    // }
+    // console.timeEnd('li'); //25
+</script>

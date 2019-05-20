@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>粒子效果</title>
+        <style type="text/css">
+            *{
+                padding: 0;
+                margin: 0;
+            }
+			html,body{
+				background: #000000;
+                height: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" ></canvas>
+	</body>
+</html>
+<script type="text/javascript">
+(function(){
+    var cvs = document.querySelector("#canvas");
+    cvs.width = window.innerWidth;
+    cvs.height = window.innerHeight;
+    var ctx = cvs.getContext("2d");
+  
+    function Lizi(){
+        this.x = 0;
+        this.y = 0;
+        this.r = 0;
+    }
+
+    Lizi.prototype = {
+        init:function(){
+            
+        }
+    }
+
+
+
+
+
+
+ 
+})();
+    
+</script>

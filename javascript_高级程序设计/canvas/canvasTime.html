@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>钟表</title>
+    
+</head>
+<body>
+    <canvas width="800" height="600"></canvas>
+</body>
+</html>
+<script>
+var cvs = document.querySelector('canvas');
+if(cvs.getContext){
+    var context = cvs.getContext("2d");
+
+    context.beginPath();
+    context.strokeStyle = "black";
+    context.arc(400,300,200,0,2*Math.PI,false);
+    //不重新移动点会出现横线
+    context.moveTo(580,300); 
+    context.arc(400,300,180,0,2*Math.PI,false);
+    context.moveTo(400,300);
+    context.lineTo(400,146);
+    context.moveTo(400,300);
+    context.lineTo(100,300);
+    context.stroke();
+
+    context.font = "blod 30px Arial";
+    context.fillText('default',400,120);
+    context.textAlign = "center";
+    context.fillText('center',400,140);
+    context.textAlign = "start";
+    context.fillText('start',400,160);
+    context.textAlign = "end";
+    context.fillText('end',400,180);
+
+    // 文本基线
+    context.textAlign = "center";
+    context.fillText('default',400,300);
+
+    context.textAlign = "center";
+    context.textBaseline = "top";
+    context.fillText('top',350,300);
+
+    context.textAlign = "center";
+    context.textBaseline = "hanging";
+    context.fillText('hanging',300,300);
+
+    context.textAlign = "center";
+    context.textBaseline = "middle";
+    context.fillText('middle',250,300);
+
+    context.textAlign = "center";
+    context.textBaseline = "alphabetic";
+    context.fillText('alphabetic',200,300);
+
+    context.textAlign = "center";
+    context.textBaseline = "ideographic";
+    context.fillText('ideographic',150,300);
+
+    context.textAlign = "center";
+    context.textBaseline = "bottom";
+    context.fillText('bottom',100,300);
+
+
+}
+</script>

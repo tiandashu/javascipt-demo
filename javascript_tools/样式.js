@@ -1,10 +1,21 @@
 
 
-// clientWidth 处理兼容性  获取可视区域宽高,不包含浏览器的工具栏，也不包含f12调试窗口的高度（浏览器可用窗口的高度）
+// clientWidth 处理兼容性 只读 获取可视区域宽高,不包含浏览器的工具栏，也不包含f12调试窗口的高度（浏览器可用窗口的高度）
+// 每次访问都会重新就算 包含内容高度+内边距
 function getClient() {
     return {
         width: window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
         height: window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+    }
+}
+
+// 只读 包含内容高度+内边距+border
+function offset() {
+    return {
+        height: document.documentElement.offsetHeight || document.body.offsetHeight, // 页面的高度包含卷去的部分
+        width: document.documentElement.offsetWidth || document.body.offsetWidth, // 页面的宽度包含卷去的部分
+        left: document.body.offsetLeft,
+        top: document.body.offsetTop
     }
 }
 
@@ -21,12 +32,13 @@ function scrollTop() {
     //为了避免在ie中计算出错 所以将window.pageYOffset放在中间的位置
 }
 
-//获得文档的大小（区别与视口）,与上面获取视口大小的方法如出一辙
+// 获得文档的大小（区别与视口）,与上面获取视口大小的方法如出一辙 
+// 包含视口高度+border+卷去的高度（如果有滚动条的话） 一般是元素的实际宽高
 function getDocumentPort () {
-    if(document.compatMode == "BackCompat") {//混杂模式
+    if(document.compatMode == "BackCompat") {//混杂模式 ie
         return {
-            width: document.body.scrollWidth,
-            height: document.body.scrollHeight
+            width: Math.max(document.body.scrollWidth,document.body.clientWidth),
+            height: Math.max(document.body.scrollHeight,document.body.clientHeight)
         };
     } else {
         return {
@@ -36,15 +48,6 @@ function getDocumentPort () {
     }
 }
 
-// 只读
-function offset() {
-    return {
-        height: document.documentElement.offsetHeight || document.body.offsetHeight, // 页面的高度包含卷去的部分
-        width: document.documentElement.offsetWidth || document.body.offsetWidth, // 页面的宽度包含卷去的部分
-        left: document.body.offsetLeft,
-        top: document.body.offsetTop
-    }
-}
 
 // 屏幕的宽高
 function screen() {
@@ -54,4 +57,30 @@ function screen() {
         width: window.screen.width,  //  屏幕的宽度
         height: window.screen.height  //  屏幕的高度
     }
+}
+
+// 用于获取某个元素相对于视窗的位置集合
+// 在ie7及ie7以下的html元素坐标会从(2, 2)开始算起，在ie8已经修复了这个bug。这就是多出两个像素的原因。下面我们做下兼容：
+function getBoundingClientRect(element){
+    var rectElement = element.getBoundingClientRect();
+    return {
+        rectWidth: rectElement.right - rectElement.left,
+        rectHeight: rectElement.bottom - rectElement.top,
+        rectLeft = rectObject.left - document.documentElement.clientLeft || 2,
+        rectRight = rectObject.right - document.documentElement.clientLeft || 2,
+        rectBottom = rectObject.bottom - document.documentElement.clientTop || 2,
+        rectTop = rectObject.top - document.documentElement.clientTop || 2
+    }
+}
+
+
+
+
+// 获取计算后的样式
+function getStyle(obj,attr){
+    if(obj.currentStyle){//ie
+        return obj.currentStyle[attr];
+    }
+    // 第二个参数可以是伪元素如果不需要设为null
+    return getComputedStyle(obj,null)[attr];
 }

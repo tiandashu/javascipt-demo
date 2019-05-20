@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>html5事件</title>
+    <style>
+        #mymenu{
+            position: fixed;
+            visibility: hidden;
+        }
+    
+    </style>
+</head>
+<body>
+    <div id="mydiv">右击 me show a new context menu</div>
+    <ul id="mymenu">
+        <li>mymenu1</li>
+        <li>mymenu2</li>
+        <li>mymenu3</li>
+    </ul>
+    <input type="checkbox" name="color"  value="red">
+    <input type="checkbox" name="color"  value="green">
+    <input type="checkbox" name="color"  value="pink">
+
+    <select name="test" id="testSelect">
+        <option value="1" selected>1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+</body>
+</html>
+<script>
+var mydiv = document.getElementById('mydiv');
+var mymenu = document.getElementById('mymenu');
+var testSelect = document.getElementById('testSelect');
+mydiv.oncontextmenu = function(e){
+    var e = e || window.event;
+    e.preventDefault() || (e.returnValue = false);
+    mymenu.style.left = e.clientX  + 'px';
+    mymenu.style.top = e.clientY  + 'px';
+    mymenu.style.visibility = 'visible';
+}
+
+mymenu.onclick = function(){
+    mymenu.style.visibility = 'hidden';
+}
+
+window.onunload = function(){
+    window.alert(222)
+}
+
+// 注意：如果对该页面不做任何操作包括点击，那么该事件不会生效。
+// window.onbeforeunload = function(event){
+//     var event = event || window.event;
+//     var message = '即将离开'; 
+//     event.returnValue = message;
+//     return message;
+// }
+
+// DOMContentLoaded 文档树加载完成后就会触发，不用考虑css、js等外部资源的加载   ie9+ 始终在load事件之前触发
+
+
+// 获取多选框的值
+var input= document.getElementsByTagName('input');
+mydiv.onclick = function(){
+    var arr = [];
+    for(var i=0;i<input.length;i++){
+        if(input[i].checked){
+            arr.push(input[i].value)
+        }
+    }
+    console.log(arr)
+}
+
+testSelect.onchange = function(){
+    var testSelectValue = testSelect.value;
+    console.log(testSelectValue)
+}
+
+
+</script>
