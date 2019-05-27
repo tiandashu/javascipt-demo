@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>错误处理</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+function asyncfn() {
+  return new Promise(function(resolve, reject){
+    // resolve('111')
+    reject('222')
+  }).catch(function(e){
+    console.log('catch',e)
+  })
+}
+
+async function done(){
+  var asyncdata = await asyncfn()
+  console.log(asyncdata) //undefined
+  // try{
+  //   var asyncdata = await asyncfn()
+  //   console.log(asyncdata)  //
+  // }catch(e){
+  //   console.log('e',e)
+  // }
+ 
+  console.log('done')
+}
+done()
+
+// 总结：1 promise进行了catch捕获，那么使用async await得到的是undefined，错误信息在catch里面显示
+// 2. promise没有进行catch捕获，如果promise发生错误了，async await就需要try catch 语句同步获取错误
+</script>
