@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>subscrilbePublished</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+// 订阅发布模式 - 实现
+// 1、创建一个对象
+// 2、在该对象上创建一个缓存列表（调度中心）
+// 3、$on方法可以将监听事件添加到缓存列表
+// 4、$emit方法可以触发缓存列表中对应事件
+// 5、$off方法可以取消监听
+// 6、$once方法只监听一次
+function Emiter() {
+  this.list = {}
+}
+Emiter.prototype.$on = function(event, fn) {
+  // 如果已经监听过了 就直接缓存
+  // 如果还没有建听过就给新建一个缓存列表
+  ( this.list[event] || ( this.list[event] = [] ) ).push(fn)
+  return this;
+}
+Emiter.prototype.$emit = function() {
+  var event = Array.prototype.shift.call(arguments);
+  var fns = this.list[event];
+  if( !fns || fns.length == 0 ) return;
+  fns.forEach(fn => {
+    fn.apply(this, arguments)
+  })
+  return this;
+}
+Emiter.prototype.$off = function(event, fn) {
+  var fns = this.list[event];
+  // 如果没有监听直接返回
+  if(!fns) return;
+  if(!fn){
+    // 如果存在监听但是没传入事件，就直接都清空
+    fns && (fns = [])
+  }else{
+    fns.forEach((cb,i)=>{
+      if(cb===fn){
+        fns.splice(i, 1)
+      }
+    })
+  }
+  return this;
+}
+// 监听一次
+Emiter.prototype.$once = function(event, fn) {
+  // 先绑定，调用后删除
+  // 对绑定的事件进行改造，使它可以调用后删除监听
+  function canDel(){
+    this.$off(event, canDel)
+    fn.apply(this, arguments)
+  }
+  this.$on(event, canDel)
+}
+
+var emmiter = new Emiter();
+
+emmiter.$on('once', function(data, data2){
+  console.log(data, data2)
+})
+emmiter.$once('once', function(data, data2){
+  console.log(data, data2)
+})
+emmiter.$emit('once','$emitdata','$emitdata2')
+emmiter.$emit('once','$emitdata3','$emitdata4')
+</script>
