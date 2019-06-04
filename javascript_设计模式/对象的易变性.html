@@ -43,4 +43,26 @@
     })
     var a = new anim();
     a.start()
+
+
+    // 示例2
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    Person.prototype.sayName = function() {
+        alert(this.name)
+    }
+    var p1 = new Person('p1',16)
+    p1.sayName()
+    // p1.sayAge()
+    
+    Person.prototype.sayAge = function() {
+        alert(this.age)
+    }
+    // 虽然实例p1是在sayAge方法之前创建的，但是仍然能获取到该方法
+    p1.sayAge()
+    var p2 = new Person('p2',18)
+    p2.sayName()
+    p2.sayAge()
 </script>
