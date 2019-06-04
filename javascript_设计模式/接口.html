@@ -56,4 +56,30 @@
 
     // 二、属性检查模仿接口
     // 这种的更严谨点，所有类都明确的声明自己实现了哪些接口，那些想与这些类打交道的对象可以针对这些声明尽心检查。那些类自身还是注释，但是你可以通过检查一个属性得知某个类自称实现了什么接口。
+    /*
+        interface Composite {
+            function add(child);
+            function remove(child);
+            function getChild(index);
+        }
+
+        interface FormItem {
+            function save();
+        }
+    */
+    var CompositeForm2 = function(id, method, action) {
+        this.implementsInsterfaces = ['Composite','FormItem']
+    }
+    // 用来检测实现了那些接口方法
+    function implements2(object) {
+        
+    }
+
+
+
+
+
+
+
+
 </script>
