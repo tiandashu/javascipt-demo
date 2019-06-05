@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>接口-鸭式辩型法</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // 接口
+    // 接口是面向对象javascript程序员工具箱中最有用的工具之一。接口提供了一种用以说明一个对象应该具有哪些方法的手段
+    // 个人理解：预先把所有的接口方法和方法所需参数列出来，并在类中一一实现。少一个就报错，一个类可以实现不止一个接口
+
+    // 接口的利
+    // 既定的接口具有自我描述性，并能促进代码的重用，接口还能有助于稳定不同的类之间的通信方式。
+    
+    // 接口的弊
+    // JavaScript本身是弱类型的语言，而接口的使用一定程度上强化了类型的作用，降低了语言的灵活性。
+    // JavaScript 并没有提供对接口的内置支持，存在一定的风险
+    // JavaScript 实现接口会对性能带来一定的影响（归咎于额外的方法调用的开销）
+    // 接口存在的最大的问题是无法强迫其它程序员遵守你定义的接口。在别的语言中接口是内置的并被编译器识别的
+    
+    // JavaScript中模仿接口的三种方法：1.注释描述法  2.属性检查法  3.鸭式辩型法
+    // 1.注释描述法  用注释模仿接口是最简单的方式，但是效果最差。这种方式模仿了其它面向对象语言中的做法
+
+    // 三、鸭式辩型法
+    // 像鸭子走并且嘎嘎嘎叫的就是鸭子
+    // 如果对象具有和接口定义的方法同名所有的方法，那么就可以认为它实现了这个接口。可以使用一个辅助函数来确保对象具有所必须的方法
+    // 其实就是方法二的加强版
+    // 具体实现：
+    // 将方法放在接口中
+    var Interface = function(name, methods) {
+        // 声明接口方法
+    }
+    // 静态方法用来检测是否已经实现了接口方法
+    Interface.ensureImplements = function(object) {
+        // 
+    }
+
+    // 接口方法的具体实现
+    var CompositeForm = function(id, method, active){
+        this.id = id
+        this.method = method
+        this.active = active
+    }
+    CompositeForm.prototype = {
+        constructor: CompositeForm,
+        add: function(child){
+
+        }, 
+        remove: function(child){
+
+        }, 
+    }
+
+    // 实例化接口
+    var Com = new Interface('Com',['add','remove'])
+
+    // 使用接口方法时，检测是否已经实现了该接口方法
+    function addForm(formInstance){
+        Interface.ensureImplements(formInstance,Com)
+    }
+    addForm((new CompositeForm()).add())
+
+
+</script>

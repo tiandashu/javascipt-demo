@@ -72,9 +72,29 @@
     }
     // 用来检测实现了那些接口方法
     function implements2(object) {
-        
+        for(var i = 1; i < arguments.length; i++ ){
+            let interfaceName = arguments[i]
+            let interfaceFound = false
+            for (let index = 0; index < object.implementsInsterfaces.length; index++) {
+                if(interfaceName==object.implementsInsterfaces[index]){
+                    interfaceFound = true
+                    break;
+                }
+                
+            }
+            if(!interfaceFound){
+                return false
+            }
+        }
+        return true
     }
 
+    function addForm(formInstance){
+        if(!CompositeForm2(formInstance,'Composite','FormItem')){
+            throw new Error('没有实现接口')
+        }
+    }
+    addForm(new CompositeForm2())
 
 
 
