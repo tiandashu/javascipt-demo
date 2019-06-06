@@ -4,23 +4,87 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>继承</title>
+  <title>类式继承</title>
 </head>
 <body>
  
 </body>
 </html>
 <script>
-  function Person(name){
+  // 类式继承
+  // 超类
+  function Person(name,city){
     this.name = name
+    this.city = city
   }
   Person.prototype.say = function(){
     console.log(this.name)
   }
 
-  // 继承
-  function Father(child,name){
-    Person.call(this,name)
-    this.child = child
+  // 1、继承
+  // function Father(child,name){
+  //   Person.call(this,name)
+  //   this.child = child
+  // }
+
+  // Father.prototype = new Person()
+  // Father.prototype.constructor = Father
+  // Father.prototype.getChild = funcction() {
+  //   return this.child
+  // }
+
+  // 2、extend函数继承
+  function extend(subClass, superClass) {
+    var F = function(){}
+    F.prototype = superClass.prototype
+    subClass.prototype = new F()
+    subClass.prototype.constructor = subClass
   }
+
+  function Mother(name, city){
+    // 问题就是这个超类名称Person 被固化在了子类中
+    // 选择一种更加优化的做法
+    Person.call(this,name,city)
+    this.sex = '女'
+  }
+  extend(Mother, Person)
+  Mother.prototype.getSex = function() {
+    console.log(this.sex) 
+  }
+
+  var mm = new Mother('mama', '北京')
+  console.log(mm)
+  mm.say()
+  mm.getSex()
+
+
+  // 3、优化extend
+  function extend2(subClass, superClass){
+    var F = function(){}
+    F.prototype = superClass.prototype
+    subClass.prototype = new F()
+    subClass.prototype.constructor = subClass
+
+    // 优化写法
+    // 确保超类的constructor 被正确设置
+    subClass.superClass = superClass.prototype
+    if(superClass.prototype.constructor == Object.prototype.constructor) {
+      superClass.prototype.constructor = superClass
+    }
+  }
+
+  function Mother2(name, city){
+    // 和超类解耦了
+    Mother2.superClass.constructor.call(this,name,city)
+    this.sex = '女'
+  }
+  extend2(Mother2, Person)
+  Mother2.prototype.getSex = function() {
+    console.log(this.sex) 
+  }
+
+  var mm2 = new Mother2('mama2', '北京2')
+  console.log(mm2)
+  mm2.say()
+  mm2.getSex()
 </script>

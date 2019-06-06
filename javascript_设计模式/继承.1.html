@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>原型式继承</title>
+</head>
+<body>
+ 
+</body>
+</html>
+<script>
+  // 原型式继承
+  // 使用原型式继承时，并不需要用类来定义对象的结构，只需要直接创建一个对象就行了。这个对象之后被新的对象重用。该对象称为原型对象。
+  var Person = {
+    name: 'allen',
+    getName: function() {
+      console.log(this.name)
+    },
+    child:  {
+      bool: 'setbool',
+      num: 20
+    }
+  }
+
+  // 实现clone方法
+  function clone(superObject) {
+    var F = function(){}
+    F.prototype = superObject
+    return new F()
+  }
+
+  var teacher = clone(Person)
+  console.log(teacher)
+  console.log(teacher.child.num)
+  teacher.child.num = 'zhangsan1'
+  console.log(teacher.child.num) //zhangsan1
+
+  // 
+  var worker = clone(Person)
+  console.log(worker.child.num ) //zhangsan1
+
+  // 问题就是存在多个子类时，修改某一个属性会影响到别的子类
+</script>

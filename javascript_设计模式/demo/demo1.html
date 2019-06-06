@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>就地编辑</title>
+  <style>
+    span{
+      color: red;
+    }
+  
+  </style>
+</head>
+<body>
+    <div id="app"></div>
+</body>
+</html>
+<script>
+// 需求：
+// 网页上的一个普通文本被点击后变成一个可被编辑的表单域
+// 使用这个api，用户能够为对象分配一个唯一的id，能够提供一个默认值
+// 能够指定其在页面上的目标位置，还能在任何时候都可以访问这个域的当前值，并使用具体的编辑域
+
+
+function addEvent(obj,type,handle){
+    try{  // Chrome、FireFox、Opera、Safari、IE9.0及其以上版本
+        obj.addEventListener(type,handle,false);
+    }catch(e){
+        try{  // IE8.0及其以下版本
+            obj.attachEvent('on' + type,handle);
+        }catch(e){  // 早期浏览器
+            obj['on' + type] = handle;
+        }
+    }
+}
+
+// 使用类式继承来实现
+function EditInPlaceField(id, parent, value) {
+  this.id = id
+  this.value = value || 'default value'
+  this.parentElement = parent
+
+  this.creatElements(this.id)
+  this.attachEvents()
+}
+
+EditInPlaceField.prototype = {
+  cre: function(domName) {
+    return document.createElement(domName)
+  },
+  apd: function(domF, domC) {
+    domF.appendChild(domC)
+  },
+  creatElements: function() {
+    this.containerElement = this.cre('div')
+    this.containerElement.id = 'container'
+    this.apd(this.parentElement, this.containerElement)
+
+    this.staticElement = this.cre('span')
+    this.staticElement.innerHTML = this.value
+    this.apd(this.containerElement, this.staticElement)
+
+    this.fieldElement = this.cre('input')
+    this.fieldElement.type = 'text'
+    this.fieldElement.value = this.value
+    this.apd(this.containerElement, this.fieldElement)
+
+    this.saveButton = this.cre('input')
+    this.saveButton.type = 'button'
+    this.saveButton.value = 'Save'
+    this.apd(this.containerElement, this.saveButton)
+
+    this.cancleButton = this.cre('input')
+    this.cancleButton.type = 'button'
+    this.cancleButton.value = 'cancle'
+    this.apd(this.containerElement, this.cancleButton)
+    
+    this.convertToText()
+  },
+  attachEvents: function() {
+    var that = this
+    addEvent(this.staticElement, 'click', function(){ that.convertToEditable() })
+    addEvent(this.saveButton, 'click', function(){ that.save() })
+    addEvent(this.cancleButton, 'click', function(){ that.cancle() })
+  },
+  convertToText: function() {
+    this.staticElement.style.display = 'inline'
+    this.fieldElement.style.display = 'none'
+    this.saveButton.style.display = 'none'
+    this.cancleButton.style.display = 'none'
+    
+    this.setValue(this.value)
+  },
+  convertToEditable: function() {
+    this.staticElement.style.display = 'none'
+    this.fieldElement.style.display = 'inline'
+    this.saveButton.style.display = 'inline'
+    this.cancleButton.style.display = 'inline'
+    
+    this.setValue(this.value)
+  },
+  save: function() {
+    this.value = this.getValue()
+    var that = this
+    var callback = {
+      success: function() {
+        that.convertToText()
+      },
+      fail: function() {
+        alert('err')
+      }
+    }
+    // 异步获取数据
+    setTimeout(function(){
+      if(that.value == 'allen'){
+        callback.success()
+      }else{
+        callback.fail()
+      }
+    }, 10)
+  },
+  cancle: function() {
+    this.convertToText()
+  },
+  getValue: function() {
+    console.log(this.fieldElement.value)
+    return this.fieldElement.value
+  },
+  setValue: function() {
+    this.fieldElement.value = this.value
+    this.staticElement.innerHTML = this.value
+  },
+}
+
+
+var edit = new EditInPlaceField('titleId', document.getElementById('app'), 'title here')
+edit.getValue()
+
+
+</script>

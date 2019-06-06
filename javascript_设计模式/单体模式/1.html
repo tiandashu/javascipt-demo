@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>单体模式</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+// 单体：
+// 单体是一个用来划分命名空间并将一批相关的方法和属性组织在一起的对象。如果他可以被实例化，那么他只能被实例化一次
+MyNameSpace.Singleton = (function(){
+  // ...
+
+  return {
+    // ...
+  }
+
+})()
+
+// 惰性单体
+function instanceFace() {
+  function Person(name, age) {
+    this.name = name
+    this.age = age
+  }
+  var isInstanceFace = null
+  if(!isInstanceFace) {
+    isInstanceFace =  new Person()
+    return isInstanceFace
+  }else{
+    return isInstanceFace 
+  }
+}
+</script>
