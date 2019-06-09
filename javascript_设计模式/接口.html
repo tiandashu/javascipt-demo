@@ -13,6 +13,7 @@
 <script>
     // 接口
     // 接口是面向对象javascript程序员工具箱中最有用的工具之一。接口提供了一种用以说明一个对象应该具有哪些方法的手段
+    // 个人理解：预先把所有的接口方法和方法所需参数列出来，并在类中一一实现。少一个就报错，一个类可以实现不止一个接口
 
     // 接口的利
     // 既定的接口具有自我描述性，并能促进代码的重用，接口还能有助于稳定不同的类之间的通信方式。
@@ -26,6 +27,9 @@
     // JavaScript中模仿接口的三种方法：1.注释描述法  2.属性检查法  3.鸭式辩型法
     // 1.注释描述法  用注释模仿接口是最简单的方式，但是效果最差。这种方式模仿了其它面向对象语言中的做法
 
+    // 一、注释法
+    // 先用注释模拟2个接口Composite和FormItem
+    // 用CompositeForm作为类实现这两个接口
     /*
         interface Composite {
             function add(child);
@@ -39,21 +43,63 @@
     */
 
     var CompositeForm = function(id, method, action) {
-
+        this.id = id;
+        this.method = method;
+        this.action = action;
     }
-    CompositeForm.prototype.add = function(child) {
-
-    }
-    CompositeForm.prototype.remove = function(child) {
-
-    }
-    CompositeForm.prototype.remove = function(index) {
-
-    }
+    CompositeForm.prototype.add = function(child) {}
+    CompositeForm.prototype.remove = function(child) {}
+    CompositeForm.prototype.remove = function(index) {}
     // 这种方式归根结底还是属于程序文档规范，没有确保CompositeForm真正实现了正确的方法集而进行检查，对接口的约定纯属自觉。
     // 优点是易于实现，不需要额外的函数和类，可以提高代码的可重用性。由于注释不会报错，对于测试和调试没什么帮助。
 
 
-    // 2.属性检查模仿接口
+    // 二、属性检查模仿接口
     // 这种的更严谨点，所有类都明确的声明自己实现了哪些接口，那些想与这些类打交道的对象可以针对这些声明尽心检查。那些类自身还是注释，但是你可以通过检查一个属性得知某个类自称实现了什么接口。
+    /*
+        interface Composite {
+            function add(child);
+            function remove(child);
+            function getChild(index);
+        }
+
+        interface FormItem {
+            function save();
+        }
+    */
+    var CompositeForm2 = function(id, method, action) {
+        this.implementsInsterfaces = ['Composite','FormItem']
+    }
+    // 用来检测实现了那些接口方法
+    function implements2(object) {
+        for(var i = 1; i < arguments.length; i++ ){
+            let interfaceName = arguments[i]
+            let interfaceFound = false
+            for (let index = 0; index < object.implementsInsterfaces.length; index++) {
+                if(interfaceName==object.implementsInsterfaces[index]){
+                    interfaceFound = true
+                    break;
+                }
+                
+            }
+            if(!interfaceFound){
+                return false
+            }
+        }
+        return true
+    }
+
+    function addForm(formInstance){
+        if(!CompositeForm2(formInstance,'Composite','FormItem')){
+            throw new Error('没有实现接口')
+        }
+    }
+    addForm(new CompositeForm2())
+
+
+
+
+
+
+
 </script>

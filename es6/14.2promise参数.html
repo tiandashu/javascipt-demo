@@ -16,8 +16,9 @@
       if(true){
         // return 333
         // resolve('222')
-        var data = 444
+        var data = 111
         resolve(data)
+        // return data
       }else{
         reject('111')
       }
@@ -26,9 +27,17 @@
 
 
 async1().then(function(data){
-  console.log(data)
+  console.log('data1',data)
+  // return 222
 },function(err){
-  console.log(err)
+  console.log('err1',err)
+}).then(function(data2){
+  console.log('data2',data2)
+  return {a:333}
+}).then(function(data3){
+  console.log('data3',data3)
+}).catch(function(err){
+  console.log('allerr',err)
 })
 
 

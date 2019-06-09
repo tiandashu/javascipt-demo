@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // 封装  可以被定义为对对象的内部数据表现形式和实现细节进行隐藏。
+    // 在JavaScript中没有private这样的关键字，我们可以通过闭包达到同样的目的
+    var Book = (function(){
+        // 静态私有属性
+        var bookName = '格林童话'
+        // 静态私有方法
+        function bookType() {
+            alert('this book is a TH')
+        }
+
+        // return一个构造函数
+        return function (newIsbn, newTitle, newAuthor){
+            // 私有属性
+            var isbn,title;
+            var author='allen';
+            // 私有方法
+            function log(text='私有方法'){
+                console.log(text)
+            }
+
+            // 特权方法 - 可以访问私有属性
+            this.getAuthor = function(){
+                log()
+                Book.sayTitle()
+                return author
+            }
+            // 公共方法和属性
+            this.newIsbn = newIsbn
+        }
+
+    })();
+    // 公共静态方法
+    Book.sayTitle = function(){
+        console.log('公共静态方法')
+    }
+    // 
+    Book.prototype.sayAuthor = function(){
+        console.log(this.getAuthor())
+    }
+
+    var book = new Book('newIsbn','newTitle', 'newAuthor')
+    book.sayAuthor()
+</script>
